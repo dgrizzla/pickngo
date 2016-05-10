@@ -1,0 +1,28 @@
+<div class="modal-header">
+  <div class="loginBox large">
+    <div class="headBox">
+      <div class="logoTop"><img src="assets/images/logo-top.jpg" alt=""></div>
+    </div>
+  </div>
+</div>
+<div class="modal-body">
+  <div class="loginBox">
+    <div class="inner">
+      <form name="loginForm" novalidate ng-submit="login(loginForm.$valid)" role="form">
+        <h4 class="lTitle">Inicia Sesión</h4>
+        <div class="fieldBox">
+          <label>Nombre de Usuario</label>
+          <input type="text" ng-model='usuario.usuario' class="inputText" required>
+        </div>
+        <div class="fieldBox">
+          <label>Contraseña</label>
+          <input type="password" ng-model='usuario.clave' class="inputText" required>
+        </div>
+        <div class="fieldBox">
+          <button type="submit" class="Cbtn yellow">Login</button>
+        </div>
+        <div >{{error}}</div>
+      </form>
+    </div>
+  </div>
+</div>

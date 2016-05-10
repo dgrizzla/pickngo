@@ -1,0 +1,86 @@
+<div class="modal-header">
+  <div class="loginBox large">
+    <div class="headBox">
+      <div class="logoTop"><img src="assets/images/logo-top.jpg" alt=""></div>
+    </div>
+  </div>
+</div>
+<div class="modal-body">
+  <div class="loginBox large">
+    <div class="inner">
+      <form name="registroForm" novalidate ng-submit="registro(registroForm.$valid)" role="form">
+        <div class="row">
+          <h4 class="lTitle">Registrate</h4>
+          <div class="col-xs-6 form-group" ng-class="{'has-error':registroForm.nombres.$invalid && registroForm.nombres.$dirty}">
+            <label>Nombres</label>
+            <input class="form-control" placeholder="Nombres" type="text" name="nombres" ng-model="usuario.nombres" required>
+          </div>
+          <div class="col-xs-6 form-group" ng-class="{'has-error':registroForm.apellidos.$invalid && registroForm.apellidos.$dirty}">
+            <label>Apellidos</label>
+            <input class="form-control" placeholder="Apellidos" type="text" name="apellidos" ng-model="usuario.apellidos" required>
+          </div>
+          <div class="col-xs-6 form-group" ng-class="{'has-error':registroForm.usuario.$invalid && registroForm.usuario.$dirty}">
+            <label>Usuario</label>
+            <input class="form-control" placeholder="Usuario" type="text" name="usuario" ng-model="usuario.usuario" required>
+          </div>
+          <div class="col-xs-6 form-group" ng-class="{'has-error':registroForm.clave.$invalid && registroForm.clave.$dirty}">
+            <label>Contraseña</label>
+            <input class="form-control" placeholder="Contraseña" type="password" name="clave" ng-model="usuario.clave" required>
+          </div>
+          <div class="col-xs-6" ng-class="{'has-error':registroForm.clave.$invalid && registroForm.clave.$dirty}">
+            <div class="row clearfix visible-xs-block">
+              <div class="col-sm-9">
+                <label>Sexo</label>
+                <div class="row">
+                  <div class="col-xs-6 col-sm-6">
+                    <input type="radio" name="sexo" ng-model='usuario.sexo' value="1"> Femenino
+                  </div>
+                  <div class="col-xs-6 col-sm-6">
+                    <input type="radio" name="sexo" ng-model='usuario.sexo' value="0"> Masculino
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-6 form-group" ng-class="{'has-error':registroForm.correo.$invalid && registroForm.correo.$dirty}">
+            <label>Correo Electrónico</label>
+            <input class="form-control" placeholder="Correo electrónico" type="email" name="correo" ng-model="usuario.correo" required>
+          </div>
+          <div class="col-xs-6 " ng-class="{'has-error':registroForm.clave.$invalid && registroForm.clave.$dirty}">
+            <label>Fecha de Nacimiento</label>
+            <table>
+              <td>
+                <select ng-options="d for d in dias" ng-model="fechaNacimiento.dia"  class="form-control col-md-1" required></select>
+              </td>
+              <td>
+                <select ng-options="m.id as m.nombre for m in meses" ng-model="fechaNacimiento.mes" class="form-control col-md-1" required></select>
+              </td>
+              <td>
+                <select ng-options="a for a in anios" ng-model="fechaNacimiento.anio" class="form-control col-md-1" required></select>
+              </td>
+            </table>
+          </div>
+          <div class="col-xs-6 form-group" ng-class="{'has-error':registroForm.clave.$invalid && registroForm.clave.$dirty}">
+            <label>País</label>
+            <select class="form-control" ng-model="usuario.pais" ng-options="pais.id as pais.nombre for pais in paises" required ></select>
+          </div>
+          <div class="col-xs-6 form-group" ng-class="{'has-error':registroForm.nombres.$invalid && registroForm.nombres.$dirty}">
+            <label>Telefono</label>
+            <input class="form-control" placeholder="Nombres" type="text" name="nombres" ng-model="usuario.telefono" required>
+          </div>
+          <div class="alert alert-warning col-xs-6 form-group" ng-if="error" role="alert">
+            {{error}}
+          </div>
+          <div class="alert alert-success col-xs-6 form-group" ng-if="success" role="alert">
+            {{success}}
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 col-sm-push-3">
+          <input class="Cbtn yellow" type="submit" value="Registrarme">
+        </div>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
