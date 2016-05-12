@@ -2,7 +2,7 @@
 
 angular.module('pickngoApp')
   .controller('RegistroModalCtrl', function($scope,$rootScope,$http,Auth) {
-    $http.get('/api/users/getPaises').then(result => {
+    $http.get('/api/usuarios/getPaises').then(result => {
       $scope.paises = result.data.data;
     }).catch(err =>{
       console.error('err',err);

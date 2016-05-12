@@ -10,6 +10,8 @@
     <title>Pick n Go</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700italic,700,800,800italic,600italic,600' rel='stylesheet' type='text/css'>
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(client) app/vendor.css -->
       <!-- bower:css -->
@@ -19,7 +21,9 @@
     <!-- build:css({.tmp,client}) app/app.css -->
       <link rel="stylesheet" href="app/app.css">
       <!-- injector:css -->
+      <link rel="stylesheet" href="assets/themes/slicknav.css"/>
       <link rel="stylesheet" href="app/app.css">
+      <link rel="stylesheet" href="app/dashboard/dashboard.css">
       <link rel="stylesheet" href="app/main/main.css">
       <link rel="stylesheet" href="components/footer/footer.css">
       <link rel="stylesheet" href="components/modal/modal.css">
@@ -33,7 +37,11 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div ng-include="'app/main/main.html'"></div>
+    <!-- <div ng-include="'app/main/main.html'"></div> -->
+    <div>
+      <!-- Add your site or application content here -->
+      <div ui-view=""></div>
+    </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <script>
@@ -66,12 +74,14 @@
       <script src="app/app.js"></script>
       <!-- injector:js -->
       <script src="components/util/util.module.js"></script>
-      <script src="components/modal/registroModal/registroModal.controller.js"></script>
+      <script src="components/modal/modal.service.js"></script>
+      <script src="app/dashboard/dashboard.js"></script>
+      <script src="app/main/main.controller.js"></script>
       <script src="app/main/main.js"></script>
       <script src="components/footer/footer.directive.js"></script>
       <script src="components/modal/loginModal/loginModal.controller.js"></script>
-      <script src="components/modal/modal.service.js"></script>
-      <script src="app/main/main.controller.js"></script>
+      <script src="app/dashboard/dashboard.controller.js"></script>
+      <script src="components/modal/registroModal/registroModal.controller.js"></script>
       <script src="components/navbar/navbar.controller.js"></script>
       <script src="components/navbar/navbar.directive.js"></script>
       <script src="components/services/Auth.service.js"></script>
