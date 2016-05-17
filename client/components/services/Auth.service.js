@@ -10,7 +10,7 @@ angular.module('pickngoApp')
             return err;
           });
       },
-      registro(usuario,callback){return $http.post('api/usuarios  /registroUsuario',{usuario:usuario})
+      registro(usuario,callback){return $http.post('api/usuarios/registroUsuario',{usuario:usuario})
             .then(result => {
                 return result;
               },function(err){

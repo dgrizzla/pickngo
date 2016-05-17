@@ -65,8 +65,8 @@
             <select class="form-control" ng-model="usuario.pais" ng-options="pais.id as pais.nombre for pais in paises" required ></select>
           </div>
           <div class="col-xs-6 form-group" ng-class="{'has-error':registroForm.nombres.$invalid && registroForm.nombres.$dirty}">
-            <label>Telefono</label>
-            <input class="form-control" placeholder="Nombres" type="text" name="nombres" ng-model="usuario.telefono" required>
+            <label>Teléfono</label>
+            <input class="form-control" placeholder="Teléfono" type="text" name="nombres" ng-model="usuario.telefono" required>
           </div>
           <div class="alert alert-warning col-xs-6 form-group" ng-if="error" role="alert">
             {{error}}
