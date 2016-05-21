@@ -6,7 +6,8 @@ angular.module('pickngoApp', [
   'ngResource',
   'ngSanitize',
   'ui.router',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'ui-notification'
 ])
   .config(function($urlRouterProvider, $locationProvider) {
     $urlRouterProvider

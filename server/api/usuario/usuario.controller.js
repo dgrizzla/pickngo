@@ -39,3 +39,17 @@ export function registroUsuario(req, res) {
     res.json(resp);
   });
 };
+
+export function validaCorreoExistente(req,res){
+  var correo = req.params.correo;
+  model.validaCorreoExistente(correo,function (resp) {
+    res.json(resp);
+  });
+};
+
+export function validaUsuarioExistente(req,res){
+ var usuario = req.params.usuario;
+  model.validaUsuarioExistente(usuario,function (resp) {
+    res.json(resp);
+  });
+}

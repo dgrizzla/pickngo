@@ -1,6 +1,11 @@
 <div class="modal-header">
   <div class="loginBox large">
     <div class="headBox">
+      <button ng-click="cerrar()" type="button" id="btnClose" arial-label="Close" class="close">
+        <span aria-hidden="true">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </button>
       <div class="logoTop"><img src="assets/images/logo-top.jpg" alt=""></div>
     </div>
   </div>
@@ -8,7 +13,7 @@
 <div class="modal-body">
   <div class="loginBox large">
     <div class="inner">
-      <form name="registroForm" novalidate ng-submit="registro(registroForm.$valid)" role="form">
+      <form name="registroForm" novalidate ng-submit="validarRegistro(registroForm.$valid)" role="form">
         <div class="row">
           <h4 class="lTitle">Registrate</h4>
           <div class="col-xs-6 form-group" ng-class="{'has-error':registroForm.nombres.$invalid && registroForm.nombres.$dirty}">

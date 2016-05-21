@@ -1,19 +1,15 @@
 var connection = require('../../connection');
-
+var resp = require('../../components/resp');
 module.exports = {
   getPaises: function(callback){
     var query = "call sp_sel_png_pais";
     connection(query,'',function (err,rows) {
-      var resp = {};
+      var code = 0;
       if (err) {
-        resp.data = undefined;
-        resp.msg = err;
-        resp.code = 1;
-      }else{
-        resp.data = rows[0];
-        resp.code = 0;
+        code = 1;
+        rows = [];
       }
-      callback(resp);
+      if(callback) callback(resp.generate(code,err,rows[0]));
     })
   },
   login: function(data,callback){
@@ -58,6 +54,28 @@ module.exports = {
         resp.data = rows[0];
       }
       callback(resp);
+    })
+  },
+  validaCorreoExistente : function (correo,callback) {
+    var query = "call sp_sel_png_correo_existente(?)";
+    connection(query,correo,function (err,rows) {
+      var code = 0;
+      if(err){
+        code = 1;
+        rows = [];
+      };
+      if(callback) callback(resp.generate(err,code,rows[0]));
+    })
+  },
+  validaUsuarioExistente : function (usuario,callback) {
+    var query = "call sp_sel_png_usuario_existente(?)";
+    connection(query,usuario,function (err,rows) {
+      var code = 0;
+      if(err){
+        code = 1;
+        rows = [];
+      }
+      if(callback) callback(resp.generate(err,code,rows[0]))
     })
   }
 };
