@@ -6,24 +6,17 @@
 'use strict';
 
 var model = require('./usuario.model');
-var utils = require('../../components/utils'),
-    passport = require('../../passport.js');
+import utils from '../../components/utils';
+import passport from '../../components/auth/passport';
+// var utils = require('../../components/utils'),
+//     passport = require('../../components/passport');
 
 export function login(req, res, next) {
-  //var usuario = {usuario:req.body.user, clave:req.body.password};
-  //usuario.clave = utils.encryptPassword(req.body.password)
-  //var aux = utils.encryptPassword('dgiron');
   var clave = utils.encryptPassword(req.body.password)
   var usuario = [req.body.user,clave];
   model.login(usuario, function(resp) {
     res.json(resp);
   })
-  // passport.authenticate('local',function (err,user,info) {
-  //   if(err || !user){
-  //
-  //   }
-  // })
-
 };
 
 export function getPaises(req, res) {

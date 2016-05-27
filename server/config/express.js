@@ -12,12 +12,13 @@ import bodyParser from 'body-parser';
 import methodOverride from 'method-override';
 import cookieParser from 'cookie-parser';
 import errorHandler from 'errorhandler';
+//import passport from 'passport';
 import path from 'path';
 import lusca from 'lusca';
 import config from './environment';
 import session from 'express-session';
 
-export default function(app) {
+export default function(app,passport) {
   var env = app.get('env');
 
   app.set('views', config.root + '/server/views');
@@ -28,7 +29,7 @@ export default function(app) {
   app.use(bodyParser.json());
   app.use(methodOverride());
   app.use(cookieParser());
-
+  app.use(passport.initialize());
   // Persist sessions with MongoStore / sequelizeStore
   // We need to enable sessions for passport-twitter because it's an
   // oauth 1.0 strategy, and Lusca depends on sessions

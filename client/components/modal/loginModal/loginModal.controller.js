@@ -1,20 +1,21 @@
 'use strict';
 
 angular.module('pickngoApp')
-  .controller('LoginModalCtrl', function ($scope,Auth,$state) {
+  .controller('LoginModalCtrl', function ($scope,Auth,$state,Notification) {
     $scope.login = function (valid) {
       if(valid){
         Auth.login({
           user: $scope.usuario.usuario,
           password: $scope.usuario.clave
-        }).then(function(result){
-          if(result.data.msg){
-            $scope.error = result.data.msg;
-          }else{
-            $scope.$close();
-            $state.go('dashboard');
+        }).then(() =>{
+          $scope.$close();
+          //$state.go('dashboard');
+        }).catch(err =>{
+          if(err.message){
+            Notification.warning(err.message);
+            return;
           }
-        }).catch(function(err){
+          Notification.error('Hubo un error procesando tu solicitud.')
           console.log('error',err);
         })
 

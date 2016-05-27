@@ -59,7 +59,7 @@ function UtilService($window) {
   return Util;
 }
 
-angular.module('pickngoApp.util')
+angular.module('pickngoApp')
   .factory('Util', UtilService);
 
 })();

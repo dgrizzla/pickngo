@@ -7,13 +7,32 @@
 import express from 'express';
 import config from './config/environment';
 import http from 'http';
+import passport from 'passport';
+import cookieParser from 'cookie-parser';
+import bodyParser from 'body-parser';
+import morgan from 'morgan';
 
 // Setup server
 var app = express();
 var server = http.createServer(app);
-require('./config/express').default(app);
-require('./routes').default(app);
 
+app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(cookieParser());
+app.use(require('express-session')({
+    secret: 'gonpicksecret',
+    resave: false,
+    saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+require('./config/express').default(app,passport);
+require('./routes').default(app, passport);
+require('./components/auth/passport')(passport)
 // Start server
 function startServer() {
   app.angularFullstack = server.listen(config.port, config.ip, function() {
