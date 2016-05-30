@@ -5,8 +5,8 @@ var controller = require('./usuario.controller');
 
 var router = express.Router();
 
-//router.get('/', controller.index);
-//router.post('/login', controller.login)
+//import auth from '../../components/auth'
+
 router.get('/paises',controller.getPaises);
 router.get('/validaCorreoExistente/:correo', controller.validaCorreoExistente);
 router.get('/validaUsuarioExistente/:usuario', controller.validaUsuarioExistente);

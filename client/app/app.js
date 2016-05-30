@@ -4,6 +4,7 @@ angular.module('pickngoApp', [
   'pickngoApp.constants',
   'ngCookies',
   'ngResource',
+  'http-auth-interceptor',
   'ngSanitize',
   'ui.router',
   'ui.bootstrap',

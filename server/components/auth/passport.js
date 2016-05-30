@@ -31,7 +31,23 @@ module.exports = function (passport, config) {
       if (!utils.verifyPassword(rows[0][0].clave_acceso, password)) {
         return done(null, false, { message: 'Contraseña incorrecta.' });
       }
-      return done(null, rows[0][0]);
+      var data = rows[0][0];
+      var usuario = {
+        id_usuario: data.id,
+        usuario : data.usuario,
+        nombres : data.nombres,
+        apellidos : data.apellidos,
+        sexo : data.sexo,
+        fecha_nacimiento : data.fecha_nac,
+        id_pais : data.id_pais,
+        email : data.email,
+        id_tipo : data.id_tipo,
+        foto : data.foto,
+        preferencias : data.preferencias,
+        telefono : data.telefono,
+        estado : data.estado
+      };
+      return done(null, usuario);
     });
   }));
 
