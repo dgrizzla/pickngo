@@ -1,22 +1,33 @@
 'use strict';
 
 angular.module('pickngoApp', [
-  'pickngoApp.constants',
-  'ngCookies',
-  'ngResource',
-  'http-auth-interceptor',
-  'ngSanitize',
-  'ui.router',
-  'ui.bootstrap',
-  'ui-notification'
-])
+    'pickngoApp.constants',
+    'ngCookies',
+    'ngResource',
+    'http-auth-interceptor',
+    'ngSanitize',
+    'ui.router',
+    'ui.bootstrap',
+    'ui-notification'
+  ])
   .config(function($urlRouterProvider, $locationProvider) {
     $urlRouterProvider
       .otherwise('/');
 
     $locationProvider.html5Mode(true);
   })
-  .run(function($rootScope){
+  .run(function($rootScope,$location) {
+    $rootScope.$on('event:auth-loginRequired', function() {
+      if ($location.$$path !== '/') {
+        if ($rootScope.currentUser && $rootScope.currentUser.usuario)
+          $location.path('/dashboard');
+        else {
+          $location.path('/');
+        }
+      }
+      return false;
+    });
+
     var dias = [];
     for (var i = 1; i < 32; i++) {
       dias.push(i)

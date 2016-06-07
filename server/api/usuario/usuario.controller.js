@@ -8,8 +8,6 @@
 var model = require('./usuario.model');
 import utils from '../../components/utils';
 import passport from '../../components/auth/passport';
-// var utils = require('../../components/utils'),
-//     passport = require('../../components/passport');
 
 export function login(req, res, next) {
   var clave = utils.encryptPassword(req.body.password)

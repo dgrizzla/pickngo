@@ -13,7 +13,6 @@ angular.module('pickngoApp')
             password: password
           })
           .then(result => {
-            console.log('result auth', result)
             if (result.data.status === 'success') {
               $rootScope.usuarioActual
               $state.go('dashboard');

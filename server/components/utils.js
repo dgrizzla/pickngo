@@ -3,7 +3,6 @@
 var crypto = require("crypto");
 
 function verifyPassword(hash, password) {
-	console.log('utils hash y password',hash,password);
 	var newHash = encryptPassword(password);
 	return newHash == hash;
 }

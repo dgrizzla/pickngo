@@ -127,7 +127,7 @@ header .top ul li{
 }
 
 header .top ul li a{
-	color: #fff;
+	color: #727272;
 	font-family: 'Open Sans', sans-serif;
 	font-size: 16px;
 }
@@ -336,6 +336,16 @@ header .nav-right li a{
 	font-weight: bold;
 }
 
+.nav > li > a:hover{
+    background-color: transparent;
+	text-decoration: none !important;
+}
+
+.nav > li > a:focus{
+    background-color: transparent;
+	text-decoration: none !important;
+}
+
 .navBtn{
 	font-size: 20px;
 	color: #fff;
@@ -374,7 +384,7 @@ header .main-menu li{
 }
 
 header .main-menu li a{
-	color: #666666;
+	color: #dddddd;
 	font-size: 16px;
 	font-family: 'Open Sans', sans-serif;
 }
