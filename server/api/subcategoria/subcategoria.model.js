@@ -15,7 +15,7 @@ module.exports = {
     },
     agregarSubCategoria : function(data,callback){
         //id categoria y nombre subcategoria
-        var query = "call sp_ins_png_ssubcat_articulo(?,?)"
+        var query = "call sp_ins_png_ssubcat_articulo(?,?,?)"
         connection(query,data,function (err,rows) {
             var code = 0;
             if(err){
@@ -27,7 +27,7 @@ module.exports = {
     },
     editarSubCategoria : function(data,callback){
         //id subcat, nombre y id categoria
-        var query = "call sp_upd_png_ssubcat_articulo(?,?,?)"
+        var query = "call sp_upd_png_ssubcat_articulo(?,?,?,?)"
         connection(query,data,function (err,rows) {
             var code = 0;
             if(err){

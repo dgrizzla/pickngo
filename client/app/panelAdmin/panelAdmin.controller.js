@@ -7,12 +7,11 @@ angular.module('pickngoApp')
     getCategorias();
     getDepartamentos();
     getSubCategorias();
-    
+      
     function getDepartamentos() {  
       $http.get('api/departamentos/')
         .then(result => {
           $scope.departamentos = result.data.data;
-          console.log('result deptro', $scope.departamentos);
         }).catch(err => {
           Notification.error('Hubo un error cargando los departamentos.')
           console.error('error deptos', err)
@@ -22,7 +21,6 @@ angular.module('pickngoApp')
     function getCategorias() {
       $http.get('api/categorias/')
         .then(result => {
-          console.log('categorias', result)
           $scope.categorias = result.data.data;
         }).catch(err => {
           Notification.error('Hubo un error cargando las categorías.')
@@ -33,7 +31,6 @@ angular.module('pickngoApp')
     function getSubCategorias() {
       $http.get('api/subcategorias/')
         .then(result => {
-          console.log('result subcat', result.data.data)
           $scope.subcategorias = result.data.data;
         }).catch(err => {
           Notification.error('Hubo un error cargando las subcategorías.')

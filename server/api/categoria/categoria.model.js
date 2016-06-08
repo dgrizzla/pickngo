@@ -15,7 +15,7 @@ module.exports = {
     },
     agregarCategoria : function(data,callback){
         //idDepto y nombre
-        var query = "call sp_ins_png_subcat_articulo(?,?)";
+        var query = "call sp_ins_png_subcat_articulo(?,?,?)";
         connection(query,data,function (err,rows) {
             var code = 0;
             if(err){
@@ -27,7 +27,7 @@ module.exports = {
     },
     editarCategoria : function(data,callback){
         //id depto, nombre, id categoria
-        var query = "call sp_upd_png_subcat_articulo(?,?,?)";
+        var query = "call sp_upd_png_subcat_articulo(?,?,?,?)";
         connection(query,data,function (err,rows) {
             var code = 0;
             if(err){

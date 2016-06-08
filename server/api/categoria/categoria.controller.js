@@ -18,14 +18,14 @@ export function categoriaSel(req, res){
 }
 
 export function agregarCategoria(req, res){
-  var data = [req.body.idDepto,req.body.nombreCategoria];
+  var data = [req.body.idDepto,req.body.nombreCategoria,req.user.id_usuario];
   model.agregarCategoria(data,function (resp) {
     res.json(resp);
   })
 }
 
 export function editarCategoria(req, res){
-  var data = [req.body.categoria.departamento,req.body.categoria.nombre,req.body.categoria.id];
+  var data = [req.body.categoria.departamento,req.body.categoria.nombre,req.body.categoria.id,req.user.id_usuario];
   model.editarCategoria(data,function (resp) {
     res.json(resp);
   })

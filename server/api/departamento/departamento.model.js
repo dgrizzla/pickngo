@@ -14,7 +14,7 @@ module.exports = {
         })
     },
     agregarDepartamento : function(data, callback){
-        var query = "call sp_ins_png_cat_articulo(?)";
+        var query = "call sp_ins_png_cat_articulo(?,?)";
         connection(query,data,function (err,rows) {
             var code = 0;
             if(err){
@@ -26,7 +26,7 @@ module.exports = {
     },
     editarDepartamento : function(data,callback){
         //id y luego nombre
-        var query = "call sp_upd_png_cat_articulo(?,?)";
+        var query = "call sp_upd_png_cat_articulo(?,?,?)";
         connection(query,data,function (err,rows) {
             var code = 0;
             if(err){
@@ -39,6 +39,17 @@ module.exports = {
     eliminarDepartamento : function(data,callback){
         var query = "call sp_del_png_cat_articulo(?)";
         connection(query,data,function (err,rows) {
+            var code = 0;
+            if(err){
+                code = 1;
+                rows = [];
+            }
+            if(callback) callback(resp.generate(code,err,rows[0]));
+        })
+    },
+    getNumDepartamentos : function(callback){
+        var query = "SELECT COUNT(id) as num FROM png_cat_articulo";
+        connection(query,'',function (err,rows) {
             var code = 0;
             if(err){
                 code = 1;

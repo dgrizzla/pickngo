@@ -18,14 +18,14 @@ export function subCategoriaSel(req,res){
 }
 
 export function agregarSubCategoria(req,res){
-  var data = [req.body.idCat,req.body.nombre];
+  var data = [req.body.idCat,req.body.nombre,req.user.id_usuario];
   model.agregarSubCategoria(data,function(resp) {
     res.json(resp);
   })
 }
 
 export function editarSubCategoria(req,res){
-  var data = [req.body.subcategoria.id, req.body.subcategoria.nombre, req.body.subcategoria.categoria];
+  var data = [req.body.subcategoria.id, req.body.subcategoria.nombre, req.body.subcategoria.categoria,req.user.id_usuario];
   model.editarSubCategoria(data,function(resp) {
     res.json(resp);
   })

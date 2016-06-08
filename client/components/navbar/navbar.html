@@ -24,6 +24,9 @@
             <li><a href="#">Como Funciona</a></li>
             <li><a href="#">Contacto</a></li>
           </ul>
+          <ul class="nav navbar-nav" ng-if="showItems">
+            <li><a ui-sref="dashboard">Dashboard</a></li>
+          </ul>
           <ul class="nav navbar-right">
             <li><a href="#" ng-if="!showItems" ng-click="openRegistro()">Registrate</a></li>
             <li><a href="#" ng-if="!showItems" ng-click="openLogin()">Login</a></li>

@@ -1,17 +1,18 @@
 <div class="modal-header">
-  <h3>Agregar Subcategoría</h3>
+  <button type="button" class="close pull-right" style="margin-top:5px" ng-click="$close()">&times;</button>
+  <h4>Agregar Subcategoría</h4>
 </div>
 <div class="modal-body">
   <div class="loginBox">
     <div class="inner">
       <form name="subCatForm" novalidate ng-submit="agregarSubCat(subCatForm.$valid)" role="form">
         <div class="fieldBox">
-          <label>Nombre Subcategoría:</label>
-          <input type="text" ng-model='subcategoria.nombre' class="inputText" required>
-        </div>
-        <div class="fieldBox">
           <label>Categoría:</label>
           <select ng-model="subcategoria.categoria" ng-options="c.id_categoria as c.nombre_categoria for c in categorias" class="form-control input-sm" required></select>
+        </div>
+        <div class="fieldBox">
+          <label>Nombre Subcategoría:</label>
+          <input type="text" ng-model='subcategoria.nombre' class="inputText" required>
         </div>
         <div class="fieldBox">
           <button type="submit" class="Cbtn yellow">Guardar</button>
