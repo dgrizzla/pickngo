@@ -161,7 +161,6 @@ angular.module('pickngoApp')
     };
     
     $scope.editarSubCategoria = function(subcategoria){
-      console.log('subcat!',subcategoria);
       var modalEditSubCat = $uibModal.open({
             templateUrl: 'components/modal/subcategoria/agregarSubCat.html',
             controller: 'EditarSubCatCtrl',
