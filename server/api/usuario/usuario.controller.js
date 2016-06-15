@@ -24,8 +24,18 @@ export function getPaises(req, res) {
 };
 
 export function registroUsuario(req, res) {
-  var data = req.body.usuario;
-  data.clave = utils.encryptPassword(req.body.usuario.clave)
+  //var data = req.body.usuario
+  var clave = utils.encryptPassword(req.body.usuario.clave);
+  var data = [req.body.usuario.usuario,
+                  req.body.usuario.nombres,
+                  req.body.usuario.apellidos,
+                  req.body.usuario.sexo,
+                  req.body.usuario.fechaNacimiento,
+                  req.body.usuario.pais,
+                  req.body.usuario.correo,
+                  clave,
+                  req.body.usuario.telefono];
+  console.log('data',data)
   model.registroUsuario(data, function(resp) {
     res.json(resp);
   });

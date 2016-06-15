@@ -34,21 +34,11 @@ module.exports = {
   registroUsuario: function (data,callback) {
     //orden parametros usuario, nombres, apellidos, sexo, nacimiento, pais, correo, clave , telefono
     var query = "call sp_ins_png_usuario_estandar(?,?,?,?,?,?,?,?,?)";
-    var usuario = [data.usuario,
-                  data.nombres,
-                  data.apellidos,
-                  data.sexo,
-                  data.fechaNacimiento,
-                  data.pais,
-                  data.correo,
-                  data.clave,
-                  data.telefono];
-    connection(query,usuario,function (err,rows) {
+    connection(query,data,function (err,rows) {
       var resp = {};
       if(err){
         resp.code = 1;
         resp.err = err;
-        resp.data = undefined;
       }else{
         resp.code = 0;
         resp.data = rows[0];

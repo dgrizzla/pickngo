@@ -71,6 +71,7 @@ angular.module('pickngoApp')
           console.error('Error al registrarse',result.data.err);
           return;
         }
+        console.log('Sax',result)
         Notification.success('¡Te has registrado con éxito! Ahora puedes iniciar sesión.')
         $scope.$close('cerrar');
       }).catch(function(err){
