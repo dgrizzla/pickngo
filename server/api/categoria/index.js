@@ -10,4 +10,5 @@ router.get('/', auth.loggedIn, controller.categoriaSel);
 router.post('/', auth.loggedIn, controller.agregarCategoria);
 router.put('/', auth.loggedIn, controller.editarCategoria);
 router.delete('/:id', auth.loggedIn, controller.eliminarCategoria);
+router.get('/porDepartamento',auth.loggedIn, controller.categoriasPorDepto);
 module.exports = router;

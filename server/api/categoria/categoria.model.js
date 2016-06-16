@@ -47,5 +47,17 @@ module.exports = {
             }
             if(callback) callback(resp.generate(code,err,rows[0]));
         })
+    },
+    //trae las categorias con el nombre del departamento al que pertenecen
+    categoriasPorDepto : function(callback){
+        var query = "call sp_sel_png_categoria_departamento";
+        connection(query,'',function (err,rows) {
+            var code = 0;
+            if(err){
+                code = 1;
+                rows = [];
+            }
+            if(callback) callback(resp.generate(code,err,rows[0]));
+        })
     }
 };

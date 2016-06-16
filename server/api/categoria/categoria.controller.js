@@ -37,3 +37,9 @@ export function eliminarCategoria(req, res){
     res.json(resp);
   });
 }
+
+export function categoriasPorDepto(req,res){
+  model.categoriasPorDepto(function (resp) {
+    res.json(resp);
+  })
+}

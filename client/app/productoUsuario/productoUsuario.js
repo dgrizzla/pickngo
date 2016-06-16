@@ -6,6 +6,6 @@ angular.module('pickngoApp')
       .state('productoUsuario', {
         url: '/productoUsuario',
         templateUrl: 'app/productoUsuario/productoUsuario.html',
-        controllerAs: "ProductoUsuarioCtrl"
+        controller: "ProductoUsuarioCtrl"
       });
   });
