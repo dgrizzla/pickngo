@@ -10,7 +10,7 @@ import http from 'http';
 import passport from 'passport';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
-import morgan from 'morgan';
+
 
 // Setup server
 var app = express();

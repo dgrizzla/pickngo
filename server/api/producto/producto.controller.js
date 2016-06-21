@@ -12,7 +12,7 @@ export function index(req, res) {
 }
 
 export function agregarProducto(req,res){
-  if (req.body.subcategoria == undefined) {
+  if (req.body.producto.subcategoria == undefined) {
     var data  = [
       req.user.id_usuario,
       req.body.producto.nombre,
@@ -31,7 +31,7 @@ export function agregarProducto(req,res){
       req.body.producto.descripcion,
       req.body.producto.categoria.id_departamento,
       req.body.producto.categoria.id,
-      req.body.producto.subcategoria.id,
+      req.body.producto.subcategoria,
       req.body.producto.preciodel,
       req.body.producto.precioal,
       req.body.producto.fechaLimite
@@ -45,6 +45,13 @@ export function agregarProducto(req,res){
 export function productosUsuario(req,res){
   var data = [req.user.id_usuario];
   model.productosUsuario(data,function (resp) {
+    res.json(resp);
+  });
+}
+
+export function getNumProductosUsuario(req,res){
+  var data = [req.user.id_usuario];
+  model.getNumProductosUsuario(data,function(resp) {
     res.json(resp);
   });
 }

@@ -48,7 +48,7 @@ module.exports = {
         })
     },
     getNumDepartamentos : function(callback){
-        var query = "SELECT COUNT(id) as num FROM png_cat_articulo";
+        var query = "SELECT COUNT(id) as numDeptos FROM png_cat_articulo";
         connection(query,'',function (err,rows) {
             var code = 0;
             if(err){
