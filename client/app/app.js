@@ -8,7 +8,8 @@ angular.module('pickngoApp', [
     'ngSanitize',
     'ui.router',
     'ui.bootstrap',
-    'ui-notification'
+    'ui-notification',
+    'angularFileUpload'
   ])
   .config(function($urlRouterProvider, $locationProvider) {
     $urlRouterProvider

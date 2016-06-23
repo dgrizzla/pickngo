@@ -22,7 +22,7 @@
                                 <div class="tab">
                                     <div id="tab-1" class="tab-content">
                                         <div class="fieldWrap">
-                                            <label for="">Categorías <span style="color:red">*</span></label>
+                                            <label for="">Categoría<span style="color:red">*</span></label>
                                             <select ng-model="producto.categoria" ng-options="c.nombre group by c.departamento for c in categorias"></select>
                                         </div>
                                         <div class="fieldWrap">
@@ -31,11 +31,11 @@
                                         </div>
                                         <hr>
                                         <div class="fieldWrap">
-                                            <label for="">Precio desde <span style="color:red">*</span></label>
+                                            <label for="">Precio desde<span style="color:red">*</span></label>
                                             <input type="text" is-number ng-model="producto.preciodel">
                                         </div>
                                         <div class="fieldWrap">
-                                            <label for="">Hasta <span style="color:red">*</span></label>
+                                            <label for="">Hasta<span style="color:red">*</span></label>
                                             <input type="text" is-number ng-model="producto.precioal">
                                         </div>
                                         <div class="fieldWrap">
@@ -51,14 +51,6 @@
                                                     <td class="col-md-4">
                                                         <select ng-options="a for a in aniosMax" ng-model="fechaVencimiento.anio" class="form-control" ></select>
                                                     </td>
-                                                    <!--<td>
-
-                                                    <div class="col-md-6 col-sm-3">.col-xs-6 .col-sm-3</div>
-                                                    </td>
-                                                    <td>
-                                                    <div class="col-md-6 col-sm-3">.col-xs-6 .col-sm-3</div>
-
-                                                    </td>-->
                                                 </table>
                                             </div>
                                         </div>
@@ -77,15 +69,21 @@
                 <br/>
                 <div class="whiteBox dshadow">
                     <div class="inner">
-                        <h3 class="sidebarTitle">Imagen Destacada</h3>
-                        <div class="galleryWrap">
-                            <ul class="GalleryProducts">
-                                <li><img src="assets/images/mochila-destacada.jpg" /></li>
-                            </ul>
+                        <label>Agregar imagen<span style="color:red"> * </span></label>
+                        <span class="btn btn-default btn-file">
+                            <i class="fa fa-camera" aria-hidden="true"></i> <input type="file"  nv-file-select="" uploader="uploader" >
+                        </span>
+                        <hr>
+                        <div ng-repeat="item in uploader.queue">
+                            <div ng-thumb="{ file: item._file, width: 100 }"></div>
                         </div>
+                        <!--<div class="galleryWrap">
+                            <img src="assets/images/mochila-destacada.jpg" />
+                            
+                        </div>-->
                     </div>
                 </div>
-                <div class="whiteBox dshadow tmrg gallery">
+                <!--<div class="whiteBox dshadow tmrg gallery">
                     <div class="inner">
                         <h3 class="sidebarTitle">Galeria del producto</h3>
                         <div class="slideThumbs">
@@ -100,7 +98,7 @@
                             <input class="fileField" type="file" accept="image/*">
                         </div>
                     </div>
-                </div>
+                </div>-->
             </div>
         </div>
     </div>
