@@ -10,6 +10,7 @@ import path from 'path';
 export default function(app, passport) {
   
   // Insert routes below
+  app.use('/components/upload', require('./components/upload'));
   app.use('/api/productos', require('./api/producto'));
   app.use('/api/subcategorias', require('./api/subcategoria'));
   app.use('/api/categorias', require('./api/categoria'));

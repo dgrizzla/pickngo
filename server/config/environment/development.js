@@ -5,6 +5,9 @@
 module.exports = {
 
   // Seed database on startup
-  seedDB: true
+  seedDB: true,
 
+  uploadPath : function() {
+    return '/home/pickandgo/';
+  }
 };
