@@ -10,7 +10,7 @@ import http from 'http';
 import passport from 'passport';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
-
+import multer from 'multer';
 
 // Setup server
 var app = express();
@@ -29,6 +29,8 @@ app.use(require('express-session')({
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(multer({dest:config.uploadPath()}).single('file'));
 
 require('./config/express').default(app,passport);
 require('./routes').default(app, passport);

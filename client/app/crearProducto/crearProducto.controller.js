@@ -8,9 +8,15 @@ angular.module('pickngoApp')
     var anioActual = moment().get('year');
     $scope.aniosMax = [anioActual, anioActual + 1];
 
+
     var uploader = $scope.uploader = new FileUploader({
-      url: 'api/upload/imgProducto'
+      url: 'components/upload/imgProducto'
     });
+
+    $scope.cyka = function(){
+      console.info('cyka');
+      $scope.uploader.uploadAll();
+    };
 
     uploader.filters.push({
       name: 'imageFilter',
@@ -26,43 +32,26 @@ angular.module('pickngoApp')
     };
 
     uploader.onAfterAddingFile = function(fileItem) {
-      console.info('onAfterAddingFile', fileItem);
       console.info(uploader.queue.length)
       if(uploader.queue.length > 1){
         uploader.removeFromQueue(0);
       }
     };
-
-    uploader.onAfterAddingAll = function(addedFileItem) {
-      console.info('onAfterAddingAll', addedFileItem);
-    };
-
-    uploader.onBeforeUploadItem = function(item) {
-      console.info('onBeforeUploadItem', item);
-    };
-
+    
     uploader.onSuccessItem = function(fileItem, response, status, headers) {
       console.info('onSuccessItem', fileItem, response, status, headers);
     };
 
     uploader.onErrorItem = function(fileItem, response, status, headers) {
-      console.info('onErrorItem', fileItem, response, status, headers);
+      Notification.error('Hubo un error procesando la imagen.')
+      console.error('onErrorItem', fileItem, response, status, headers);
     };
-
-    uploader.onCompleteItem = function(fileItem, response, status, headers) {
-      console.info('onCompleteItem', fileItem, response, status, headers);
-    };
-
-    uploader.onCompleteAll = function() {
-      console.info('onCompleteAll');
-    };
-
     $http.get('api/categorias/porDepartamento')
       .then(function(result) {
         $scope.categorias = result.data.data;
       }).catch(function(err) {
         Notification.error('Hubo un error cargando las categorías.');
-        console.erro(err);
+        console.error(err);
       })
 
     $http.get('api/subcategorias/')
@@ -86,14 +75,20 @@ angular.module('pickngoApp')
           Notification.warning('El precio final debe ser mayor al inicial.')
           return;
         }
+
+        if(uploader.queue.length == 0){
+          Notification.warning('Debes subir una foto del producto.')
+          return;
+        }
+
         $scope.producto.fechaLimite = fechaTemporal.format("YYYY-MM-DD");
-        $http.post('api/productos/', {
-            producto: $scope.producto
-          })
+        
+        $http.post('api/productos/', {producto: $scope.producto})
           .then(function(resp) {
             console.info(resp);
             if (resp.data.code === 0) {
               Notification.success('Se guardó el producto exitosamente.')
+
               $state.go('productoUsuario');
             } else {
               Notification.error('Hubo un error guardando el producto.')

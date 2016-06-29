@@ -8,6 +8,6 @@ module.exports = {
   seedDB: true,
 
   uploadPath : function() {
-    return '/home/pickandgo/';
+    return './home/pickandgo/';
   }
 };
