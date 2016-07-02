@@ -16,7 +16,7 @@
 					</tr>
 				</thead>
 				<tr ng-repeat="producto in productos">
-					<td><img src="assets/images/mini-product.jpg"></td>
+					<td><img class="img-responsive-2" ng-src="{{producto.url_img}}"></td>
 					<td><strong>{{producto.producto}}</strong></td>
 					<td>Q {{producto.precio_del}}  -  Q {{producto.precio_al}}</td>
 					<td>{{producto.nombre_categoria}}</td>

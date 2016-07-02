@@ -8,6 +8,13 @@ module.exports = {
   seedDB: true,
 
   uploadPath : function() {
-    return './home/pickandgo/';
+    return 'server/components/upload/';
+  },
+
+  uploadDirectory :function () {
+    return '/home/pickandgo/'
+  },
+  appFilesPath : function() {
+    return process.platform == 'linux' ? '/home/pickandgo/'  : 'home/pickandgo';
   }
 };

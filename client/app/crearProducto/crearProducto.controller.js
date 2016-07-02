@@ -8,15 +8,9 @@ angular.module('pickngoApp')
     var anioActual = moment().get('year');
     $scope.aniosMax = [anioActual, anioActual + 1];
 
-
     var uploader = $scope.uploader = new FileUploader({
       url: 'components/upload/imgProducto'
     });
-
-    $scope.cyka = function(){
-      console.info('cyka');
-      $scope.uploader.uploadAll();
-    };
 
     uploader.filters.push({
       name: 'imageFilter',
@@ -31,6 +25,11 @@ angular.module('pickngoApp')
       Notification('Formato de archivo inválido.');
     };
 
+    uploader.onBeforeUploadItem = function(item) {
+      var data  =  {idProducto:$scope.idProducto};
+      item.formData.push(data);
+    };
+
     uploader.onAfterAddingFile = function(fileItem) {
       console.info(uploader.queue.length)
       if(uploader.queue.length > 1){
@@ -39,13 +38,14 @@ angular.module('pickngoApp')
     };
     
     uploader.onSuccessItem = function(fileItem, response, status, headers) {
-      console.info('onSuccessItem', fileItem, response, status, headers);
+      Notification.success('Se guardó la foto del producto exitosamente.')
+      $state.go('productoUsuario');
     };
 
     uploader.onErrorItem = function(fileItem, response, status, headers) {
       Notification.error('Hubo un error procesando la imagen.')
-      console.error('onErrorItem', fileItem, response, status, headers);
     };
+    
     $http.get('api/categorias/porDepartamento')
       .then(function(result) {
         $scope.categorias = result.data.data;
@@ -86,10 +86,11 @@ angular.module('pickngoApp')
         $http.post('api/productos/', {producto: $scope.producto})
           .then(function(resp) {
             console.info(resp);
+            $scope.idProducto = resp.data.data.lastInsertId;
+
             if (resp.data.code === 0) {
               Notification.success('Se guardó el producto exitosamente.')
-
-              $state.go('productoUsuario');
+              uploader.uploadAll();
             } else {
               Notification.error('Hubo un error guardando el producto.')
             }

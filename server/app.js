@@ -16,21 +16,12 @@ import multer from 'multer';
 var app = express();
 var server = http.createServer(app);
 
-app.use(bodyParser.json());
-app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: false }));
-
-app.use(cookieParser());
 app.use(require('express-session')({
     secret: 'gonpicksecret',
     resave: false,
     saveUninitialized: false
 }));
 
-app.use(passport.initialize());
-app.use(passport.session());
-
-app.use(multer({dest:config.uploadPath()}).single('file'));
 
 require('./config/express').default(app,passport);
 require('./routes').default(app, passport);

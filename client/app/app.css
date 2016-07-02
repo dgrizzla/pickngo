@@ -1316,3 +1316,13 @@ footer ul li a:hover{
     cursor: inherit;
     display: block;
 }
+
+.img-responsive-2 { 
+	display: block;
+    height: 100px;
+    width: 100px;
+    overflow: hidden;
+    border: solid 3px #f9f9f9;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px 0 rgba(36,36,36,.2);
+}
