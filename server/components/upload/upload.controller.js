@@ -24,7 +24,7 @@ export function imgProducto(req, res) {
   upload(req, res, function(err) {
 
     if (err) {
-      console.log('Error subiendo la foto.');
+      console.log('Error subiendo la foto.',err);
       return;
     }
 
