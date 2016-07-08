@@ -11,6 +11,19 @@ module.exports = {
     return 'server/components/upload/';
   },
 
+  mysql: {
+    connectionLimit : 10,
+    database : 'pickandgo',
+    host : 'localhost',
+    user : 'root',
+    password : 'root'
+  },
+
+  redisConfig: {
+      host: '127.0.0.1',
+      port: 6379
+  },
+  
   uploadDirectory :function () {
     return '/home/pickandgo/'
   },

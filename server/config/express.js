@@ -17,14 +17,25 @@ import lusca from 'lusca';
 import config from './environment';
 import session from 'express-session';
 
-export default function(app,passport) {
+var RedisStore = require('connect-redis')(session);
+
+export default function(app, passport) {
   var env = app.get('env');
+
+  app.use(session({
+    store: new RedisStore(config.redisConfig),
+    secret: config.secrets.session,
+    resave: false,
+    saveUninitialized: false,
+  }));
 
   app.set('views', config.root + '/server/views');
   app.engine('html', require('ejs').renderFile);
   app.set('view engine', 'html');
   app.use(compression());
-  app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(bodyParser.urlencoded({
+    extended: false
+  }));
   app.use(bodyParser.json());
   app.use(methodOverride());
   app.use(cookieParser());
@@ -65,7 +76,7 @@ export default function(app,passport) {
     app.use(favicon(path.join(config.root, 'client', 'favicon.ico')));
     app.use(express.static(app.get('appPath')));
     app.use(morgan('dev'));
-    app.use("/public/img",express.static(config.appFilesPath()+"/"));
+    app.use("/public/img", express.static(config.appFilesPath() + "/"));
   }
 
   if ('development' === env) {
@@ -82,7 +93,7 @@ export default function(app,passport) {
     app.use(express.static(path.join(config.root, '.tmp')));
     app.use(express.static(app.get('appPath')));
     app.use(morgan('dev'));
-    app.use("/public/img",express.static(config.appFilesPath()+"/"));
+    app.use("/public/img", express.static(config.appFilesPath() + "/"));
     app.use(errorHandler()); // Error handler - has to be last
   }
 }

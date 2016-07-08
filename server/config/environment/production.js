@@ -12,7 +12,19 @@ module.exports = {
   port:   process.env.OPENSHIFT_NODEJS_PORT ||
           process.env.PORT ||
           9000,
-          
+  mysql: {
+    connectionLimit : 10,
+    database : 'pickandgo',
+    host : 'localhost',
+    user : 'root',
+    password : 'root'
+  },      
+
+  redisConfig: {
+      host: '127.0.0.1',
+      port: 6379
+  },
+  
   uploadPath : function() {
     return process.platform == 'linux' ? './server/components/upload/'  : 'server/components/upload/';
     

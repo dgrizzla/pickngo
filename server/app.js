@@ -16,12 +16,6 @@ import multer from 'multer';
 var app = express();
 var server = http.createServer(app);
 
-app.use(require('express-session')({
-    secret: 'gonpicksecret',
-    resave: false,
-    saveUninitialized: false
-}));
-
 
 require('./config/express').default(app,passport);
 require('./routes').default(app, passport);

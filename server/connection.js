@@ -1,14 +1,7 @@
 const mysql = require("mysql");
+const  config = require('./config/environment')
 
-var pool  = mysql.createPool({
-	connectionLimit : 10,
-	database : 'pickandgo',
-	host : 'localhost',
-	user : 'root',
-	password : 'root'
-});
-
-
+var pool  = mysql.createPool(config.mysql);
 
 module.exports = function (query, data, cb) {
 	pool.getConnection(function(err, connection) {

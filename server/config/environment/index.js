@@ -29,7 +29,7 @@ var all = {
 
   // Secret for session, you will want to change this and make it an environment variable
   secrets: {
-    session: 'picksecretgon'
+    session: '$ekr3tp1cknG0'
   },
 
   // MongoDB connection options
