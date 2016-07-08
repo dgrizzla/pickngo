@@ -14,11 +14,12 @@ module.exports = {
           9000,
           
   uploadPath : function() {
-    return 'server/components/upload/';
+    return process.platform == 'linux' ? './server/components/upload/'  : 'server/components/upload/';
+    
   },
 
   uploadDirectory :function () {
-    return '/home/pickandgo/'
+    return process.platform == 'linux' ? '/home/pickandgo/'  : 'home/pickandgo';
   },
   appFilesPath : function() {
     return process.platform == 'linux' ? '/home/pickandgo/'  : 'home/pickandgo';
