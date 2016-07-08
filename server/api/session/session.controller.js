@@ -40,8 +40,8 @@ module.exports.getSession = function(req, res) {
 module.exports.logout = function(req,res){
 	if(req.user){
 		req.logout();
-		res.send(200);
+		res.sendStatus(200);
 	}else{
-		res.send(400);
+		res.sendStatus(400);
 	}
 };
