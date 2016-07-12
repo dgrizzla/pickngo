@@ -12,6 +12,12 @@ router.get('/', auth.loggedIn, controller.productosUsuario);
 //agregar un producto nuevo
 router.post('/', auth.loggedIn, controller.agregarProducto);
 
+//editar un producto
+router.put('/', auth.loggedIn, controller.editarProducto);
+
+//eliminar un producto 
+router.delete('/:id', auth.loggedIn, controller.eliminarProducto);
+
 //traer el número de productos del usuario logeado
 router.get('/countProductos', auth.loggedIn, controller.getNumProductosUsuario);
 module.exports = router;

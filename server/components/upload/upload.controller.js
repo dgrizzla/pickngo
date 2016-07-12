@@ -27,9 +27,12 @@ export function imgProducto(req, res) {
       console.log('Error subiendo la foto.',err);
       return;
     }
-
-    var data = {idProducto:req.body.idProducto,path:req.file.path,filename:req.file.filename}
-
+    console.log(req.body.c === undefined)
+    if(req.body.c === undefined){
+      var data = {idProducto:req.body.idProducto,path:req.file.path,filename:req.file.filename}
+    }else{
+      var data = {idProducto:req.body.idProducto,path:req.file.path,filename:req.file.filename,c:''}  
+    }
     model.productoImg(data,function(resp){
       res.json(resp);
     });

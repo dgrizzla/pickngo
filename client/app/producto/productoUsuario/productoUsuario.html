@@ -20,9 +20,12 @@
 					<td><strong>{{producto.producto}}</strong></td>
 					<td>Q {{producto.precio_del}}  -  Q {{producto.precio_al}}</td>
 					<td>{{producto.nombre_categoria}}</td>
-					<td align="center"><span class="faicon edit-btn"><i class="fa fa-edit"></span></i>
+					<td align="center" >
+						<span class="faicon edit-btn">
+							<i class="fa fa-edit" ui-sref="editarProducto({producto:producto})"></i>
+						</span>
 					</td>
-					<td align="center"><span class="faicon remove-btn"><i class="fa fa-remove"></span></i>
+					<td align="center" ng-click="eliminarProducto(producto.id)"><span class="faicon remove-btn"><i class="fa fa-remove"></span></i>
 					</td>
 				</tr>
 

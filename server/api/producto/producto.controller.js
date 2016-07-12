@@ -55,3 +55,27 @@ export function getNumProductosUsuario(req,res){
     res.json(resp);
   });
 }
+
+export function editarProducto(req,res){
+  var data = [
+    req.body.producto.producto,
+    req.body.producto.descripcion,
+    req.body.producto.id_cat,
+    req.body.producto.id_subcat,
+    req.body.producto.id_ssubcat,
+    req.body.producto.precio_del,
+    req.body.producto.precio_al,
+    req.body.producto.fecha_limite,
+    req.body.producto.id
+  ];
+  model.editarProducto(data,function(resp) {
+    res.json(resp);
+  })
+}
+
+export function eliminarProducto(req,res){
+  var data = [req.params.id];
+  model.eliminarProducto(data,function(resp){
+    res.json(resp);
+  });
+}

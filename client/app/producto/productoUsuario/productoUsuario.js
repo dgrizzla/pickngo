@@ -5,7 +5,7 @@ angular.module('pickngoApp')
     $stateProvider
       .state('productoUsuario', {
         url: '/productoUsuario',
-        templateUrl: 'app/productoUsuario/productoUsuario.html',
+        templateUrl: 'app/producto/productoUsuario/productoUsuario.html',
         controller: "ProductoUsuarioCtrl"
       });
   });

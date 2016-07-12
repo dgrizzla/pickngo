@@ -5,7 +5,7 @@ angular.module('pickngoApp')
     $stateProvider
       .state('crearProducto', {
         url: '/crearProducto',
-        templateUrl: 'app/crearProducto/crearProducto.html',
+        templateUrl: 'app/producto/crearProducto/crearProducto.html',
         controller: 'CrearProductoCtrl'
       });
   });
