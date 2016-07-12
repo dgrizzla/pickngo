@@ -27,7 +27,7 @@ export function imgProducto(req, res) {
       console.log('Error subiendo la foto.',err);
       return;
     }
-    console.log(req.body.c === undefined)
+    
     if(req.body.c === undefined){
       var data = {idProducto:req.body.idProducto,path:req.file.path,filename:req.file.filename}
     }else{

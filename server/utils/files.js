@@ -5,9 +5,10 @@ var config = require('../config/environment'),
 exports.productoImg = function(path, nombreArchivo, callback) {
 
     var newUrl = config.uploadDirectory() + 'productos/' + nombreArchivo;
-
+    
     mv(path, newUrl, function(err) {
         if(err){
+            console.log('Error files',err)
             return err;
         };
         if(callback) callback('public/img/productos/'+nombreArchivo);

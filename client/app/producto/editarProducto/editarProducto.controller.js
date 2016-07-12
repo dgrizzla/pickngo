@@ -3,7 +3,7 @@
 angular.module('pickngoApp')
   .controller('EditarProductoCtrl', function($scope, Auth, Notification, $state, $http, $stateParams, FileUploader) {
     Auth.getCurrentUser();
-    console.info('nahue!', $stateParams.producto)
+    
     var anioActual = moment().get('year');
     $scope.aniosMax = [anioActual, anioActual + 1];
     $scope.producto = $stateParams.producto;
@@ -55,7 +55,6 @@ angular.module('pickngoApp')
     };
 
     uploader.onBeforeUploadItem = function(item) {
-      console.log('asdf',$scope.producto.id,$scope.producto.id_producto)
       var data = {
         idProducto: $scope.producto.id,
         c:''
@@ -80,15 +79,38 @@ angular.module('pickngoApp')
     };
 
     $scope.guardarProducto = function() {
-      $http.put('api/productos/',{producto: $scope.producto})
-        .then(function(result){
-          console.log('result put',result)
-          if(result.data.code == 0){
-            uploader.uploadAll();
-            Notification.success('Se guardo la información del producto.');
-          }
-        }).catch(function(err){
-          console.error(err);
-        });
+      var mesAux = $scope.fechaVencimiento.mes + 1;
+      //fix moment
+      var fechaTemporal = moment($scope.fechaVencimiento.anio + ' ' + mesAux + ' ' + $scope.fechaVencimiento.dia, "YYYY MM DD");
+      
+      if ($scope.producto.producto && $scope.producto.descripcion && $scope.producto.categoria && $scope.producto.precio_del && $scope.producto.precio_al && $scope.fechaVencimiento) {
+        
+        if (!fechaTemporal.isValid()) {
+          Notification.warning('Fecha límite inválida.');
+          return;
+        }
+        if ($scope.producto.preciodel > $scope.producto.precioal) {
+          Notification.warning('El precio final debe ser mayor al inicial.')
+          return;
+        }
+
+        if(uploader.queue.length == 0){
+          Notification.warning('Debes subir una foto del producto.')
+          return;
+        }
+
+        $http.put('api/productos/',{producto: $scope.producto})
+          .then(function(result){
+            console.log('result put',result)
+            if(result.data.code == 0){
+              uploader.uploadAll();
+              Notification.success('Se guardo la información del producto.');
+            }
+          }).catch(function(err){
+            console.error(err);
+          });
+      }else{
+        Notification.warning('Completa la información del producto.')
+      }
     }
   });
