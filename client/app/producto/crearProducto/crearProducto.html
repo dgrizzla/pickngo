@@ -28,7 +28,7 @@
                                         </div>
                                         <div class="fieldWrap">
                                             <label for="">Sub Categoría</label>
-                                            <select class="form-control" ng-model="producto.subcategoria" ng-options="s.id as s.nombre_subcategoria for s in subcategorias"></select>
+                                            <select class="form-control" ng-model="producto.subcategoria" ng-options="s.id as s.nombre_subcategoria for s in subcategorias | filter: {id_scat:producto.categoria.id}"></select>
                                         </div>
                                         <hr>
                                         <div class="fieldWrap">
@@ -75,34 +75,15 @@
                     <div class="inner">
                         <label>Agregar imagen<span style="color:red"> * </span></label>
                         <span class="btn btn-default btn-file">
-                            <i class="fa fa-camera" aria-hidden="true"></i> <input type="file"  nv-file-select="" uploader="uploader" >
+                            <i class="fa fa-camera" aria-hidden="true"></i> <input type="file"  nv-file-select="" uploader="uploader" multiple >
                         </span>
                         <hr>
                         <div ng-repeat="item in uploader.queue">
                             <div ng-thumb="{ file: item._file, width: 100 }"></div>
+                            <br>
                         </div>
-                        <!--<div class="galleryWrap">
-                            <img src="assets/images/mochila-destacada.jpg" />
-                            
-                        </div>-->
                     </div>
                 </div>
-                <!--<div class="whiteBox dshadow tmrg gallery">
-                    <div class="inner">
-                        <h3 class="sidebarTitle">Galeria del producto</h3>
-                        <div class="slideThumbs">
-                            <a data-slide-index="0" href=""><img src="assets/images/product-thumbs.jpg" /></a>
-                            <a data-slide-index="1" href=""><img src="assets/images/product-thumbs.jpg" /></a>
-                            <a data-slide-index="2" href=""><img src="assets/images/product-thumbs.jpg" /></a>
-                            <a data-slide-index="3" href=""><img src="assets/images/product-thumbs.jpg" /></a>
-                        </div>
-                        <div class="clear"></div>
-                        <div class="addImage">
-                            Añadir Imagen Destacada
-                            <input class="fileField" type="file" accept="image/*">
-                        </div>
-                    </div>
-                </div>-->
             </div>
         </div>
     </div>

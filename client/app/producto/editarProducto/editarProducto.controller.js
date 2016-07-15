@@ -8,7 +8,7 @@ angular.module('pickngoApp')
     $scope.aniosMax = [anioActual, anioActual + 1];
     $scope.producto = $stateParams.producto;
     var fechaTempLimite = moment().format($stateParams.producto.fecha_limite)
-
+    
     $scope.fechaVencimiento = {
       dia: moment(fechaTempLimite).get('date'),
       mes: moment(fechaTempLimite).get('month'),
@@ -20,6 +20,18 @@ angular.module('pickngoApp')
       nombre: $stateParams.producto.nombre_categoria,
       id_departamento: $stateParams.producto.id_cat
     };
+
+    $scope.doTheBack = function() {
+      window.history.back();
+    };
+
+    $http.get('api/productos/imagenesProducto/'+$scope.producto.id)
+      .then(result=>{
+        $scope.imagenes = result.data.data;
+      }).catch(err=>{
+        Notification.error('Hubo un error cargando las imagenes del producto.')
+        console.error(err);
+      });
 
     $http.get('api/categorias/porDepartamento')
       .then(function(result) {
@@ -37,6 +49,8 @@ angular.module('pickngoApp')
         console.error(err)
       });
 
+
+    //********---- Empieza uploader de las imagenes del producto --------***********
     var uploader = $scope.uploader = new FileUploader({
       url: 'components/upload/imgProducto'
     });
@@ -77,6 +91,8 @@ angular.module('pickngoApp')
     uploader.onErrorItem = function(fileItem, response, status, headers) {
       Notification.error('Hubo un error procesando la imagen.')
     };
+
+    //********---- Termina uploader de las imagenes del producto --------***********
 
     $scope.guardarProducto = function() {
       var mesAux = $scope.fechaVencimiento.mes + 1;

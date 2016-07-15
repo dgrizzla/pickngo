@@ -6,11 +6,16 @@ module.exports = {
         files.productoImg(data.path, data.filename, function(newUrl) {
             var dataPost;
             if(data.c === undefined){
-                dataPost = [data.idProducto,newUrl]
+                dataPost = [data.idProducto,newUrl,data.orden]
             }else{
-                dataPost = [data.idProducto,newUrl,data.c]
+                dataPost = [data.idProducto,newUrl,data.orden,data.c]
             }
             mdlProducto.agregarImagenProducto(dataPost, function(resp) {
+                if(resp.code === 0){
+                    mdlProducto.setNuevaImgDestacada(data.idProducto, function(resp){
+                        console.log('resp nueva',resp);
+                    });
+                }
                 if (callback) callback(resp);
             });
         });

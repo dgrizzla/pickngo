@@ -16,31 +16,42 @@ angular.module('pickngoApp')
       name: 'imageFilter',
       fn: function(item /*{File|FileLikeObject}*/ , options) {
         var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
-        return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+        return '|jpg|png|jpeg|bmp|'.indexOf(type) !== -1;
       }
     });
 
     uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/ , filter, options) {
-      console.info('onWhenAddingFileFailed', item, filter, options);
-      Notification('Formato de archivo inválido.');
+      console.log(filter);
+      //filter.name === "queueLimit" ? Notification.info('El límite de imágenes es de 4.') : Notification('Formato de archivo inválido.');
+      filter.name === "imageFilter" ? Notification('Formato de imagen inválido.') : Notification('Error cargando la imagen.');
     };
 
     uploader.onBeforeUploadItem = function(item) {
-      var data  =  {idProducto:$scope.idProducto};
+      var data  =  {idProducto:$scope.idProducto,orden:item.index};
       item.formData.push(data);
     };
 
     uploader.onAfterAddingFile = function(fileItem) {
-      console.info(uploader.queue.length)
-      if(uploader.queue.length > 1){
-        uploader.removeFromQueue(0);
-      }
+      //console.info(uploader.queue.length)
+      // if(uploader.queue.length > 1){
+      //   uploader.removeFromQueue(0);
+      // }
     };
     
-    uploader.onSuccessItem = function(fileItem, response, status, headers) {
-      Notification.success('Se guardó la foto del producto exitosamente.')
+    uploader.onCompleteAll = function(){
+      // if(uploader.queue.length === 1){
+      //   Notification.success('Se guardó la foto del producto exitosamente.')
+      // }else{
+      //   Notification.success('Se guardaron las fotos del producto exitosamente.')
+      // }
+      Notification.success('Se guardó el producto exitosamente.')
       $state.go('productoUsuario');
     };
+
+    // uploader.onSuccessItem = function(fileItem, response, status, headers) {
+    //   Notification.success(' Se guardó la foto del producto exitosamente.')
+    //   $state.go('productoUsuario');
+    // };
 
     uploader.onErrorItem = function(fileItem, response, status, headers) {
       Notification.error('Hubo un error procesando la imagen.')
@@ -85,11 +96,10 @@ angular.module('pickngoApp')
         
         $http.post('api/productos/', {producto: $scope.producto})
           .then(function(resp) {
-            console.info(resp);
+            //console.info(resp);
             $scope.idProducto = resp.data.data.lastInsertId;
 
             if (resp.data.code === 0) {
-              Notification.success('Se guardó el producto exitosamente.')
               uploader.uploadAll();
             } else {
               Notification.error('Hubo un error guardando el producto.')

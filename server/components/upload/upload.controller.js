@@ -12,7 +12,7 @@ var storage = multer.diskStorage({
     callback(null, config.uploadPath());
   },
   filename: function(request, file, callback) {
-    crypto.pseudoRandomBytes(16, function(err, raw) {
+    crypto.pseudoRandomBytes(5, function(err, raw) {
       callback(null, raw.toString('hex') + Date.now() + '.' + mime.extension(file.mimetype));
     });
   }
@@ -29,9 +29,9 @@ export function imgProducto(req, res) {
     }
     
     if(req.body.c === undefined){
-      var data = {idProducto:req.body.idProducto,path:req.file.path,filename:req.file.filename}
+      var data = {idProducto:req.body.idProducto,path:req.file.path,filename:req.file.filename,orden:req.body.orden}
     }else{
-      var data = {idProducto:req.body.idProducto,path:req.file.path,filename:req.file.filename,c:''}  
+      var data = {idProducto:req.body.idProducto,path:req.file.path,filename:req.file.filename,orden:req.body.orden,c:''}  
     }
     model.productoImg(data,function(resp){
       res.json(resp);

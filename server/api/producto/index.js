@@ -20,4 +20,7 @@ router.delete('/:id', auth.loggedIn, controller.eliminarProducto);
 
 //traer el número de productos del usuario logeado
 router.get('/countProductos', auth.loggedIn, controller.getNumProductosUsuario);
+
+//trae las imagenes de un producto específico por id
+router.get('/imagenesProducto/:id', auth.loggedIn, controller.getImagenesProducto);
 module.exports = router;

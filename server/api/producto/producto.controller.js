@@ -79,3 +79,10 @@ export function eliminarProducto(req,res){
     res.json(resp);
   });
 }
+
+export function getImagenesProducto(req,res){
+  var data = [req.params.id];
+  model.getImagenesProducto(data,function (resp) {
+    res.json(resp);
+  })
+}

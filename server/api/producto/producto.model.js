@@ -37,14 +37,15 @@ module.exports = {
     },
     agregarImagenProducto: function(data, callback) {
         //idproducto, urlimg
-        var query;
-        var postI = [data[0],data[1]]; 
-
-        if(data.length === 3){
-            query = "call sp_upd_png_usuario_imagen(?,?);";
-        }else{
-            query = "call sp_ins_png_usuario_imagen(?,?);";
-        }
+        var query = "call sp_ins_png_usuario_imagen(?,?,?);";
+        var postI = [data[0],data[1],data[2]]; 
+        
+        // if(data.length === 3){
+        //     query = "call sp_upd_png_usuario_imagen(?,?);";
+        // }else{
+        //     query = "call sp_ins_png_usuario_imagen(?,?,?);";
+        // }
+        console.log('postI',data,query);
         connection(query, postI, function(err, rows) {
             var code = 0;
             if (err) {
@@ -54,8 +55,28 @@ module.exports = {
             if (callback) callback(resp.generate(code, err, rows[0]));
         })
     },
-    editarUrlImgProducton: function(data,callback){
-
+    setNuevaImgDestacada : function(data,callback){
+        var query = "call sp_upd_img_destacada_nuevo_producto(?)";
+        console.log('data nueva img',data);
+        connection(query, data, function(err, rows) {
+            var code = 0;
+            if (err) {
+                code = 1;
+                rows = [];
+            }
+            if (callback) callback(resp.generate(code, err, rows[0]));
+        })
+    },
+    getImagenesProducto: function(data,callback){
+        var query = "call sp_sel_png_usuario_imagen(?)";
+        connection(query, data, function(err, rows) {
+            var code = 0;
+            if (err) {
+                code = 1;
+                rows = [];
+            }
+            if (callback) callback(resp.generate(code, err, rows[0]));
+        });        
     },
     editarProducto : function (data,callback) {
         var query = "call sp_upd_png_usuario_busqueda(?,?,?,?,?,?,?,?,?);"

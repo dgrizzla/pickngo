@@ -91,6 +91,10 @@ a:hover{text-decoration: none !important;}
 	background: #1CCDCA;
 }
 
+.Cbtn.red{
+	background: red;
+}
+
 .Cbtn.yellow{
 	background: #FBC02D;
 }
