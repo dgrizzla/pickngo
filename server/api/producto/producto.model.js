@@ -45,7 +45,7 @@ module.exports = {
         // }else{
         //     query = "call sp_ins_png_usuario_imagen(?,?,?);";
         // }
-        console.log('postI',data,query);
+        //console.log('postI',data,query);
         connection(query, postI, function(err, rows) {
             var code = 0;
             if (err) {
@@ -57,7 +57,6 @@ module.exports = {
     },
     setNuevaImgDestacada : function(data,callback){
         var query = "call sp_upd_img_destacada_nuevo_producto(?)";
-        console.log('data nueva img',data);
         connection(query, data, function(err, rows) {
             var code = 0;
             if (err) {
@@ -67,6 +66,7 @@ module.exports = {
             if (callback) callback(resp.generate(code, err, rows[0]));
         })
     },
+    //trae toda la info de las imagenes de un producto
     getImagenesProducto: function(data,callback){
         var query = "call sp_sel_png_usuario_imagen(?)";
         connection(query, data, function(err, rows) {
@@ -77,6 +77,18 @@ module.exports = {
             }
             if (callback) callback(resp.generate(code, err, rows[0]));
         });        
+    },
+    //trae solamente las urls de las imagenes
+    getListImagenesProducto : function(data,callback){
+        var query = "call sp_sel_png_usuario_imagen_list(?)";
+        connection(query, data, function(err, rows) {
+            var code = 0;
+            if (err) {
+                code = 1;
+                rows = [];
+            }
+            if (callback) callback(resp.generate(code, err, rows[0]));
+        });
     },
     editarProducto : function (data,callback) {
         var query = "call sp_upd_png_usuario_busqueda(?,?,?,?,?,?,?,?,?);"
@@ -91,6 +103,17 @@ module.exports = {
     },
     eliminarProducto : function(data,callback){
         var query = "call sp_del_png_usuario_busqueda(?)";
+        connection(query, data, function(err, rows) {
+            var code = 0;
+            if (err) {
+                code = 1;
+                rows = [];
+            }
+            if (callback) callback(resp.generate(code, err, rows[0]));
+        });
+    },
+    eliminarImgsProducto : function (data,callback) {
+        var query = "call sp_del_png_usuario_imagen(?)";
         connection(query, data, function(err, rows) {
             var code = 0;
             if (err) {

@@ -5,11 +5,7 @@
 
 'use strict';
 var model = require('./producto.model');
-
-// Gets a list of Departamentos
-export function index(req, res) {
-  res.json([]);
-}
+var files = require('../../utils/files')
 
 export function agregarProducto(req,res){
   if (req.body.producto.subcategoria == undefined) {
@@ -75,9 +71,16 @@ export function editarProducto(req,res){
 
 export function eliminarProducto(req,res){
   var data = [req.params.id];
-  model.eliminarProducto(data,function(resp){
+
+  model.eliminarProducto(data,onDeleteProducto);
+
+  function onDeleteProducto(resp){
     res.json(resp);
-  });
+    if(resp.code === 0){
+      //se envia el id del producto que se eliminó
+      return getArrayImgs(data);
+    }
+  }
 }
 
 export function getImagenesProducto(req,res){
@@ -85,4 +88,26 @@ export function getImagenesProducto(req,res){
   model.getImagenesProducto(data,function (resp) {
     res.json(resp);
   })
+}
+
+function getArrayImgs(id) {
+  model.getListImagenesProducto(id, onGetImagenes);
+  function onGetImagenes(resp){
+    if(resp.code === 0){
+      var imgArray = [];
+      var dataResp = resp.data;
+      for (var i = 0; i < dataResp.length; i++) {
+        var str = dataResp[i].url_img;  
+        var n = str.lastIndexOf('/');
+        var strPush = str.substring(n + 1);
+        imgArray.push(strPush);
+      }
+      files.deleteAllImgs(imgArray,onDeleteAllImgs);
+    }
+  }
+
+  function onDeleteAllImgs(params) {
+    model.eliminarImgsProducto(id,function(resp){console.log('se hizo el delete imagenes',resp)});
+  }
+
 }

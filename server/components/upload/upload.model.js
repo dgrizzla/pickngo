@@ -13,7 +13,6 @@ module.exports = {
             mdlProducto.agregarImagenProducto(dataPost, function(resp) {
                 if(resp.code === 0){
                     mdlProducto.setNuevaImgDestacada(data.idProducto, function(resp){
-                        console.log('resp nueva',resp);
                     });
                 }
                 if (callback) callback(resp);
