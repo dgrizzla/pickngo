@@ -94,11 +94,11 @@
                         <label>Agregar imagen</label>
                         <span class="btn btn-default btn-file">
                             <i class="fa fa-camera" aria-hidden="true"></i>
-                            <input type="file"  nv-file-select="" uploader="uploader" >
+                            <input type="file"  nv-file-select="" uploader="uploader" multiple>
                         </span>
                         <div class="slideThumbs" ng-repeat='imagen in imagenes'>
-                            <div ng-if="$index != 0">
-                                <a data-slide-index="$index" href=""><img ng-src="{{imagen.url_img}}" /></a>
+                            <div >
+                                <a ng-if="imagen.orden != 1" href=""><img ng-src="{{imagen.url_img}}" /></a>
                             </div>
                         </div>
                         <div ng-repeat="item in uploader.queue">

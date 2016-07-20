@@ -56,8 +56,8 @@ export function editarProducto(req,res){
   var data = [
     req.body.producto.producto,
     req.body.producto.descripcion,
-    req.body.producto.id_cat,
-    req.body.producto.id_subcat,
+    req.body.producto.categoria.id_departamento,
+    req.body.producto.categoria.id,
     req.body.producto.id_ssubcat,
     req.body.producto.precio_del,
     req.body.producto.precio_al,
@@ -90,6 +90,7 @@ export function getImagenesProducto(req,res){
   })
 }
 
+//función para traer los paths de todas las imagenes de un producto
 function getArrayImgs(id) {
   model.getListImagenesProducto(id, onGetImagenes);
   function onGetImagenes(resp){
@@ -105,7 +106,7 @@ function getArrayImgs(id) {
       files.deleteAllImgs(imgArray,onDeleteAllImgs);
     }
   }
-
+  //va a eliminar a la base de datos los paths
   function onDeleteAllImgs(params) {
     model.eliminarImgsProducto(id,function(resp){console.log('se hizo el delete imagenes',resp)});
   }

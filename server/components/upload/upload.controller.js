@@ -27,12 +27,9 @@ export function imgProducto(req, res) {
       console.log('Error subiendo la foto.',err);
       return;
     }
-    
-    if(req.body.c === undefined){
-      var data = {idProducto:req.body.idProducto,path:req.file.path,filename:req.file.filename,orden:req.body.orden}
-    }else{
-      var data = {idProducto:req.body.idProducto,path:req.file.path,filename:req.file.filename,orden:req.body.orden,c:''}  
-    }
+    var ordenImg;
+    req.body.orden == undefined ? ordenImg = 0 : ordenImg = req.body.orden;
+    var data = {idProducto:req.body.idProducto,path:req.file.path,filename:req.file.filename,orden:ordenImg}
     model.productoImg(data,function(resp){
       res.json(resp);
     });

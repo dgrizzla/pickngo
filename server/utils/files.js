@@ -19,10 +19,10 @@ exports.productoImg = function(path, nombreArchivo, callback) {
 
 exports.deleteAllImgs = function(arrayArchivos,callback){
     (function next(err, result) {
-        if (err) return console.error("error in next()", err);
+        if (err) return console.error("error delet imgs", err);
         if (arrayArchivos.length === 0) return;
         var filename = config.uploadDirectory() + 'productos/' + arrayArchivos.splice(0,1)[0];
         fs.unlink(filename, next);
     }());
-    if(callback) callback('Exito');
+    if(callback) callback('Exito borrando fotos');
 }

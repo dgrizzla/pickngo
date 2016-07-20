@@ -50,7 +50,7 @@ angular.module('pickngoApp')
       });
 
 
-    //********---- Empieza uploader de las imagenes del producto --------***********
+    //********---- Empieza uploader de las imagenes nuevas del producto --------***********
     var uploader = $scope.uploader = new FileUploader({
       url: 'components/upload/imgProducto'
     });
@@ -70,22 +70,22 @@ angular.module('pickngoApp')
 
     uploader.onBeforeUploadItem = function(item) {
       var data = {
-        idProducto: $scope.producto.id,
-        c:''
+        idProducto: $scope.producto.id
       };
       item.formData.push(data);
     };
 
     uploader.onAfterAddingFile = function(fileItem) {
-      console.info(uploader.queue.length)
-      if (uploader.queue.length > 1) {
-        uploader.removeFromQueue(0);
-      }
+      // console.info(uploader.queue.length)
+      // if (uploader.queue.length > 1) {
+      //   uploader.removeFromQueue(0);
+      // }
     };
 
     uploader.onSuccessItem = function(fileItem, response, status, headers) {
-      Notification.success('Se guardó la foto del producto exitosamente.')
+      //Notification.success('Se guardó la foto del producto exitosamente.')
       $state.go('productoUsuario');
+      return;
     };
 
     uploader.onErrorItem = function(fileItem, response, status, headers) {
@@ -93,6 +93,50 @@ angular.module('pickngoApp')
     };
 
     //********---- Termina uploader de las imagenes del producto --------***********
+
+
+    //********---- Empieza uploader de la imagen destacada --------***********
+    var uploaderDestacada = $scope.uploaderDestacada = new FileUploader({
+      url: 'components/upload/imgProducto'
+    });
+
+    uploaderDestacada.filters.push({
+      name: 'imageFilter',
+      fn: function(item /*{File|FileLikeObject}*/ , options) {
+        var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+        return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+      }
+    });
+
+    uploaderDestacada.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/ , filter, options) {
+      console.info('onWhenAddingFileFailed', item, filter, options);
+      Notification('Formato de archivo inválido.');
+    };
+
+    uploaderDestacada.onBeforeUploadItem = function(item) {
+      var data = {
+        idProducto: $scope.producto.id
+      };
+      item.formData.push(data);
+    };
+
+    uploaderDestacada.onAfterAddingFile = function(fileItem) {
+      if (uploaderDestacada.queue.length > 1) {
+        uploaderDestacada.removeFromQueue(0);
+      }
+    };
+
+    uploaderDestacada.onSuccessItem = function(fileItem, response, status, headers) {
+      //Notification.success('Se guardó la foto del producto exitosamente.')
+      $state.go('productoUsuario');
+      return;
+    };
+
+    uploaderDestacada.onErrorItem = function(fileItem, response, status, headers) {
+      Notification.error('Hubo un error procesando la imagen.')
+    };
+
+    //********---- Termina uploader de la imagen destacada --------***********
 
     $scope.guardarProducto = function() {
       var mesAux = $scope.fechaVencimiento.mes + 1;
@@ -110,16 +154,19 @@ angular.module('pickngoApp')
           return;
         }
 
-        if(uploader.queue.length == 0){
-          Notification.warning('Debes subir una foto del producto.')
-          return;
-        }
+        // if(uploader.queue.length == 0){
+        //   Notification.warning('Debes subir una foto del producto.')
+        //   return;
+        // }
 
         $http.put('api/productos/',{producto: $scope.producto})
           .then(function(result){
-            console.log('result put',result)
+            //console.log('result put',result)
             if(result.data.code == 0){
-              uploader.uploadAll();
+              if(uploader.queue.length != 0){
+                uploader.uploadAll();
+              }
+              $state.go('productoUsuario');
               Notification.success('Se guardo la información del producto.');
             }
           }).catch(function(err){
