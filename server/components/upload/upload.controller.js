@@ -28,7 +28,11 @@ export function imgProducto(req, res) {
       return;
     }
     var ordenImg;
+    
     req.body.orden == undefined ? ordenImg = 0 : ordenImg = req.body.orden;
+    if(req.body.aux == -1){
+      ordenImg = -1;
+    }
     var data = {idProducto:req.body.idProducto,path:req.file.path,filename:req.file.filename,orden:ordenImg}
     model.productoImg(data,function(resp){
       res.json(resp);

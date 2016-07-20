@@ -36,9 +36,17 @@ module.exports = {
         })
     },
     agregarImagenProducto: function(data, callback) {
-        var query = "call sp_ins_png_usuario_imagen(?,?,?);";
         
-        connection(query, data, function(err, rows) {
+        var postData;
+        if(data[2] == -1){
+            query = "call sp_upd_png_usuario_imagen(?,?)";
+            postData = [data[0],data[1]];
+        }else{
+            var query = "call sp_ins_png_usuario_imagen(?,?,?);";
+            postData = data;
+        }
+        
+        connection(query, postData, function(err, rows) {
             var code = 0;
             if (err) {
                 code = 1;
@@ -107,6 +115,18 @@ module.exports = {
     },
     eliminarImgsProducto : function (data,callback) {
         var query = "call sp_del_png_usuario_imagen(?)";
+        connection(query, data, function(err, rows) {
+            var code = 0;
+            if (err) {
+                code = 1;
+                rows = [];
+            }
+            if (callback) callback(resp.generate(code, err, rows[0]));
+        });
+    },
+    cambiarImagenDestacada : function (data,callback) {
+        var query ="sp_upd_png_usuario_imagen(?,?)";
+        console.log('data destacada');
         connection(query, data, function(err, rows) {
             var code = 0;
             if (err) {

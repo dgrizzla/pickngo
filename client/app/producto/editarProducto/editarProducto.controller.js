@@ -3,11 +3,11 @@
 angular.module('pickngoApp')
   .controller('EditarProductoCtrl', function($scope, Auth, Notification, $state, $http, $stateParams, FileUploader) {
     Auth.getCurrentUser();
-    
     var anioActual = moment().get('year');
     $scope.aniosMax = [anioActual, anioActual + 1];
     $scope.producto = $stateParams.producto;
     var fechaTempLimite = moment().format($stateParams.producto.fecha_limite)
+    getImgsProducto();
     
     $scope.fechaVencimiento = {
       dia: moment(fechaTempLimite).get('date'),
@@ -24,14 +24,15 @@ angular.module('pickngoApp')
     $scope.doTheBack = function() {
       window.history.back();
     };
-
-    $http.get('api/productos/imagenesProducto/'+$scope.producto.id)
-      .then(result=>{
-        $scope.imagenes = result.data.data;
-      }).catch(err=>{
-        Notification.error('Hubo un error cargando las imagenes del producto.')
-        console.error(err);
-      });
+    function getImgsProducto() {
+      $http.get('api/productos/imagenesProducto/'+$scope.producto.id)
+        .then(result=>{
+          $scope.imagenes = result.data.data;
+        }).catch(err=>{
+          Notification.error('Hubo un error cargando las imagenes del producto.')
+          console.error(err);
+        });
+    }
 
     $http.get('api/categorias/porDepartamento')
       .then(function(result) {
@@ -115,7 +116,8 @@ angular.module('pickngoApp')
 
     uploaderDestacada.onBeforeUploadItem = function(item) {
       var data = {
-        idProducto: $scope.producto.id
+        idProducto: $scope.producto.id,
+        aux: -1
       };
       item.formData.push(data);
     };
@@ -124,12 +126,13 @@ angular.module('pickngoApp')
       if (uploaderDestacada.queue.length > 1) {
         uploaderDestacada.removeFromQueue(0);
       }
+      uploaderDestacada.uploadAll();
     };
 
     uploaderDestacada.onSuccessItem = function(fileItem, response, status, headers) {
-      //Notification.success('Se guardó la foto del producto exitosamente.')
-      $state.go('productoUsuario');
-      return;
+      Notification.success('Se guardó la foto del producto exitosamente.')
+      getImgsProducto();
+      //return;
     };
 
     uploaderDestacada.onErrorItem = function(fileItem, response, status, headers) {
