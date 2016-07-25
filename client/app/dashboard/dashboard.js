@@ -1,11 +1,9 @@
 'use strict';
 
-angular.module('pickngoApp')
-  .config(function ($stateProvider) {
-    $stateProvider
-      .state('dashboard', {
-        url: '/dashboard',
-        templateUrl: 'app/dashboard/dashboard.html',
-        controller: 'DashboardCtrl'
-      });
+PICKNGO.config(function ($stateProvider) {
+  $stateProvider.state('dashboard', {
+    url: '/dashboard',
+    template: require('./dashboard.jade')(),
+    controller: 'DashboardCtrl'
   });
+});

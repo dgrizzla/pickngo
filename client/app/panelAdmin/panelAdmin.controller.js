@@ -1,7 +1,6 @@
 'use strict';
 
-angular.module('pickngoApp')
-  .controller('PanelAdminCtrl', function($scope, $http, Auth, $location, Notification,$uibModal) {
+PICKNGO.controller('PanelAdminCtrl', function($scope, $http, Auth, $location, Notification,$uibModal) {
     Auth.getCurrentUser();
     
     getCategorias();

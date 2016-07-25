@@ -1,12 +1,11 @@
 'use strict';
 
-angular.module('pickngoApp')
-  .directive('footer', function() {
-    return {
-      templateUrl: 'components/footer/footer.html',
-      restrict: 'E',
-      link: function(scope, element) {
-        element.addClass('footer');
-      }
-    };
-  });
+PICKNGO.directive('footer', function() {
+  return {
+    template: require('./footer.jade')(),
+    restrict: 'E',
+    link: function(scope, element) {
+      element.addClass('footer');
+    }
+  };
+});

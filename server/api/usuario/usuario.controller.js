@@ -6,10 +6,10 @@
 'use strict';
 
 var model = require('./usuario.model');
-import utils from '../../components/utils';
-import passport from '../../components/auth/passport';
+const utils = require('../../components/utils');
+const passport = require('../../components/auth/passport');
 
-export function login(req, res, next) {
+exports.login = function (req, res, next) {
   var clave = utils.encryptPassword(req.body.password)
   var usuario = [req.body.user,clave];
   model.login(usuario, function(resp) {
@@ -17,13 +17,13 @@ export function login(req, res, next) {
   })
 };
 
-export function getPaises(req, res) {
+exports.getPaises = function (req, res) {
   model.getPaises(function(resp) {
     res.json(resp)
   })
 };
 
-export function registroUsuario(req, res) {
+exports.registroUsuario = function (req, res) {
   //var data = req.body.usuario
   var clave = utils.encryptPassword(req.body.usuario.clave);
   var data = [req.body.usuario.usuario,
@@ -41,14 +41,14 @@ export function registroUsuario(req, res) {
   });
 };
 
-export function validaCorreoExistente(req,res){
+exports.validaCorreoExistente = function (req,res){
   var correo = req.params.correo;
   model.validaCorreoExistente(correo,function (resp) {
     res.json(resp);
   });
 };
 
-export function validaUsuarioExistente(req,res){
+exports.validaUsuarioExistente = function (req,res){
  var usuario = req.params.usuario;
   model.validaUsuarioExistente(usuario,function (resp) {
     res.json(resp);

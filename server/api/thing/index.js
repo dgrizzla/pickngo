@@ -3,7 +3,7 @@
 var express = require('express');
 var controller = require('./thing.controller');
 
-import auth from '../../components/auth/auth'
+const auth = require('../../components/auth/auth');
 
 var router = express.Router();
 

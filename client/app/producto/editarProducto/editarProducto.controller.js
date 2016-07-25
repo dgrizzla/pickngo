@@ -1,7 +1,6 @@
 'use strict';
 
-angular.module('pickngoApp')
-  .controller('EditarProductoCtrl', function($scope, Auth, Notification, $state, $http, $stateParams, FileUploader) {
+PICKNGO.controller('EditarProductoCtrl', function($scope, Auth, Notification, $state, $http, $stateParams, FileUploader) {
     Auth.getCurrentUser();
     var anioActual = moment().get('year');
     $scope.aniosMax = [anioActual, anioActual + 1];

@@ -2,7 +2,7 @@
 
 var express = require('express');
 var controller = require('./upload.controller');
-import auth from '../../components/auth/auth'
+const auth = require('../../components/auth/auth');
 
 var router = express.Router();
 

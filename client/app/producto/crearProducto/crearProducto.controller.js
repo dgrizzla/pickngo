@@ -1,7 +1,6 @@
 'use strict';
 
-angular.module('pickngoApp')
-  .controller('CrearProductoCtrl', function($scope, $http, $state, FileUploader, Auth, $location, Notification) {
+PICKNGO.controller('CrearProductoCtrl', function($scope, $http, $state, FileUploader, Auth, $location, Notification) {
     Auth.getCurrentUser();
     $scope.producto = {};
     $scope.fechaVencimiento = {};

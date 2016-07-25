@@ -1,0 +1,78 @@
+
+.pageContent
+	.container
+		.form-group.pageTitle.pull-left
+			div
+				select.form-control(ng-init="tablaSelect =  '1'", name='language', ng-model='tablaSelect')
+					option(value='1') Departamentos
+					option(value='2') Categor&iacute;as
+					option(value='3') Sub Categor&iacute;as
+		a.Cbtn.blue.pull-left.addBtn(href='', ng-click='modalAgregar()') Agregar
+		.table-responsive
+			div(ng-if='tablaSelect == 1')
+				table.table.table-striped
+					thead
+						tr
+							th Nombre Departamento
+							th Fecha de Creaci&oacute;n
+							th Fecha de Modificaci&oacute;n
+							th(style='text-align:center') Editar
+							th(style='text-align:center') Eliminar
+					tr(ng-repeat='departamento in departamentos')
+						td
+							strong {{departamento.nombre}}
+						td {{departamento.fecha_creacion}}
+						td {{departamento.fecha_modificacion}}
+						td(align='center')
+							span.faicon.edit-btn(ng-click='editarDepartamento(departamento)')
+								i.fa.fa-edit
+						td(align='center')
+							span.faicon.remove-btn(ng-click='eliminarDepartamento(departamento)')
+								i.fa.fa-remove
+					ul.pagination
+			div(ng-if='tablaSelect == 2')
+				table.table.table-striped
+					thead
+						tr
+							th Nombre Categor&iacute;a
+							th Departamento
+							th Fecha de Creaci&oacute;n
+							th Fecha de Modificaci&oacute;n
+							th(style='text-align:center') Editar
+							th(style='text-align:center') Eliminar
+					tr(ng-repeat='categoria in categorias')
+						td
+							strong {{categoria.nombre_categoria}}
+						td {{categoria.nombre_departamento}}
+						td {{categoria.fecha_creacion}}
+						td {{categoria.fecha_modificacion}}
+						td(align='center')
+							span.faicon.edit-btn(ng-click='editarCategoria(categoria)')
+								i.fa.fa-edit
+						td(align='center')
+							span.faicon.remove-btn(ng-click='eliminarCategoria(categoria)')
+								i.fa.fa-remove
+					ul.pagination
+			div(ng-if='tablaSelect == 3')
+				table.table.table-striped
+					thead
+						tr
+							th Nombre SubCategor&iacute;a
+							th Categor&iacute;a Principal
+							th Fecha creaci&oacute;n
+							th Fecha modificaci&oacute;n
+							th(style='text-align:center') Editar
+							th(style='text-align:center') Eliminar
+					tr(ng-repeat='subcategoria in subcategorias')
+						td
+							strong {{subcategoria.nombre_subcategoria}}
+						td {{subcategoria.nombre_categoria}}
+						td {{subcategoria.fecha_creacion}}
+						td {{subcategoria.fecha_modificacion}}
+						td(align='center')
+							span.faicon.edit-btn(ng-click='editarSubCategoria(subcategoria)')
+								i.fa.fa-edit
+						td(align='center')
+							span.faicon.remove-btn(ng-click='eliminarSubCategoria(subcategoria)')
+								i.fa.fa-remove
+					ul.pagination

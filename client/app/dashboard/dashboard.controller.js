@@ -1,7 +1,6 @@
 'use strict';
 
-angular.module('pickngoApp')
-  .controller('DashboardCtrl', function($scope, $http, Auth, $location, Notification) {
+PICKNGO.controller('DashboardCtrl', function($scope, $http, Auth, $location, Notification) {
     Auth.getCurrentUser();
 
     $http.get('api/departamentos/countDeptos')

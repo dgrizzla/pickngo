@@ -4,22 +4,21 @@
 
 'use strict';
 
-import express from 'express';
-import favicon from 'serve-favicon';
-import morgan from 'morgan';
-import compression from 'compression';
-import bodyParser from 'body-parser';
-import methodOverride from 'method-override';
-import cookieParser from 'cookie-parser';
-import errorHandler from 'errorhandler';
-import path from 'path';
-import lusca from 'lusca';
-import config from './environment';
-import session from 'express-session';
+const express = require('express');
+const favicon = require('serve-favicon');
+const morgan = require('morgan');
+const compression = require('compression');
+const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
+const cookieParser = require('cookie-parser');
+const errorHandler = require('errorhandler');
+const path = require('path');
+const config = require('./environment');
+const session = require('express-session');
 
 var RedisStore = require('connect-redis')(session);
 
-export default function(app, passport) {
+module.exports = function(app, passport) {
   var env = app.get('env');
 
   app.use(session({
@@ -42,51 +41,23 @@ export default function(app, passport) {
   app.use(passport.initialize());
   app.use(passport.session());
 
-  // Persist sessions with MongoStore / sequelizeStore
-  // We need to enable sessions for passport-twitter because it's an
-  // oauth 1.0 strategy, and Lusca depends on sessions
-  // app.use(session({
-  //   secret: config.secrets.session,
-  //   saveUninitialized: true,
-  //   resave: false
-  // }));
-
-  /**
-   * Lusca - express server security
-   * https://github.com/krakenjs/lusca
-   */
-  // if ('test' !== env) {
-  //   app.use(lusca({
-  //     csrf: {
-  //       angular: true
-  //     },
-  //     xframe: 'SAMEORIGIN',
-  //     hsts: {
-  //       maxAge: 31536000, //1 year, in seconds
-  //       includeSubDomains: true,
-  //       preload: true
-  //     },
-  //     xssProtection: true
-  //   }));
-  // }
-
-  app.set('appPath', path.join(config.root, 'client'));
+  app.set('appPath', path.join(config.root, 'public'));
 
   if ('production' === env) {
-    app.use(favicon(path.join(config.root, 'client', 'favicon.ico')));
+    app.use(favicon(path.join(config.root, 'public', 'favicon.ico')));
     app.use(express.static(app.get('appPath')));
     app.use(morgan('dev'));
     app.use("/public/img", express.static(config.appFilesPath() + "/"));
   }
 
   if ('development' === env) {
-    app.use(require('connect-livereload')({
-      ignore: [
-        /^\/api\/(.*)/,
-        /\.js(\?.*)?$/, /\.css(\?.*)?$/, /\.svg(\?.*)?$/, /\.ico(\?.*)?$/, /\.woff(\?.*)?$/,
-        /\.png(\?.*)?$/, /\.jpg(\?.*)?$/, /\.jpeg(\?.*)?$/, /\.gif(\?.*)?$/, /\.pdf(\?.*)?$/
-      ]
-    }));
+    // app.use(require('connect-livereload')({
+    //   ignore: [
+    //     /^\/api\/(.*)/,
+    //     /\.js(\?.*)?$/, /\.css(\?.*)?$/, /\.svg(\?.*)?$/, /\.ico(\?.*)?$/, /\.woff(\?.*)?$/,
+    //     /\.png(\?.*)?$/, /\.jpg(\?.*)?$/, /\.jpeg(\?.*)?$/, /\.gif(\?.*)?$/, /\.pdf(\?.*)?$/
+    //   ]
+    // }));
   }
 
   if ('development' === env || 'test' === env) {

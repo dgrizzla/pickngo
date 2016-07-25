@@ -1,0 +1,192 @@
+
+.pageContent.dashboardWrap
+  .container
+    h2.pageTitle.pull-left Departamentos
+    .clear
+    .col-lg-3.col-md-3.col-sm-3
+      .whiteBox.dshadow
+        .inner
+          .icon.pull.pull-left
+            i.fa.fa-plus-square
+          .rBox.pull-right
+            h3 Departamentos
+            span {{countDeptos}}
+            a.Cbtn.yellow.pull-right.nmb(href='', ui-sref='panelAdmin') Ver
+          .clear
+    .col-lg-3.col-md-3.col-sm-3
+      .whiteBox.dshadow
+        .inner
+          .icon.pull.pull-left
+            i.fa.fa-shopping-cart
+          .rBox.pull-right
+            h3 Mis Productos
+            span {{countProductos}}
+            a.Cbtn.yellow.pull-right.nmb(ui-sref='productoUsuario') Ver
+          .clear
+    .col-lg-3.col-md-3.col-sm-3
+      .whiteBox.dshadow
+        .inner
+          .icon.pull.pull-left
+            i.fa.fa-comments
+          .rBox.pull-right
+            h3 Conversaciones
+            span 100
+            a.Cbtn.yellow.pull-right.nmb(href='') Ver
+          .clear
+    .col-lg-3.col-md-3.col-sm-3
+      .whiteBox.dshadow
+        .inner
+          .icon.pull.pull-left
+            i.fa.fa-users
+          .rBox.pull-right
+            h3 Usuarios
+            span 365
+            a.Cbtn.yellow.pull-right.nmb(href='') Ver
+          .clear
+    .clear
+    .col-lg-8.col-md-8.col-sm-7
+      h3.daTitle Tabla
+      .whiteBox.dshadow
+        .table-responsive
+          table.table.table-striped
+            thead
+              tr
+                th id
+                th Nombre
+                th Item
+                th Item
+                th Item
+            tr
+              td 001
+              td
+                strong Nombre
+              td Contenido
+              td Contenido
+              td Contenido
+            tr
+              td 001
+              td
+                strong Nombre
+              td Contenido
+              td Contenido
+              td Contenido
+            tr
+              td 001
+              td
+                strong Nombre
+              td Contenido
+              td Contenido
+              td Contenido
+            tr
+              td 001
+              td
+                strong Nombre
+              td Contenido
+              td Contenido
+              td Contenido
+            tr
+              td 001
+              td
+                strong Nombre
+              td Contenido
+              td Contenido
+              td Contenido
+            tr
+              td 001
+              td
+                strong Nombre
+              td Contenido
+              td Contenido
+              td Contenido
+    .col-lg-4.col-md-8.col-sm-5
+      h3.daTitle Chat
+      .whiteBox
+        .inner
+          ul.msnBox
+            li
+              span.userIcon.pull-left
+                i.fa.fa-user
+              .content.pull-left
+                h3 Cristian Sanchez
+                p Lorem ipsum dolor sit amet, consectetur.
+              a.Cbtn.blue.pull-right(href='#')
+                i.fa.fa-arrow-right
+            li
+              span.userIcon.pull-left
+                i.fa.fa-user
+              .content.pull-left
+                h3 Cristian Sanchez
+                p Lorem ipsum dolor sit amet, consectetur.
+              a.Cbtn.blue.pull-right(href='#')
+                i.fa.fa-arrow-right
+            li
+              span.userIcon.pull-left
+                i.fa.fa-user
+              .content.pull-left
+                h3 Cristian Sanchez
+                p Lorem ipsum dolor sit amet, consectetur.
+              a.Cbtn.blue.pull-right(href='#')
+                i.fa.fa-arrow-right
+            li
+              span.userIcon.pull-left
+                i.fa.fa-user
+              .content.pull-left
+                h3 Cristian Sanchez
+                p Lorem ipsum dolor sit amet, consectetur.
+              a.Cbtn.blue.pull-right(href='#')
+                i.fa.fa-arrow-right
+            li
+              span.userIcon.pull-left
+                i.fa.fa-user
+              .content.pull-left
+                h3 Cristian Sanchez
+                p Lorem ipsum dolor sit amet, consectetur.
+              a.Cbtn.blue.pull-right(href='#')
+                i.fa.fa-arrow-right
+.lightbox(style='')
+  .close(onclick='hideBox();')
+    i.fa.fa-close
+  .whiteBox
+    .inner(style='overflow:hidden')
+      h3.page_title Producto: Camara Cannon EOS D6
+      .chatWrap
+        .chatBox.left
+          .imageUser
+            img(src='assets/images/user-icon.jpg', alt='')
+          .innerChat
+            .box
+              .arrow
+              h4 Roberto perez
+              span.cDate 18/02/2016
+              p
+        .chatBox.right
+          .innerChat
+            .box
+              .arrow
+              h4 Roberto perez
+              span.cDate 18/02/2016
+              p
+          .imageUser
+            img(src='assets/images/user-icon.jpg', alt='')
+        .chatBox.left
+          .imageUser
+            img(src='assets/images/user-icon.jpg', alt='')
+          .innerChat
+            .box
+              .arrow
+              h4 Roberto perez
+              span.cDate 18/02/2016
+              p
+        .inner
+          h3.fieldTitle Responder
+          form.wrapfield
+            .imageUser
+              img(src='images/user-icon.jpg', alt='')
+            .input-text
+              input.textField(type='text', placeholder='Responder...')
+              .uploadWrap
+                i.fa.fa-file-archive-o
+                input.fileField(type='file')
+            .clear
+            input.Cbtn.blue.pull-right.tmrg(type='submit', value='Enviar')
+            .clear

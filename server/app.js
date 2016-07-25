@@ -4,21 +4,21 @@
 
 'use strict';
 
-import express from 'express';
-import config from './config/environment';
-import http from 'http';
-import passport from 'passport';
-import cookieParser from 'cookie-parser';
-import bodyParser from 'body-parser';
-import multer from 'multer';
+const express = require('express');
+const config = require('./config/environment');
+const http = require('http');
+const passport = require('passport');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const multer = require('multer');
 
 // Setup server
 var app = express();
 var server = http.createServer(app);
 
 
-require('./config/express').default(app,passport);
-require('./routes').default(app, passport);
+require('./config/express')(app,passport);
+require('./routes')(app, passport);
 require('./components/auth/passport')(passport)
 // Start server
 function startServer() {

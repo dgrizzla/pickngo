@@ -7,24 +7,24 @@
 var model = require('./departamento.model');
 
 // Gets a list of Departamentos
-export function index(req, res) {
+exports.index = function (req, res) {
   res.json([]);
 }
 
-export function departamentoSel(req,res){
+exports.departamentoSel = function (req,res){
   model.departamentoSel(function(resp){
     res.json(resp);
   })
 }
 
-export function agregarDepartamento(req,res){
+exports.agregarDepartamento = function (req,res){
   var data = [req.body.nombreDepartamento,req.user.id_usuario];
   model.agregarDepartamento(data,function (resp) {
     res.json(resp);
   })
 }
 
-export function editarDepartamento(req,res){
+exports.editarDepartamento = function (req,res){
   var data = [
     req.body.departamento.id,
     req.body.departamento.nombre,
@@ -35,14 +35,14 @@ export function editarDepartamento(req,res){
   })
 }
 
-export function eliminarDepartamento(req,res){
+exports.eliminarDepartamento = function (req,res){
   var data = [req.params.id];
   model.eliminarDepartamento(data,function (resp) {
     res.json(resp);
   })
 }
 
-export function getNumDepartamentos(req,res){
+exports.getNumDepartamentos = function (req,res){
   model.getNumDepartamentos(function (resp) {
     res.json(resp);
   })

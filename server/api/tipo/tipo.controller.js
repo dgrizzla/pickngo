@@ -6,6 +6,6 @@
 'use strict';
 
 // Gets a list of Tipos
-export function index(req, res) {
+exports.index = function (req, res) {
   res.json([]);
 }
