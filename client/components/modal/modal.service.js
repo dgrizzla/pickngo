@@ -13,7 +13,7 @@ PICKNGO.factory('Modal', function($rootScope, $uibModal) {
     //angular.extend(modalScope, scope);
 
     return $uibModal.open({
-      templateUrl: 'components/modal/modal.html',
+      template: require('./modal.jade'),
       windowClass: modalClass
         //scope: modalScope
     });
@@ -26,7 +26,7 @@ PICKNGO.factory('Modal', function($rootScope, $uibModal) {
     login(log = angular.noop) {
       return function() {
         $uibModal.open({
-          templateUrl: 'components/modal/loginModal/loginModal.html',
+          template: require('./loginModal/loginModal.jade')(),
           controller: 'LoginModalCtrl',
           size: 'sm'
         });
@@ -35,7 +35,7 @@ PICKNGO.factory('Modal', function($rootScope, $uibModal) {
     registro(reg = angular.noop) {
       return function() {
         $uibModal.open({
-          templateUrl: 'components/modal/registroModal/registroModal.html',
+          template: require('./registroModal/registroModal.jade')(),
           controller: 'RegistroModalCtrl',
           size: 'md'
         })

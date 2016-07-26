@@ -17,7 +17,7 @@ module.exports = function (keepalive) {
       loaders: [{
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel'
+        loaders: ['ng-annotate?map=false','babel']
       }, {
         test: /\.jade$/,
         loader: 'jade'
@@ -52,6 +52,10 @@ module.exports = function (keepalive) {
       })
     ],
     resolve: {
+      alias: {
+        assets : path.resolve('client', 'assets'),
+        modal : path.resolve('client', 'componets', 'modal')
+      },
       extensions: ['', '.js', '.json','.css', '.styl', '.jade']
     },
     // grunt-webpack

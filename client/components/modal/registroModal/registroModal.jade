@@ -1,0 +1,59 @@
+
+.modal-header
+  .loginBox.large
+    .headBox
+      button#btnClose.close(ng-click='cerrar()', type='button', arial-label='Close')
+        span(aria-hidden='true')
+          i.fa.fa-times-circle
+      .logoTop
+        img(src='assets/images/logo-top.jpg', alt='')
+.modal-body
+  .loginBox.large
+    .inner
+      form(name='registroForm', novalidate='', ng-submit='validarRegistro(registroForm.$valid)', role='form')
+        .row
+          h4.lTitle Registrate
+          .col-xs-6.form-group(ng-class="{'has-error':registroForm.nombres.$invalid && registroForm.nombres.$dirty}")
+            label Nombres
+            input.form-control(placeholder='Nombres', type='text', name='nombres', ng-model='usuario.nombres', required='')
+          .col-xs-6.form-group(ng-class="{'has-error':registroForm.apellidos.$invalid && registroForm.apellidos.$dirty}")
+            label Apellidos
+            input.form-control(placeholder='Apellidos', type='text', name='apellidos', ng-model='usuario.apellidos', required='')
+          .col-xs-6.form-group(ng-class="{'has-error':registroForm.usuario.$invalid && registroForm.usuario.$dirty}")
+            label Usuario
+            input.form-control(placeholder='Usuario', type='text', name='usuario', ng-model='usuario.usuario', required='')
+          .col-xs-6.form-group(ng-class="{'has-error':registroForm.clave.$invalid && registroForm.clave.$dirty}")
+            label Contrase&ntilde;a
+            input.form-control(placeholder='Contraseña', type='password', name='clave', ng-model='usuario.clave', required='')
+          .col-xs-6(ng-class="{'has-error':registroForm.clave.$invalid && registroForm.clave.$dirty}")
+            .row.clearfix.visible-xs-block
+              .col-sm-9
+                label Sexo
+                .row
+                  .col-xs-6.col-sm-6
+                    input(type='radio', name='sexo', ng-model='usuario.sexo', value='1')
+                  .col-xs-6.col-sm-6
+                    input(type='radio', name='sexo', ng-model='usuario.sexo', value='0')
+          .col-xs-6.form-group(ng-class="{'has-error':registroForm.correo.$invalid && registroForm.correo.$dirty}")
+            label Correo Electr&oacute;nico
+            input.form-control(placeholder='Correo electrónico', type='email', name='correo', ng-model='usuario.correo', required='')
+          .col-xs-6(ng-class="{'has-error':registroForm.clave.$invalid && registroForm.clave.$dirty}")
+            label Fecha de Nacimiento
+            table
+              td
+                select.form-control.col-md-1(ng-options='d for d in dias', ng-model='fechaNacimiento.dia', required='')
+              td
+                select.form-control.col-md-1(ng-options='m.id as m.nombre for m in meses', ng-model='fechaNacimiento.mes', required='')
+              td
+                select.form-control.col-md-1(ng-options='a for a in anios', ng-model='fechaNacimiento.anio', required='')
+          .col-xs-6.form-group(ng-class="{'has-error':registroForm.clave.$invalid && registroForm.clave.$dirty}")
+            label Pa&iacute;s
+            select.form-control(ng-model='usuario.pais', ng-options='pais.id as pais.nombre for pais in paises', required='')
+          .col-xs-6.form-group(ng-class="{'has-error':registroForm.nombres.$invalid && registroForm.nombres.$dirty}")
+            label Tel&eacute;fono
+            input.form-control(placeholder='Teléfono', type='text', name='nombres', ng-model='usuario.telefono', required='')
+          .alert.alert-warning.col-xs-6.form-group(ng-if='error', role='alert')
+          .alert.alert-success.col-xs-6.form-group(ng-if='success', role='alert')
+        .row
+          .col-sm-6.col-sm-push-3
+            input.Cbtn.yellow(type='submit', value='Registrarme')

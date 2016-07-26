@@ -5,8 +5,8 @@
 			div
 				select.form-control(ng-init="tablaSelect =  '1'", name='language', ng-model='tablaSelect')
 					option(value='1') Departamentos
-					option(value='2') Categor&iacute;as
-					option(value='3') Sub Categor&iacute;as
+					option(value='2') Categorías
+					option(value='3') Sub Categorías
 		a.Cbtn.blue.pull-left.addBtn(href='', ng-click='modalAgregar()') Agregar
 		.table-responsive
 			div(ng-if='tablaSelect == 1')
@@ -14,8 +14,8 @@
 					thead
 						tr
 							th Nombre Departamento
-							th Fecha de Creaci&oacute;n
-							th Fecha de Modificaci&oacute;n
+							th Fecha de Creación
+							th Fecha de Modificación
 							th(style='text-align:center') Editar
 							th(style='text-align:center') Eliminar
 					tr(ng-repeat='departamento in departamentos')
@@ -34,10 +34,10 @@
 				table.table.table-striped
 					thead
 						tr
-							th Nombre Categor&iacute;a
+							th Nombre Categoría
 							th Departamento
-							th Fecha de Creaci&oacute;n
-							th Fecha de Modificaci&oacute;n
+							th Fecha de Creación
+							th Fecha de Modificación
 							th(style='text-align:center') Editar
 							th(style='text-align:center') Eliminar
 					tr(ng-repeat='categoria in categorias')
@@ -57,10 +57,10 @@
 				table.table.table-striped
 					thead
 						tr
-							th Nombre SubCategor&iacute;a
-							th Categor&iacute;a Principal
-							th Fecha creaci&oacute;n
-							th Fecha modificaci&oacute;n
+							th Nombre SubCategoría
+							th Categoría Principal
+							th Fecha creación
+							th Fecha modificación
 							th(style='text-align:center') Editar
 							th(style='text-align:center') Eliminar
 					tr(ng-repeat='subcategoria in subcategorias')
