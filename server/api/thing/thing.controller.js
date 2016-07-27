@@ -6,6 +6,6 @@
 'use strict';
 
 // Gets a list of Things
-export function index(req, res) {
+exports.index = function (req, res) {
   res.json([]);
 }

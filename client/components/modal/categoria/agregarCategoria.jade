@@ -1,0 +1,16 @@
+
+.modal-header
+  button.close.pull-right(type='button', style='margin-top:5px', ng-click='$close()') &times;
+  h4 Agregar Categoríaa
+.modal-body
+  .loginBox
+    .inner
+      form(name='categoriaForm', novalidate='', ng-submit='guardarCategoria(categoriaForm.$valid)', role='form')
+        .fieldBox
+          label Departamento:
+          select.form-control.input-sm(ng-model='categoria.departamento', ng-options='d.id as d.nombre for d in departamentos', required='')
+        .fieldBox
+          label Nombre Categoría:
+          input.inputText(type='text', ng-model='categoria.nombre', required='')
+        .fieldBox
+          button.Cbtn.yellow(type='submit') Guardar

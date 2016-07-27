@@ -1,42 +1,42 @@
 <div class="pageContent">
-	<div class="container">
-		<h2 class="pageTitle pull-left">Mis Productos</h2>
-		<a class="Cbtn blue pull-left addBtn" href="#" ui-sref='crearProducto'>Añadir Producto</a>
-		<div class="clearfix"></div>
-		<div class="table-responsive">
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th align="center" style="font-size:18px"><span><i class="fa fa-image"></i></span></th>
-						<th>Nombre</th>
-						<th>Rango de precio</th>
-						<th>categoria</th>
-						<th style="text-align:center">Editar</th>
-						<th style="text-align:center">Eliminar</th>
-					</tr>
-				</thead>
-				<tr ng-repeat="producto in productos">
-					<td><img class="img-responsive-2" ng-src="{{producto.url_img}}"></td>
-					<td><strong>{{producto.producto}}</strong></td>
-					<td>Q {{producto.precio_del}}  -  Q {{producto.precio_al}}</td>
-					<td>{{producto.nombre_categoria}}</td>
-					<td align="center" >
-						<span class="faicon edit-btn">
-							<i class="fa fa-edit" ui-sref="editarProducto({producto:producto})"></i>
-						</span>
-					</td>
-					<td align="center" ng-click="eliminarProducto(producto.id)"><span class="faicon remove-btn"><i class="fa fa-remove"></span></i>
-					</td>
-				</tr>
+  <div class="container">
+    <h2 class="pageTitle pull-left">Mis Productos</h2>
+    <a class="Cbtn blue pull-left addBtn" href="#" ui-sref='crearProducto'>Añadir Producto</a>
+    <div class="clearfix"></div>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th align="center" style="font-size:18px"><span><i class="fa fa-image"></i></span></th>
+            <th>Nombre</th>
+            <th>Rango de precio</th>
+            <th>categoria</th>
+            <th style="text-align:center">Editar</th>
+            <th style="text-align:center">Eliminar</th>
+          </tr>
+        </thead>
+        <tr ng-repeat="producto in productos">
+          <td><img class="img-responsive-2" ng-src="{{producto.url_img}}"></td>
+          <td><strong>{{producto.producto}}</strong></td>
+          <td>Q {{producto.precio_del}}  -  Q {{producto.precio_al}}</td>
+          <td>{{producto.nombre_categoria}}</td>
+          <td align="center" >
+            <span class="faicon edit-btn">
+              <i class="fa fa-edit" ui-sref="editarProducto({producto:producto})"></i>
+            </span>
+          </td>
+          <td align="center" ng-click="eliminarProducto(producto.id)"><span class="faicon remove-btn"><i class="fa fa-remove"></span></i>
+          </td>
+        </tr>
 
-			</table>
-		</div>
-		<ul class="pagination">
-			<li><a href="#">1</a></li>
-			<li><a href="#">2</a></li>
-			<li><a href="#">3</a></li>
-			<li><a href="#">4</a></li>
-			<li><a href="#">5</a></li>
-		</ul>
-	</div>
+      </table>
+    </div>
+    <ul class="pagination">
+      <li><a href="#">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#">4</a></li>
+      <li><a href="#">5</a></li>
+    </ul>
+  </div>
 </div>

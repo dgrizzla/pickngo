@@ -1,0 +1,42 @@
+
+.pageContent
+  .container
+    h2.pageTitle.pull-left Mis Productos
+    a.Cbtn.blue.pull-left.addBtn(href='#', ui-sref='crearProducto') A&ntilde;adir Producto
+    .clearfix
+    .table-responsive
+      table.table.table-striped
+        thead
+          tr
+            th(align='center', style='font-size:18px')
+              span
+                i.fa.fa-image
+            th Nombre
+            th Rango de precio
+            th Categoria
+            th(style='text-align:center') Editar
+            th(style='text-align:center') Eliminar
+        tr(ng-repeat='producto in productos')
+          td
+            img.img-responsive-2(ng-src='{{producto.url_img}}')
+          td
+            strong {{producto.producto}}
+          td Q {{producto.precio_del}}  -  Q {{producto.precio_al}}
+          td {{producto.nombre_categoria}}
+          td(align='center')
+            span.faicon.edit-btn
+              i.fa.fa-edit(ui-sref='editarProducto({producto:producto})')
+          td(align='center', ng-click='eliminarProducto(producto.id)')
+            span.faicon.remove-btn
+              i.fa.fa-remove
+    ul.pagination
+      li
+        a(href='#') 1
+      li
+        a(href='#') 2
+      li
+        a(href='#') 3
+      li
+        a(href='#') 4
+      li
+        a(href='#') 5

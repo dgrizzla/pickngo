@@ -7,7 +7,7 @@
 var model = require('./producto.model');
 var files = require('../../utils/files')
 
-export function agregarProducto(req,res){
+exports.agregarProducto = function (req,res){
   if (req.body.producto.subcategoria == undefined) {
     var data  = [
       req.user.id_usuario,
@@ -38,21 +38,21 @@ export function agregarProducto(req,res){
   })
 }
 
-export function productosUsuario(req,res){
+exports.productosUsuario = function (req,res){
   var data = [req.user.id_usuario];
   model.productosUsuario(data,function (resp) {
     res.json(resp);
   });
 }
 
-export function getNumProductosUsuario(req,res){
+exports.getNumProductosUsuario = function (req,res){
   var data = [req.user.id_usuario];
   model.getNumProductosUsuario(data,function(resp) {
     res.json(resp);
   });
 }
 
-export function editarProducto(req,res){
+exports.editarProducto = function (req,res){
   var data = [
     req.body.producto.producto,
     req.body.producto.descripcion,
@@ -69,7 +69,7 @@ export function editarProducto(req,res){
   })
 }
 
-export function eliminarProducto(req,res){
+exports.eliminarProducto = function (req,res){
   var data = [req.params.id];
 
   model.eliminarProducto(data,onDeleteProducto);
@@ -83,7 +83,7 @@ export function eliminarProducto(req,res){
   }
 }
 
-export function getImagenesProducto(req,res){
+exports.getImagenesProducto = function (req,res){
   var data = [req.params.id];
   model.getImagenesProducto(data,function (resp) {
     res.json(resp);

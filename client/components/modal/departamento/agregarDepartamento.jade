@@ -1,0 +1,13 @@
+
+.modal-header
+  button.close.pull-right(type='button', style='margin-top:5px', ng-click='$close()') &times;
+  h4 Agregar Departamento
+.modal-body
+  .loginBox
+    .inner
+      form(name='deptoForm', novalidate='', ng-submit='guardarDepto(deptoForm.$valid)', role='form')
+        .fieldBox
+          label Nombre Departamento:
+          input.inputText(type='text', ng-model='departamento.nombre', required='')
+        .fieldBox
+          button.Cbtn.yellow(type='submit') Guardar

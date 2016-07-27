@@ -1,0 +1,16 @@
+
+.modal-header
+  button.close.pull-right(type='button', style='margin-top:5px', ng-click='$close()') &times;
+  h4 Agregar Subcategoría
+.modal-body
+  .loginBox
+    .inner
+      form(name='subCatForm', novalidate='', ng-submit='agregarSubCat(subCatForm.$valid)', role='form')
+        .fieldBox
+          label Categoría:
+          select.form-control.input-sm(ng-model='subcategoria.categoria', ng-options='c.id_categoria as c.nombre_categoria for c in categorias', required='')
+        .fieldBox
+          label Nombre Subcategoría:
+          input.inputText(type='text', ng-model='subcategoria.nombre', required='')
+        .fieldBox
+          button.Cbtn.yellow(type='submit') Guardar

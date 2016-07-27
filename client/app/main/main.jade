@@ -1,0 +1,80 @@
+
+div(ng-controller='MainCtrl')
+  section.searchWrapper
+    .slideWrap
+      img(src=require('assets/images/slider.jpg'), alt='')
+    .searchSection
+      .container
+        h2.pageTitle
+          span.orange Encuentra
+          | y
+          span.blue compara
+          br
+          | miles de productos en un solo lugar
+        .col-lg-8.col-lg-offset-2
+          .searchBox
+            form(action='product-single.html')
+              input.inputsearch(type='text', placeholder='¿Que producto Buscas?')
+              input.btnSearch(type='submit', value='Buscar')
+  section.HowWorkWrap
+    .container
+      h2.page_title ¿Como Funciona?
+      .col-lg-3.col-md-3.col-sm-3.col-xs-12
+        .itemBox
+          .imageBox
+            img(src=require('assets/images/icon.png'), alt='')
+          h4.itemTitle Busca tu Producto
+      .col-lg-3.col-md-3.col-sm-3.col-xs-12
+        .itemBox
+          .imageBox
+            img(src=require('assets/images/icon-2.png'), alt='')
+          h4.itemTitle Compara Precios
+      .col-lg-3.col-md-3.col-sm-3.col-xs-12
+        .itemBox
+          .imageBox
+            img(src=require('assets/images/icon-3.png'), alt='')
+          h4.itemTitle Encuentra Ubicaci&oacute;n
+      .col-lg-3.col-md-3.col-sm-3.col-xs-12
+        .itemBox
+          .imageBox
+            img(src=require('assets/images/icon-4.png'), alt='')
+          h4.itemTitle ¡Compra!
+  section.aboutWrap
+    .container
+      .col-lg-6.col-md-6.col-sm-6
+        h2.page_title Acerca de
+        p
+        p
+        a.read(href='#') Más Detalles
+      .col-lg-6.col-md-6.col-sm-6
+        .imageAbout
+          img(src=require('assets/images/phone-app-pickngo.jpg'), alt='')
+  footer
+    .container
+      .col-lg-4.col-md-3.col-sm-4
+        h3 Algun Título
+        ul
+          li
+            a(href='') Item uno
+          li
+            a(href='') Item dos
+          li
+            a(href='') Item Tres
+      .col-lg-4.col-sm-4
+        h3 Algun Título
+        ul
+          li
+            a(href='') Item uno
+          li
+            a(href='') Item dos
+          li
+            a(href='') Item Tres
+      .col-lg-4.col-sm-4
+        h3 Cotancto
+        ul
+          li
+            a(href='') 3 av 14-21 Edificio Reforma zona 10
+          li
+            a(href='') Info@pickandgo.com
+          li
+            a(href='') Tel: (502) 5555-5555

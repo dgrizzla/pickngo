@@ -1,11 +1,9 @@
 'use strict';
 
-angular.module('pickngoApp')
-  .config(function ($stateProvider) {
-    $stateProvider
-      .state('crearProducto', {
-        url: '/crearProducto',
-        templateUrl: 'app/producto/crearProducto/crearProducto.html',
-        controller: 'CrearProductoCtrl'
-      });
+PICKNGO.config(function ($stateProvider) {
+  $stateProvider.state('crearProducto', {
+    url: '/crearProducto',
+    template: require('./crearProducto.jade')(),
+    controller: 'CrearProductoCtrl'
   });
+});

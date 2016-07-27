@@ -1,12 +1,9 @@
 'use strict';
 
-angular.module('pickngoApp')
-  .config(function ($stateProvider) {
-    $stateProvider
-      .state('panelAdmin', {
-        url: '/panelAdmin',
-        templateUrl: 'app/panelAdmin/panelAdmin.html',
-        controller: 'PanelAdminCtrl'
-      });
+PICKNGO.config(function ($stateProvider) {
+  $stateProvider.state('panelAdmin', {
+    url: '/panelAdmin',
+    template: require('./panelAdmin.jade')(),
+    controller: 'PanelAdminCtrl'
   });
-  
+});

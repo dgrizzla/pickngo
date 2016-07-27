@@ -1,8 +1,6 @@
-angular.module('pickngoApp')
-  .controller('ConfirmCtrl',
-  function ($scope) {
-		$scope.cerrar = function (value) {
-			$scope.$close(value);
-		}
-	});
-    
+
+PICKNGO.controller('ConfirmCtrl', function($scope) {
+  $scope.cerrar = function(value) {
+    $scope.$close(value);
+  }
+});

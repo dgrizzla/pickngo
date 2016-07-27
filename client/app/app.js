@@ -1,51 +1,16 @@
 'use strict';
 
-angular.module('pickngoApp', [
-    'pickngoApp.constants',
-    'ngCookies',
-    'ngResource',
-    'http-auth-interceptor',
-    'ngSanitize',
-    'ui.router',
-    'ui.bootstrap',
-    'ui-notification',
-    'angularFileUpload'
-  ])
-  .config(function($urlRouterProvider, $locationProvider) {
-    $urlRouterProvider
-      .otherwise('/');
+require('angular-http-auth');
+require('angular-file-upload');
 
-    $locationProvider.html5Mode(true);
-  })
-  .run(function($rootScope,$location) {
-    $rootScope.$on('event:auth-loginRequired', function() {
-      if ($location.$$path !== '/') {
-        if ($rootScope.currentUser && $rootScope.currentUser.usuario)
-          $location.path('/dashboard');
-        else {
-          $location.path('/');
-        }
-      }
-      return false;
-    });
-
-    var dias = [];
-    for (var i = 1; i < 32; i++) {
-      dias.push(i)
-    }
-    var nombreMeses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-    var meses = [];
-    for (var b = 0; b < nombreMeses.length; b++) {
-      meses.push({
-        nombre: nombreMeses[b],
-        id: Number(b)
-      });
-    }
-    var anios = [];
-    for (var a = 1950; a <= moment().year(); a++) {
-      anios.push(a)
-    }
-    $rootScope.dias = dias;
-    $rootScope.meses = meses;
-    $rootScope.anios = anios;
-  });
+window.PICKNGO = angular.module('pickngoApp', [
+  'pickngoApp.constants',
+  require('angular-cookies'),
+  require('angular-resource'),
+  'http-auth-interceptor',
+  require('angular-sanitize'),
+  require('angular-ui-router'),
+  require('angular-ui-bootstrap'),
+  require('angular-ui-notification'),
+  'angularFileUpload'
+]);

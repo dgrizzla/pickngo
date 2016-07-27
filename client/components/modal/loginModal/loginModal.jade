@@ -1,0 +1,19 @@
+.modal-header
+  .loginBox.large
+    .headBox
+      .logoTop
+        img(src=require('assets/images/logo-top.jpg'), alt='')
+.modal-body
+  .loginBox
+    .inner
+      form(name='loginForm', novalidate='', ng-submit='login(loginForm.$valid)', role='form')
+        h4.lTitle Inicia Sesión
+        .fieldBox
+          label Nombre de Usuario
+          input.inputText(type='text', ng-model='usuario.usuario', required='')
+        .fieldBox
+          label Contraseña
+          input.inputText(type='password', ng-model='usuario.clave', required='')
+        .fieldBox
+          button.Cbtn.yellow(type='submit') Login
+        div {{error}}

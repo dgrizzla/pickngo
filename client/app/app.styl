@@ -1,31 +1,32 @@
-
+@import '~bootstrap/dist/css/bootstrap.css'
+@import '~font-awesome/css/font-awesome.css'
 /**
  * Bootstrap Fonts
  */
 
-@font-face {
-  font-family: 'Glyphicons Halflings';
-  src: url('../bower_components/bootstrap/fonts/glyphicons-halflings-regular.eot');
-  src: url('../bower_components/bootstrap/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
-  url('../bower_components/bootstrap/fonts/glyphicons-halflings-regular.woff') format('woff'),
-  url('../bower_components/bootstrap/fonts/glyphicons-halflings-regular.ttf') format('truetype'),
-  url('../bower_components/bootstrap/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
-}
+// @font-face {
+//   font-family: 'Glyphicons Halflings';
+//   src: url('../bower_components/bootstrap/fonts/glyphicons-halflings-regular.eot');
+//   src: url('../bower_components/bootstrap/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+//   url('../bower_components/bootstrap/fonts/glyphicons-halflings-regular.woff') format('woff'),
+//   url('../bower_components/bootstrap/fonts/glyphicons-halflings-regular.ttf') format('truetype'),
+//   url('../bower_components/bootstrap/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+// }
 
 /**
  *Font Awesome Fonts
  */
 
-@font-face {
-  font-family: 'FontAwesome';
-  src: url('../bower_components/font-awesome/fonts/fontawesome-webfont.eot?v=4.1.0');
-  src: url('../bower_components/font-awesome/fonts/fontawesome-webfont.eot?#iefix&v=4.1.0') format('embedded-opentype'),
-  url('../bower_components/font-awesome/fonts/fontawesome-webfont.woff?v=4.1.0') format('woff'),
-  url('../bower_components/font-awesome/fonts/fontawesome-webfont.ttf?v=4.1.0') format('truetype'),
-  url('../bower_components/font-awesome/fonts/fontawesome-webfont.svg?v=4.1.0#fontawesomeregular') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
+// @font-face {
+//   font-family: 'FontAwesome';
+//   src: url('../bower_components/font-awesome/fonts/fontawesome-webfont.eot?v=4.1.0');
+//   src: url('../bower_components/font-awesome/fonts/fontawesome-webfont.eot?#iefix&v=4.1.0') format('embedded-opentype'),
+//   url('../bower_components/font-awesome/fonts/fontawesome-webfont.woff?v=4.1.0') format('woff'),
+//   url('../bower_components/font-awesome/fonts/fontawesome-webfont.ttf?v=4.1.0') format('truetype'),
+//   url('../bower_components/font-awesome/fonts/fontawesome-webfont.svg?v=4.1.0#fontawesomeregular') format('svg');
+//   font-weight: normal;
+//   font-style: normal;
+// }
 
 /**
  * App-wide Styles
@@ -426,7 +427,7 @@ header .main-menu li.current a{
 }
 
 .bx-controls-direction a{
-	background-image: url('../images/slide-sprite.png');
+	background-image: url('../assets/images/slide-sprite.png');
 	width:33px;
 	height: 33px;
 	display: inline-block;
@@ -665,7 +666,7 @@ header .main-menu li.current a{
 .chatBox .box .arrow{
 	width: 17px;
 	height: 24px;
-	background: url('../images/left-arrow.png');
+	background: url('../assets/images/left-arrow.png');
 	position: absolute;
 	top: 20px;
 }
@@ -674,7 +675,7 @@ header .main-menu li.current a{
 	left: -15px;
 }
 .chatBox.right .box .arrow{
-	background: url('../images/right-arrow.png') no-repeat;
+	background: url('../assets/images/right-arrow.png') no-repeat;
 	right: -15px !important;
 
 }
@@ -1313,7 +1314,7 @@ footer ul li a:hover{
     min-height: 100%;
     font-size: 100px;
     text-align: right;
-    filter: alpha(opacity=0);
+    //filter: alpha(opacity=0);
     opacity: 0;
     outline: none;
     background: white;
@@ -1330,3 +1331,14 @@ footer ul li a:hover{
     border-radius: 4px;
     box-shadow: 0 1px 1px 0 rgba(36,36,36,.2);
 }
+
+// injector
+@import './dashboard/dashboard.css';
+@import './main/main.css';
+@import './panelAdmin/panelAdmin.css';
+@import './producto/crearProducto/crearProducto.css';
+@import './producto/editarProducto/editarProducto.css';
+@import './producto/productoUsuario/productoUsuario.css';
+@import './../components/footer/footer.css';
+@import './../components/modal/modal.css';
+// endinjector

@@ -1,91 +1,91 @@
 <body class="bgg">
-	<div class="pageContent">
-		<div class="container">
+  <div class="pageContent">
+    <div class="container">
              <div class="form-group pageTitle pull-left">
-				<div>
-					<select ng-init="tablaSelect =  '1'" name="language" class="form-control" ng-model="tablaSelect">
-						<option value=1>Departamentos</option>
-						<option value=2>Categorías</option>
-						<option value=3>Sub Categorías</option>		
-					</select>
-				</div>
-			</div>
-			<a class="Cbtn blue pull-left addBtn" href="" ng-click="modalAgregar()">Agregar</a>
-			<div class="table-responsive">
-				<div ng-if="tablaSelect == 1">						
-					<table class="table table-striped">
-						<thead>
-							<tr>
-								<th>Nombre Departamento</th>
-								<th>Fecha de Creación</th>
-								<th>Fecha de Modificación</th>
-								<th style="text-align:center">Editar</th>
-								<th style="text-align:center">Eliminar</th>
-							</tr>
-						</thead>
-						<tr ng-repeat="departamento in departamentos">
-							<td><strong>{{departamento.nombre}}</strong></td>
-							<td>{{departamento.fecha_creacion}}</td>
-							<td>{{departamento.fecha_modificacion}}</td>
-							<td align="center"><span class="faicon edit-btn" ng-click="editarDepartamento(departamento)"><i class="fa fa-edit"></span></i>
-							</td>
-							<td align="center"><span class="faicon remove-btn" ng-click="eliminarDepartamento(departamento)"><i class="fa fa-remove"></span></i>
-							</td>
-						</tr>
-						<ul class="pagination">
-					</table>
-				</div>
-				<div ng-if="tablaSelect == 2">						
-					<table class="table table-striped">
-						<thead>
-							<tr>
-								<th>Nombre Categoría</th>
-								<th>Departamento</th>
-								<th>Fecha de Creación</th>
-								<th>Fecha de Modificación</th>
-								<th style="text-align:center">Editar</th>
-								<th style="text-align:center">Eliminar</th>
-							</tr>
-						</thead>
-						<tr ng-repeat="categoria in categorias">
-							<td><strong>{{categoria.nombre_categoria}}</strong></td>
-							<td>{{categoria.nombre_departamento}}</td>
-							<td>{{categoria.fecha_creacion}}</td>
-							<td>{{categoria.fecha_modificacion}}</td>
-							<td align="center"><span class="faicon edit-btn" ng-click="editarCategoria(categoria)"><i class="fa fa-edit"></span></i>
-							</td>
-							<td align="center"><span class="faicon remove-btn" ng-click="eliminarCategoria(categoria)"><i class="fa fa-remove"></span></i>
-							</td>
-						</tr>
-						<ul class="pagination">
-					</table>
-				</div>
-				<div ng-if="tablaSelect == 3">						
-					<table class="table table-striped">
-						<thead>
-							<tr>
-								<th>Nombre SubCategoría</th>
-								<th>Categoría Principal</th>
-								<th>Fecha creación</th>
-								<th>Fecha modificación</th>
-								<th style="text-align:center">Editar</th>
-								<th style="text-align:center">Eliminar</th>
-							</tr>
-						</thead>
-						<tr ng-repeat="subcategoria in subcategorias">
-							<td><strong>{{subcategoria.nombre_subcategoria}}</strong></td>
-							<td>{{subcategoria.nombre_categoria}}</td>
-							<td>{{subcategoria.fecha_creacion}}</td>
-							<td>{{subcategoria.fecha_modificacion}}</td>
-							<td align="center"><span class="faicon edit-btn" ng-click="editarSubCategoria(subcategoria)"><i class="fa fa-edit"></span></i>
-							</td>
-							<td align="center"><span class="faicon remove-btn" ng-click="eliminarSubCategoria(subcategoria)"><i class="fa fa-remove"></span></i>
-							</td>
-						</tr>
-						<ul class="pagination">
-					</table>
-				</div>
-			</div>
-		</div>
-	</div>
+        <div>
+          <select ng-init="tablaSelect =  '1'" name="language" class="form-control" ng-model="tablaSelect">
+            <option value=1>Departamentos</option>
+            <option value=2>Categorías</option>
+            <option value=3>Sub Categorías</option>		
+          </select>
+        </div>
+      </div>
+      <a class="Cbtn blue pull-left addBtn" href="" ng-click="modalAgregar()">Agregar</a>
+      <div class="table-responsive">
+        <div ng-if="tablaSelect == 1">						
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Nombre Departamento</th>
+                <th>Fecha de Creación</th>
+                <th>Fecha de Modificación</th>
+                <th style="text-align:center">Editar</th>
+                <th style="text-align:center">Eliminar</th>
+              </tr>
+            </thead>
+            <tr ng-repeat="departamento in departamentos">
+              <td><strong>{{departamento.nombre}}</strong></td>
+              <td>{{departamento.fecha_creacion}}</td>
+              <td>{{departamento.fecha_modificacion}}</td>
+              <td align="center"><span class="faicon edit-btn" ng-click="editarDepartamento(departamento)"><i class="fa fa-edit"></span></i>
+              </td>
+              <td align="center"><span class="faicon remove-btn" ng-click="eliminarDepartamento(departamento)"><i class="fa fa-remove"></span></i>
+              </td>
+            </tr>
+            <ul class="pagination">
+          </table>
+        </div>
+        <div ng-if="tablaSelect == 2">						
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Nombre Categoría</th>
+                <th>Departamento</th>
+                <th>Fecha de Creación</th>
+                <th>Fecha de Modificación</th>
+                <th style="text-align:center">Editar</th>
+                <th style="text-align:center">Eliminar</th>
+              </tr>
+            </thead>
+            <tr ng-repeat="categoria in categorias">
+              <td><strong>{{categoria.nombre_categoria}}</strong></td>
+              <td>{{categoria.nombre_departamento}}</td>
+              <td>{{categoria.fecha_creacion}}</td>
+              <td>{{categoria.fecha_modificacion}}</td>
+              <td align="center"><span class="faicon edit-btn" ng-click="editarCategoria(categoria)"><i class="fa fa-edit"></span></i>
+              </td>
+              <td align="center"><span class="faicon remove-btn" ng-click="eliminarCategoria(categoria)"><i class="fa fa-remove"></span></i>
+              </td>
+            </tr>
+            <ul class="pagination">
+          </table>
+        </div>
+        <div ng-if="tablaSelect == 3">						
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Nombre SubCategoría</th>
+                <th>Categoría Principal</th>
+                <th>Fecha creación</th>
+                <th>Fecha modificación</th>
+                <th style="text-align:center">Editar</th>
+                <th style="text-align:center">Eliminar</th>
+              </tr>
+            </thead>
+            <tr ng-repeat="subcategoria in subcategorias">
+              <td><strong>{{subcategoria.nombre_subcategoria}}</strong></td>
+              <td>{{subcategoria.nombre_categoria}}</td>
+              <td>{{subcategoria.fecha_creacion}}</td>
+              <td>{{subcategoria.fecha_modificacion}}</td>
+              <td align="center"><span class="faicon edit-btn" ng-click="editarSubCategoria(subcategoria)"><i class="fa fa-edit"></span></i>
+              </td>
+              <td align="center"><span class="faicon remove-btn" ng-click="eliminarSubCategoria(subcategoria)"><i class="fa fa-remove"></span></i>
+              </td>
+            </tr>
+            <ul class="pagination">
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
