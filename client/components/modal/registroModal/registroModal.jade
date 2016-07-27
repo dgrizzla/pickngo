@@ -1,4 +1,4 @@
-
+&times;
 .modal-header
   .loginBox.large
     .headBox
@@ -23,7 +23,7 @@
             label Usuario
             input.form-control(placeholder='Usuario', type='text', name='usuario', ng-model='usuario.usuario', required='')
           .col-xs-6.form-group(ng-class="{'has-error':registroForm.clave.$invalid && registroForm.clave.$dirty}")
-            label Contrase&ntilde;a
+            label Contraseña
             input.form-control(placeholder='Contraseña', type='password', name='clave', ng-model='usuario.clave', required='')
           .col-xs-6(ng-class="{'has-error':registroForm.clave.$invalid && registroForm.clave.$dirty}")
             .row.clearfix.visible-xs-block
@@ -35,7 +35,7 @@
                   .col-xs-6.col-sm-6
                     input(type='radio', name='sexo', ng-model='usuario.sexo', value='0')
           .col-xs-6.form-group(ng-class="{'has-error':registroForm.correo.$invalid && registroForm.correo.$dirty}")
-            label Correo Electr&oacute;nico
+            label Correo Electrónico
             input.form-control(placeholder='Correo electrónico', type='email', name='correo', ng-model='usuario.correo', required='')
           .col-xs-6(ng-class="{'has-error':registroForm.clave.$invalid && registroForm.clave.$dirty}")
             label Fecha de Nacimiento
@@ -47,13 +47,13 @@
               td
                 select.form-control.col-md-1(ng-options='a for a in anios', ng-model='fechaNacimiento.anio', required='')
           .col-xs-6.form-group(ng-class="{'has-error':registroForm.clave.$invalid && registroForm.clave.$dirty}")
-            label Pa&iacute;s
+            label País
             select.form-control(ng-model='usuario.pais', ng-options='pais.id as pais.nombre for pais in paises', required='')
           .col-xs-6.form-group(ng-class="{'has-error':registroForm.nombres.$invalid && registroForm.nombres.$dirty}")
-            label Tel&eacute;fono
+            label Teléfono
             input.form-control(placeholder='Teléfono', type='text', name='nombres', ng-model='usuario.telefono', required='')
-          .alert.alert-warning.col-xs-6.form-group(ng-if='error', role='alert')
-          .alert.alert-success.col-xs-6.form-group(ng-if='success', role='alert')
+          .alert.alert-warning.col-xs-6.form-group(ng-if='error', role='alert') {{error}}
+          .alert.alert-success.col-xs-6.form-group(ng-if='success', role='alert') {{success}}
         .row
           .col-sm-6.col-sm-push-3
             input.Cbtn.yellow(type='submit', value='Registrarme')
