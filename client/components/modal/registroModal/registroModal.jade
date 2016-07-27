@@ -1,4 +1,3 @@
-&times;
 .modal-header
   .loginBox.large
     .headBox
@@ -25,15 +24,17 @@
           .col-xs-6.form-group(ng-class="{'has-error':registroForm.clave.$invalid && registroForm.clave.$dirty}")
             label Contraseña
             input.form-control(placeholder='Contraseña', type='password', name='clave', ng-model='usuario.clave', required='')
-          .col-xs-6(ng-class="{'has-error':registroForm.clave.$invalid && registroForm.clave.$dirty}")
-            .row.clearfix.visible-xs-block
+          .col-xs-6
+            .row.clearfix
               .col-sm-9
                 label Sexo
                 .row
                   .col-xs-6.col-sm-6
                     input(type='radio', name='sexo', ng-model='usuario.sexo', value='1')
+                    | Femenino
                   .col-xs-6.col-sm-6
                     input(type='radio', name='sexo', ng-model='usuario.sexo', value='0')
+                    | Masculino
           .col-xs-6.form-group(ng-class="{'has-error':registroForm.correo.$invalid && registroForm.correo.$dirty}")
             label Correo Electrónico
             input.form-control(placeholder='Correo electrónico', type='email', name='correo', ng-model='usuario.correo', required='')
