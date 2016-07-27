@@ -54,7 +54,7 @@ module.exports = function (keepalive) {
     resolve: {
       alias: {
         assets : path.resolve('client', 'assets'),
-        modal : path.resolve('client', 'componets', 'modal')
+        modal : path.resolve('client', 'components', 'modal')
       },
       extensions: ['', '.js', '.json','.css', '.styl', '.jade']
     },
