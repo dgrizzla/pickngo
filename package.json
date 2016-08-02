@@ -30,6 +30,7 @@
     "multer": "^1.1.0",
     "mv": "^2.1.1",
     "mysql": "^2.10.2",
+    "ng-table": "^1.0.0",
     "normalize": "^0.3.1",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
@@ -74,10 +75,7 @@
     "npm": "^2.14.20"
   },
   "scripts": {
-    "webpack-watch": "webpack -w",
-    "express-server": "node ./index",
-    "dev": "concurrent --kill-others \"npm run webpack-watch\" \"npm run express-server\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "grunt serve"
   },
   "private": true
 }

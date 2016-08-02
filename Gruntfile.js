@@ -53,7 +53,9 @@ module.exports = function (grunt) {
       },
       livereload: {
         files: [
-          'public/**/*.*',
+          'public/index.html',
+          'public/bundle.js',
+          'public/style.css'
         ],
         options: {
           livereload: true
@@ -151,8 +153,8 @@ module.exports = function (grunt) {
         files: {
           'client/index.js': [
                [
-                 'client/{app,components}/**/!(*.spec|*.mock).js'//,
-                 //'!{.tmp,<%= yeoman.client %>}/app/app.{js,ts}'
+                 'client/{app,components}/**/!(*.spec|*.mock).js',
+                 '!clint/app/app.js'
                ]
             ]
         }
@@ -167,7 +169,8 @@ module.exports = function (grunt) {
         },
         files: {
           'client/app/app.styl': [
-            'client/{app,components}/**/*.{css, styl}'
+            'client/{app,components}/**/*.{css,styl}',
+            '!client/app/app.styl'
           ]
         }
       }
