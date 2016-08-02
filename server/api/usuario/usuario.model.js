@@ -1,6 +1,16 @@
 var connection = require('../../connection');
 var resp = require('../../components/resp');
+var response = require('../../components/utils/response.js');
+var conn = require('../../components/connection.js');
 
+exports.getUsuarios = function (data, cb) {
+  var asc = data.pop() ? 'ASC' : 'DESC'
+  const query = 'SELECT id, nombres, apellidos, email, foto, usuario ' + 
+    'FROM png_usuario ORDER BY ?? ' + asc + '  LIMIT ?,?';
+  conn.execute(query, data, function (err, rows) {
+    cb(response.commonResult( err, rows));
+  });
+};
 
 exports.getPaises = function(callback) {
   var query = "call sp_sel_png_pais";

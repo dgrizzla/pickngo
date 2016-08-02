@@ -1,0 +1,20 @@
+div
+  table.table.table-bordered.table-striped.table-condensed(ng-table='tableParams', show-filter='false')
+    tr(ng-repeat='row in $data')
+      td(data-title="'ID'", filter="{id: 'number'}", sortable="'id'") {{row.id}}
+      td(data-title="'Nombres'", filter="{nombres: 'text'}", sortable="'nombres'") {{row.nombres}}
+      td(data-title="'Apellidos'", filter="{apellidos: 'text'}", sortable="'apellidos'") {{row.apellidos}}
+      td(data-title="'Usuario'", filter="{usuario: 'text'}", sortable="'usuario'") {{row.usuario}}
+  //-table.table.table-striped
+    thead
+      tr
+        th id
+        th nombres
+        th apellidos
+        th usuario
+    tbody
+      tr(ng-repeat='usuario in usuarios')
+        td {{usuario.id}}
+        td {{usuario.nombres}}
+        td {{usuario.apellidos}}
+        td {{usuario.usuario}}

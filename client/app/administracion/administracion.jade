@@ -1,0 +1,9 @@
+div.row
+  .left-panel.col-md-2
+    ul 
+      li(ui-sref-active="active")
+        a(ui-sref=".usuarios") Usuarios
+      li(ui-sref-active="active")
+        a(ui-sref=".roles") Roles
+  .col-md-8
+    div(ui-view)

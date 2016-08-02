@@ -2,6 +2,7 @@
 
 require('angular-http-auth');
 require('angular-file-upload');
+require('ng-table');
 
 window.PICKNGO = angular.module('pickngoApp', [
   'pickngoApp.constants',
@@ -12,5 +13,6 @@ window.PICKNGO = angular.module('pickngoApp', [
   require('angular-ui-router'),
   require('angular-ui-bootstrap'),
   require('angular-ui-notification'),
-  'angularFileUpload'
+  'angularFileUpload',
+  'ngTable'
 ]);

@@ -3,7 +3,15 @@ require('./app/app.styl');
 window.moment = require('moment');
 window.angular = require('angular');
 
+require('./app/app.js');
+
 // injector
+require('./app/administracion/administracion.controller.js');
+require('./app/administracion/administracion.js');
+require('./app/administracion/roles/roles.controller.js');
+require('./app/administracion/roles/roles.js');
+require('./app/administracion/usuarios/usuarios.controller.js');
+require('./app/administracion/usuarios/usuarios.js');
 require('./app/app.constant.js');
 require('./app/app.js');
 require('./app/app.run.js');
@@ -34,6 +42,10 @@ require('./components/modal/subcategoria/agregarSubCat.controller.js');
 require('./components/modal/subcategoria/editarSubCat.controller.js');
 require('./components/navbar/navbar.controller.js');
 require('./components/navbar/navbar.directive.js');
+require('./components/services/Api/api.js');
+require('./components/services/Api/apiMain.js');
+require('./components/services/Api/apiUsuarios.js');
+require('./components/services/Api/apiUtils.js');
 require('./components/services/Auth.service.js');
 require('./components/services/session/session.service.js');
 require('./components/services/user/User.service.js');

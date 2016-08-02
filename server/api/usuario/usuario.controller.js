@@ -7,6 +7,7 @@
 
 var model = require('./usuario.model');
 const utils = require('../../components/utils');
+const response = require('../../components/utils/response.js');
 const passport = require('../../components/auth/passport');
 
 exports.login = function(req, res, next) {
@@ -56,3 +57,20 @@ exports.validaUsuarioExistente = function(req, res) {
     res.json(resp);
   });
 }
+
+exports.getUsuarios = function (req, res) {
+  response.commonData(res,model.getUsuarios, [
+    req.params.order,
+    Number(req.params.offset),
+    Number(req.params.limit),
+    Boolean(req.params.asc)
+  ]);
+};
+exports.getUsuariosDesc = function (req, res) {
+  response.commonData(res,model.getUsuarios, [
+    req.params.order,
+    Number(req.params.offset),
+    Number(req.params.limit),
+    false
+  ]);
+};
