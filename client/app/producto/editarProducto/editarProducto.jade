@@ -34,6 +34,7 @@
                       select(ng-model='producto.categoria', ng-options='c.nombre group by c.departamento for c in categorias track by c.nombre')
                     .fieldWrap
                       label(for='') Sub Categoría
+                      select.form-control(ng-model='producto.id_ssubcat', ng-options='s.id as s.nombre_subcategoria for s in subcategorias | filter: {id_scat:producto.categoria.id}')
                     hr
                     .fieldWrap
                       label(for='')

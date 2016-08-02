@@ -61,7 +61,7 @@ exports.editarProducto = function (req,res){
     req.body.producto.id_ssubcat,
     req.body.producto.precio_del,
     req.body.producto.precio_al,
-    req.body.producto.fecha_limite,
+    req.body.producto.fechaLimite,
     req.body.producto.id
   ];
   model.editarProducto(data,function(resp) {

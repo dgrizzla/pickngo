@@ -157,11 +157,8 @@ PICKNGO.controller('EditarProductoCtrl', function($scope, Auth, Notification, $s
         return;
       }
 
-      // if(uploader.queue.length == 0){
-      //   Notification.warning('Debes subir una foto del producto.')
-      //   return;
-      // }
-
+      $scope.producto.fechaLimite = fechaTemporal.format("YYYY-MM-DD");
+      
       $http.put('api/productos/', {
           producto: $scope.producto
         })
