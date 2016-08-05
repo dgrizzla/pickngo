@@ -3,7 +3,7 @@ PICKNGO.config(function($urlRouterProvider, $locationProvider) {
   console.log('config');
   $locationProvider.html5Mode(true);
   moment.locale("es");
-}).run(function($rootScope, $location) {
+}).run(function($rootScope, $location, pngModals) {
   $rootScope.$on('event:auth-loginRequired', function() {
     if ($location.$$path !== '/') {
       if ($rootScope.currentUser && $rootScope.currentUser.usuario)

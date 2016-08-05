@@ -26,20 +26,6 @@ exports.common = function (res, model) {
   });
 };
 
-exports.commoFile = function (res, model, name) {
-  model(name, result => {
-    if (result.code === 0) {
-      console.log(result);
-      res.type(result.data.meta.type || '');
-      res.send(result.data.buffer);
-    } else {
-      console.log(result);
-      res.send('error');
-    }
-    
-  });
-};
-
 /**
  * genera una respuesta comun con el error y la data
  * @param {object} err
@@ -47,11 +33,4 @@ exports.commoFile = function (res, model, name) {
  */
 exports.commonResult = function (err, data) {
   return generate(err ? 1 : 0, err, data);
-};
-
-exports.commonPut = function (res, model, id, data, history) {
-  model(id, data, history,
-    function (result) {
-      res.json(result);
-  });
 };
