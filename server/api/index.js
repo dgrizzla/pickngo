@@ -10,5 +10,5 @@ router.use('/tipos', require('./tipo'));
 router.use('/departamentos', require('./departamento'));
 router.use('/usuarios', require('./usuario'));
 router.use('/things', require('./thing'));
-
+router.use('/mensajes',require('./mensaje'))
 module.exports = router;

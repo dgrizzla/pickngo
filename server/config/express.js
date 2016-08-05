@@ -46,7 +46,7 @@ module.exports = function(app, passport) {
   if ('production' === env) {
     app.use(favicon(path.join(config.root, 'public', 'favicon.ico')));
     app.use(express.static(app.get('appPath')));
-    app.use(morgan('dev'));
+    //app.use(morgan('dev'));
     app.use("/public/img", express.static(config.appFilesPath() + "/"));
   }
 
@@ -63,7 +63,7 @@ module.exports = function(app, passport) {
   if ('development' === env || 'test' === env) {
     app.use(express.static(path.join(config.root, '.tmp')));
     app.use(express.static(app.get('appPath')));
-    app.use(morgan('dev'));
+    //app.use(morgan('dev'));
     app.use("/public/img", express.static(config.appFilesPath() + "/"));
     app.use(errorHandler()); // Error handler - has to be last
   }

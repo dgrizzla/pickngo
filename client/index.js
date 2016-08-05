@@ -32,6 +32,7 @@ require('./components/directives/ngThumb/ngThumb.directive.js');
 require('./components/footer/footer.directive.js');
 require('./components/modal/categoria/agregarCategoria.controller.js');
 require('./components/modal/categoria/editarCategoria.controller.js');
+require('./components/modal/chat/chat.controller.js');
 require('./components/modal/confirm/confirm.controller.js');
 require('./components/modal/departamento/agregarDepartamento.controller.js');
 require('./components/modal/departamento/editarDepartamento.controller.js');
