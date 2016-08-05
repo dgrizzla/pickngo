@@ -63,7 +63,7 @@ exports.getUsuarios = function (req, res) {
     req.params.order,
     Number(req.params.offset),
     Number(req.params.limit),
-    Boolean(req.params.asc)
+    Boolean(req.params.asc == 'true')
   ]);
 };
 exports.getUsuariosDesc = function (req, res) {

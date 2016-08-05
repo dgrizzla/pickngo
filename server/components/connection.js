@@ -64,3 +64,18 @@ exports.commonGet = function (query, cb, data) {
     cb(response.generate(code, err, rows[0]));
   }
 };
+
+exports.commonPost = function (query, cb, data) {
+  execute('select ' + query + ' as id', data, onQuery);
+  function onQuery(err, rows) {
+    console.log('ins', rows);
+    var code = 0;
+    if (err) {
+      code = 1;
+      rows = [];
+    } else {
+      rows[0] = rows[0][0].id;
+    }
+    cb(response.generate(code, err, rows[0]));
+  }
+};

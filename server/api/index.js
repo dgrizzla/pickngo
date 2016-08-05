@@ -11,4 +11,6 @@ router.use('/departamentos', require('./departamento'));
 router.use('/usuarios', require('./usuario'));
 router.use('/things', require('./thing'));
 router.use('/mensajes',require('./mensaje'))
+router.use('/roles', require('./rol'));
+router.use('/opciones', require('./opcion'));
 module.exports = router;
