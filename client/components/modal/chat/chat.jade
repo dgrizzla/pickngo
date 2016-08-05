@@ -5,43 +5,16 @@
       button.Cbtn.blue.btn-sm.pull-right(ng-click="setView('nuevoMensaje')")
         i.fa.fa-comments-o
           |  Nuevo mensaje
-      h4 Mis Conversaciones {{viewModal}}
+      h4 Mis Conversaciones {{modalView}}
 .modal-body
   .container-fluid
+    span.input-group
+      button.btn(type='button',ng-click="buscar()")
+        span.fa.fa-arrow-left
+      p.text-muted Regresar  
     p.lead(ng-if="conversaciones.length == 0") No tienes conversaciones. ¡Inicia una ya!
     div(ng-switch='', on="modalView")
       div(ng-switch-when='menuChat')
-        div.list-group
-          a.list-group-item(href="#")
-            div(style='width:50px;display:inline-block;vertical-align:top;margin-left:5px')
-              img.img-circle(src='public/img/usuarios/default.jpg' style="width:50px;height:auto")
-            div(style='width:calc(100% - 60px);display:inline-block;vertical-align: top; margin-left:5px')
-              span
-                label Dylan Girón
-                span.text-muted  dgiron
-              .pull-right  
-                small.text-muted 30 de jul.
-              p Hola amigo
-          a.list-group-item(href="#")
-            div(style='width:50px;display:inline-block;vertical-align:top;margin-left:5px')
-              img.img-circle(src='public/img/usuarios/default.jpg' style="width:50px;height:auto")
-            div(style='width:calc(100% - 60px);display:inline-block;vertical-align: top; margin-left:5px')
-              span
-                label Juan Perez
-                span.text-muted  jperez
-              .pull-right  
-                small.text-muted 12 de jul.
-              p Que onda
-          a.list-group-item(href="#")
-            div(style='width:50px;display:inline-block;vertical-align:top;margin-left:5px')
-              img.img-circle(src='public/img/usuarios/default.jpg' style="width:50px;height:auto")
-            div(style='width:calc(100% - 60px);display:inline-block;vertical-align: top; margin-left:5px')
-              span
-                label Alex Penile
-                span.text-muted  titi420
-              .pull-right  
-                small.text-muted 10 de jul.
-              p Bonfire lit     
-      div(ng-switch-when='nuevoMensaje') 
-        label Envia un mensaje a:
-        input(type="search" placeholder="Ingresa el nombre del usuario")
+        include ./mensajes.jade
+      div(ng-switch-when='nuevoMensaje')
+        include ./buscarUsuario.jade
