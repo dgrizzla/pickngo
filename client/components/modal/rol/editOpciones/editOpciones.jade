@@ -5,7 +5,7 @@ div.png-modal-content(ng-class='{load : load}')
       td(data-title="'Descripcion'", filter="{descripcion: 'text'}", sortable="'descripcion'") {{row.descripcion}}
       td(data-title="'Tipo'", filter="{nombre_tipo: 'text'}", sortable="'nombre_tipo'") {{row.nombre_tipo}}
       td 
-        span(ng-click='toggleRolOpcion(row)')
+        span(ng-click='toggleRolOpcion(row)', ng-class="row.id_rol_opcion? 'text-danger' : 'text-success'")
           span.glyphicon(ng-class="row.id_rol_opcion? 'glyphicon-remove' : 'glyphicon-plus'")
   br
   br

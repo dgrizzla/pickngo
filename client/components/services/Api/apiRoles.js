@@ -45,6 +45,18 @@ PICKNGO.factory('Api_roles', function ($http, Api_utils, $q) {
       cb(Api_utils.error);
     });
   };
+  /**
+   * agrega un nuevo rol
+   * @param {number} nombre
+   * @param {number} descripcion
+   */
+  a.postRol = function (nombre, descripcion, cb) {
+    return $http.post('/api/roles/', { nombre, descripcion }).then(
+      Api_utils.proxy(cb),
+      function () {
+      cb(Api_utils.error);
+    });
+  };
 
   // ################# DELETE'S #####################
   /**
@@ -53,6 +65,21 @@ PICKNGO.factory('Api_roles', function ($http, Api_utils, $q) {
    */
   a.deleteRolOpcion = function (id_rol_opcion, cb) {
     return $http.delete('/api/roles/opcion/' + id_rol_opcion ).then(
+      Api_utils.proxy(cb),
+      function () {
+      cb(Api_utils.error);
+    });
+  };
+
+    // ################# PUT'S #####################
+  /**
+   * edita un rol 
+   * @param {number} id id del rol (tipo)
+   * @param {string} nombre
+   * @param {string} descripcion
+   */
+  a.putRol = function (id, nombre, descripcion, cb) {
+    return $http.put('/api/roles/' + id, {nombre, descripcion}).then(
       Api_utils.proxy(cb),
       function () {
       cb(Api_utils.error);

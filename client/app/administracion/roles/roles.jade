@@ -1,8 +1,11 @@
 div
-  button.btn(ng-click='openEditarOpciones(1)') Opciones
+  button.btn(ng-click='openAddRol()') Agregar Rol
   table.table.table-bordered.table-striped.table-condensed(ng-table='table', show-filter='false')
     tr(ng-repeat='row in $data')
       td(data-title="'ID'", filter="{id_tipo: 'number'}", sortable="'id_tipo'") {{row.id_tipo}}
-      td(data-title="'Nombre'", filter="{descripcion: 'text'}", sortable="'descripcion'") {{row.descripcion}}
-      td(data-title="'Acciones'", width='50') 
-        button.btn(ng-click='openEditarOpciones(row.id_tipo)') Opciones
+      td(data-title="'Nombre'", filter="{nombre: 'text'}", sortable="'nombre'") {{row.nombre}}
+      td(data-title="'descripcion'", filter="{descripcion: 'text'}", sortable="'descripcion'") {{row.descripcion}}
+      td(data-title="'Acciones'", width='100') 
+        button.btn.btn-xs(ng-click='openEditOpciones(row.id_tipo)') Opciones
+        button.btn.btn-xs.btn-success(ng-click='openEditRol(row)')
+          span.glyphicon.glyphicon-pencil

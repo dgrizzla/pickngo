@@ -10,16 +10,36 @@ PICKNGO.factory('pngModals', function($rootScope, $uibModal) {
       backdropClass : 'png-modal-backdrop'
     });
   }
-  a.openEditarOpcionesRol = function (rol) {
+  a.openEditOpcionesRol = function (rol) {
     return openModal(
       'md',
-      require('./rol/editarOpciones/editarOpciones.controller.js'),
-      require('./rol/editarOpciones/editarOpciones.jade')(),
+      require('./rol/editOpciones/editOpciones.controller.js'),
+      require('./rol/editOpciones/editOpciones.jade')(),
+      {
+        rol : () => rol
+      }
+    );
+  };
+
+  a.openAddRol = function () {
+    return openModal(
+      'sm',
+      require('./rol/addRol/addRol.controller.js'),
+      require('./rol/addRol/addRol.jade')()
+    );
+  };
+
+  a.openEditRol = function (rol) {
+    return openModal(
+      'sm',
+      require('./rol/editRol/editRol.controller.js'),
+      require('./rol/addRol/addRol.jade')(),
       {
         rol : () => rol
       }
     );
   }
+
   $uibModal.modals = a;
-  return a;//$uibModal
+  return a;
 });

@@ -8,4 +8,7 @@ var router = express.Router();
 router.get('/', controller.index);
 router.get('/usuario', controller.getTipoUsuario);
 
+router.post('/', controller.postTipo);
+
+router.put('/:id');
 module.exports = router;

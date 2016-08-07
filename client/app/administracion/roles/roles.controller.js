@@ -13,10 +13,22 @@ module.exports = function ($scope, Api, NgTableParams, $uibModal) {
     }
     return result.data;
   }
-  $scope.openEditarOpciones = function (rol) {
-    let instance = $uibModal.modals.openEditarOpcionesRol(rol);
+  $scope.openEditOpciones = function (rol) {
+    let instance = $uibModal.modals.openEditOpcionesRol(rol);
     instance.result.then(function () {
       console.log('result');
+    });
+  };
+  $scope.openAddRol = function () {
+    let instance = $uibModal.modals.openAddRol();
+    instance.result.then(function () {
+      console.log('result');
+    });
+  };
+  $scope.openEditRol = function (rol) {
+    let instance = $uibModal.modals.openEditRol(rol);
+    instance.result.then(function () {
+      $scope.table.reload();
     });
   };
 };

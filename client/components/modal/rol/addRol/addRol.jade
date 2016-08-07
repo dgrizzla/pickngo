@@ -1,0 +1,9 @@
+div.png-modal-content(ng-class='{load : load}')
+  form(name='rolFrom', ng-submit='saveRol()')
+    .form-group(ng-class="{'has-error' : rolFrom.nombre.$invalid && rolFrom.nombre.$touched}")
+      label.control-label(for='rolFromNombre') Nombre
+      input#rolFromNombre.form-control(type='text', ng-model='rol.nombre', name='nombre', placeholder='Nombre', ng-required='true')
+    .form-group(ng-class="{'has-error' : rolFrom.descripcion.$invalid && rolFrom.descripcion.$touched}")
+      label.control-label(for='rolFromDescripcion') Descripcion
+      textarea.form-control(rows="3", name='descripcion', ng-model='rol.descripcion', placeholder='Descripcion', ng-required='true')
+    button.btn.btn-default(type='submit') Agregar

@@ -1,6 +1,7 @@
 
 
 const model = require('./rol.model');
+const modelTipo = require('../tipo/tipo.model');
 const response = require('../../components/utils/response.js');
 
 exports.getOpciones = function (req, res) {
@@ -23,10 +24,20 @@ exports.getOpcionesDesc = function (req, res) {
   ]);
 };
 
-exports.postOpcion = function (req, res) {
-  response.commonData(res, model.postOpcion, [
+exports.putRol = function (req, res) {
+  response.commonData(res, modelTipo.putTipo, [
+    req.params.id,
     req.body.nombre,
-    req.body.descripcion
+    req.body.descripcion,
+    'png_usuario'
+  ]);
+};
+
+exports.postRol = function (req, res) {
+  response.commonData(res, modelTipo.postTipo, [
+    req.body.nombre,
+    req.body.descripcion,
+    'png_usuario'
   ]);
 };
 

@@ -8,3 +8,20 @@ exports.index = function (req, res) {
 exports.getTipoUsuario = function (req, res) {
   response.common(res, model.getTipoUsuario);
 };
+
+exports.postTipo = function (req, res) {
+  response.commonData(res, model.postTipo, [
+    req.body.nombre, 
+    req.body.descripcion,
+    req.body.tabla
+  ]);
+};
+
+exports.putTipo = function (req, res) {
+  response.commonData(res, model.putTipo, [
+    req.params.id,
+    req.body.nombre,
+    req.body.descripcion,
+    req.body.tabla
+  ]);
+}
