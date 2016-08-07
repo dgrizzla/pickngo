@@ -29,4 +29,25 @@ module.exports = function ($scope, Api, NgTableParams, $uibModalInstance, rol, $
       );
     }
   });
+  $scope.toggleRolOpcion = function (opcion) {
+    opcion.id_rol_opcion? 
+      Api.roles.deleteRolOpcion(opcion.id_rol_opcion, onDelete)
+      : Api.roles.postRolOpcion(rol, opcion.id, onPost);
+
+    function onPost(result) {
+      console.log(result);
+      if (result.code !== 0) {
+        return Api.toast.error('Hubo un error, intentelo de nuevo');
+      }
+      opcion.id_rol_opcion = result.data;
+    }
+    function onDelete(result) {
+      console.log(result);
+      if (result.code !== 0) {
+        return Api.toast.error('Hubo un error, intentelo de nuevo');
+      }
+      opcion.id_rol_opcion = undefined;
+    }
+  };
+  console.log($scope.table.data);
 };

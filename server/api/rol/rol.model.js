@@ -14,4 +14,16 @@ exports.getOpciones = function (data, cb) {
   conn.execute(query, data, function (err, rows) {
     cb(response.commonResult( err, rows));
   });
-}
+};
+
+exports.postRolOpcion = function (data, cb) {
+  const query = 'fn_ins_png_rol_opcion( ?, ? )';
+  conn.commonPost(query, cb, data);
+};
+
+exports.deleteRolOpcion = function (id, cb) {
+  const query = 'CALL sp_del_png_rol_opcion ( ? )';
+  conn.execute(query, id, function (err, rows) {
+    cb(response.commonResult( err, rows));
+  });
+};

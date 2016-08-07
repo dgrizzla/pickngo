@@ -74,7 +74,7 @@ exports.commonPost = function (query, cb, data) {
       code = 1;
       rows = [];
     } else {
-      rows[0] = rows[0][0].id;
+      rows[0] = rows[0].id;
     }
     cb(response.generate(code, err, rows[0]));
   }

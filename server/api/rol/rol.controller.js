@@ -29,3 +29,14 @@ exports.postOpcion = function (req, res) {
     req.body.descripcion
   ]);
 };
+
+exports.postRolOpcion = function (req, res) {
+  response.commonData(res, model.postRolOpcion, [
+    req.body.id_rol,
+    req.body.id_opcion
+  ]);
+};
+
+exports.deleteRolOpcion = function (req, res) {
+  response.commonData(res, model.deleteRolOpcion, req.params.id);
+}
