@@ -1,0 +1,20 @@
+.modal-header
+  .container-fluid
+    .row
+      button.close.pull-right(type='button', style='margin-top:5px', ng-click='$close()') &times;
+      button.Cbtn.blue.btn-sm.pull-right(ng-click="setView('nuevoMensaje')")
+        i.fa.fa-comments-o
+          |  Nuevo mensaje
+      h4 Mis Conversaciones {{modalView}}
+.modal-body
+  .container-fluid
+    span.input-group
+      button.btn(type='button',ng-click="buscar()")
+        span.fa.fa-arrow-left
+      p.text-muted Regresar  
+    p.lead(ng-if="conversaciones.length == 0") No tienes conversaciones. ¡Inicia una ya!
+    div(ng-switch='', on="modalView")
+      div(ng-switch-when='menuChat')
+        include ./mensajes.jade
+      div(ng-switch-when='nuevoMensaje')
+        include ./buscarUsuario.jade

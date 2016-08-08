@@ -1,6 +1,6 @@
 'use strict';
 
-PICKNGO.controller('NavbarCtrl', function($scope, Auth, $rootScope, Modal, Notification, $http, $state, $location) {
+PICKNGO.controller('NavbarCtrl', function($scope, Auth, $rootScope, Modal, Notification, $uibModal, $http, $state, $location) {
   Auth.getCurrentUser();
   $rootScope.$watch('currentUser', function(currentUser) {
     $scope.showItems = (currentUser && currentUser.id_usuario >= 0) ? true : false;
@@ -19,6 +19,13 @@ PICKNGO.controller('NavbarCtrl', function($scope, Auth, $rootScope, Modal, Notif
         Notification.success('Has cerrado sesión con éxito.')
         $location.path('/')
       }
+    });
+  }
+  $scope.openChat = function() {
+    var modalChat = $uibModal.open({
+      template: require('../modal/chat/chat.jade')(),
+      controller: 'ChatCtrl',
+      size: 'md'
     });
   }
 

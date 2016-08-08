@@ -19,3 +19,6 @@ body(ng-app="pickngoApp", ng-strict-di='true')
     include ../components/navbar/navbar.jade
     div(ui-view='')
     script(src='//localhost:35729/livereload.js')
+    script(src='/socket.io/socket.io.js')
+    script.
+      var socket = io();

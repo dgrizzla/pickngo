@@ -10,8 +10,8 @@ router.use('/tipos', require('./tipo'));
 router.use('/departamentos', require('./departamento'));
 router.use('/usuarios', require('./usuario'));
 router.use('/things', require('./thing'));
+router.use('/mensajes',require('./mensaje'))
 router.use('/roles', require('./rol'));
 router.use('/opciones', require('./opcion'));
 router.use('/paises', controller.getPaises);
-
 module.exports = router;

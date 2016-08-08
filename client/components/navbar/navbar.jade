@@ -26,6 +26,9 @@
             li
               a(ui-sref='administracion') Administracion
           ul.nav.navbar-right
+            li.lDrop.chat(ng-if="showItems")
+              a(href="#", ng-click='openChat()')
+                i.fa.fa-envelope
             li
               a(href='#', ng-if='!showItems', ng-click='openRegistro()') Registrate
             li
