@@ -5,3 +5,6 @@ div
       td(data-title="'Nombres'", filter="{nombres: 'text'}", sortable="'nombres'") {{row.nombres}}
       td(data-title="'Apellidos'", filter="{apellidos: 'text'}", sortable="'apellidos'") {{row.apellidos}}
       td(data-title="'Usuario'", filter="{usuario: 'text'}", sortable="'usuario'") {{row.usuario}}
+      td(data-title="'Acciones'", width='100')
+        button.btn.btn-xs.btn-success(ng-click='openEditUsuario(row)')
+          span.glyphicon.glyphicon-pencil

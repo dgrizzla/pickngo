@@ -46,6 +46,7 @@ require('./components/modal/rol/editOpciones/editOpciones.controller.js');
 require('./components/modal/rol/editRol/editRol.controller.js');
 require('./components/modal/subcategoria/agregarSubCat.controller.js');
 require('./components/modal/subcategoria/editarSubCat.controller.js');
+require('./components/modal/usuario/editUsuario/editUsuario.controller.js');
 require('./components/navbar/navbar.controller.js');
 require('./components/navbar/navbar.directive.js');
 require('./components/services/Api/api.js');

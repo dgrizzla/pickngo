@@ -71,7 +71,7 @@ PICKNGO.factory('Api_roles', function ($http, Api_utils, $q) {
     });
   };
 
-    // ################# PUT'S #####################
+  // ################# PUT'S #####################
   /**
    * edita un rol 
    * @param {number} id id del rol (tipo)

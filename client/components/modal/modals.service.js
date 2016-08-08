@@ -1,8 +1,13 @@
 
 
-PICKNGO.factory('pngModals', function($rootScope, $uibModal) {
+PICKNGO.factory('pngModals', function($rootScope, $uibModal, $timeout) {
   const a = {};
+  const modalTimer = (scope, time = 500) => $timeout(() => scope.load = true, time);
+  const modalTimerResolve = function () {
+    return modalTimer;
+  }
   function openModal(size,controller, template, resolve) {
+    resolve.modalTimer = modalTimerResolve;
     return $uibModal.open({
       size, controller, template, resolve,
       windowClass : 'png-modal',
@@ -38,7 +43,18 @@ PICKNGO.factory('pngModals', function($rootScope, $uibModal) {
         rol : () => rol
       }
     );
-  }
+  };
+
+  a.openEditUsuario = function (usuario) {
+    return openModal(
+      'md',
+      require('./usuario/editUsuario/editUsuario.controller.js'),
+      require('./usuario/editUsuario/editUsuario.jade')(),
+      {
+        usuario : () => usuario
+      }
+    );
+  };
 
   $uibModal.modals = a;
   return a;

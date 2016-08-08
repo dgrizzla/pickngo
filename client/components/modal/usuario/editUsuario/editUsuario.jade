@@ -1,0 +1,23 @@
+include ../../../../templates/mixins.jade
+div.png-modal-content(ng-class='{load : load}')
+  .panel.panel-default
+    .panel-heading 
+      div
+        h4 Editar usuario
+        button.navbar-link(type="button" class="close" aria-label="Close", ng-click='close()')
+          span( aria-hidden="true")&times;
+    .panel-body 
+      +form('usuarioForm','saveUsuario()', 'Guardar')
+        .row
+          .col-xs-6
+            +formGroup('usuario', 'usuario', 'usuarioForm', 'text')
+            +formGroupRadio('sexo', 'usuario', 'usuarioForm')
+            +formGroup('email', 'usuario', 'usuarioForm', 'email')
+            +formGroupSelect('id_pais', 'usuario', 'usuarioForm', 'pais.id as pais.nombre for pais in paises', 'Pais')
+            +formGroup('telefono', 'usuario', 'usuarioForm', 'number')
+          .col-xs-6
+            +formGroup('nombres', 'usuario', 'usuarioForm', 'text')
+            +formGroup('apellidos', 'usuario', 'usuarioForm', 'text')
+            +formGroupDate('fecha_nac', 'usuario', 'usuarioForm', 'Fecha de Nacimiento')
+            +formGroupSelect('id_tipo', 'usuario', 'usuarioForm', 'rol.id_tipo as rol.nombre for rol in roles', 'Rol')
+            +formGroup('estado', 'usuario', 'usuarioForm', 'number')

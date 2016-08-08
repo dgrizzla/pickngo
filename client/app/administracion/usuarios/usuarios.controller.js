@@ -1,6 +1,6 @@
 
 /*@ngInject*/
-module.exports = function ($scope, Api, NgTableParams) {
+module.exports = function ($scope, Api, NgTableParams, $uibModal) {
   $scope.offset = 0;
   $scope.limit = 20;
   $scope.order = 'nombres';
@@ -19,13 +19,6 @@ module.exports = function ($scope, Api, NgTableParams) {
       );
     }
   });
-  // Api.usuarios.getUsuarios(
-  //   $scope.order,
-  //   $scope.offset,
-  //   $scope.limit,
-  //   $scope.asc,
-  //   onGetUsuarios
-  // );
   function onGetUsuarios(result) {
     if (result.code === 1) {
       return Api.toast.error('Hubo un error');
@@ -33,4 +26,10 @@ module.exports = function ($scope, Api, NgTableParams) {
     return result.data;//$scope.usuarios;
     //-$scope.usuarios = result.data;
   }
+  $scope.openEditUsuario = function (usuario) {
+    let instance = $uibModal.modals.openEditUsuario(usuario.id);
+    instance.result.then(function () {
+      $scope.table.reload();
+    });
+  };
 };

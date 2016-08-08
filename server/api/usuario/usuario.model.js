@@ -11,7 +11,14 @@ exports.getUsuarios = function (data, cb) {
     cb(response.commonResult( err, rows));
   });
 };
-
+exports.getUsuario = function (id, cb) {
+  const query = 'sp_sel_png_usuario( ? )';
+  conn.getOne(query, cb, id);
+};
+exports.putUsuario = function (data, cb) {
+  const query = 'sp_upd_png_usuario ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+  conn.commonGet(query, cb, data);
+}
 exports.getPaises = function(callback) {
   var query = "call sp_sel_png_pais";
   connection(query, '', function(err, rows) {

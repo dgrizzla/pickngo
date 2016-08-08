@@ -3,7 +3,7 @@ const mysql = require("mysql");
 const _ = require('lodash');
 const config = require('../config/environment');
 const response = require('./utils/response.js');
-
+const { noopA } = require('./utils/noop.js');
 let pool = mysql.createPool(_.merge(
   config.mysql,
   {connectionLimit : 10}
@@ -61,6 +61,24 @@ exports.commonGet = function (query, cb, data) {
       code = 1;
       rows = [];
     };
+    cb(response.generate(code, err, rows[0]));
+  }
+};
+
+exports.getOne = function (query, cb, data) {
+  if(!cb) {
+    cb = data;
+    data = undefined;
+  };
+  execute('call ' + query, data, onQuery);
+  function onQuery(err, rows) {
+    var code = 0;
+    if (err) {
+      code = 1;
+      rows = [];
+    } else {
+      rows[0] = (rows[0] || noopA)[0];
+    }
     cb(response.generate(code, err, rows[0]));
   }
 };

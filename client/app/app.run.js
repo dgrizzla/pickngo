@@ -31,6 +31,14 @@ PICKNGO.config(function($urlRouterProvider, $locationProvider) {
   for (var a = 1950; a <= moment().year(); a++) {
     anios.push(a)
   }
+  $rootScope.getInputDate = (day, month, year) => {
+    let date = moment({day, month, year});
+    if (date.isValid()) {
+      return date.toString();
+    } 
+    return undefined;
+  };
+  $rootScope.isValidDate = date => moment(date).isValid();
   $rootScope.dias = dias;
   $rootScope.meses = meses;
   $rootScope.anios = anios;

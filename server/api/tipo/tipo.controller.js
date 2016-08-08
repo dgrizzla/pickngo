@@ -24,4 +24,4 @@ exports.putTipo = function (req, res) {
     req.body.descripcion,
     req.body.tabla
   ]);
-}
+};

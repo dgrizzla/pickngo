@@ -1,5 +1,5 @@
 
-PICKNGO.factory('Api_utils', function ($http,) {
+PICKNGO.factory('Api_utils', function ($http) {
   const a = {};
   a.error = {code : 1, description :'A ocurrido un error'};
   a.proxy = function (cb) {

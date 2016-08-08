@@ -17,7 +17,26 @@ exports.login = function(req, res, next) {
     res.json(resp);
   })
 };
+exports.getUsuario = function (req, res) {
+  response.commonData(res, model.getUsuario, req.params.id);
+};
 
+exports.putUsuario = function (req, res) {
+  response.commonData(res, model.putUsuario, [
+    req.params.id,
+    req.body.usuario,
+    req.body.nombres,
+    req.body.apellidos,
+    new Date(req.body.fecha_nac),
+    req.body.sexo,
+    req.body.email,
+    req.body.id_pais,
+    req.body.id_tipo,
+    req.body.telefono,
+    req.body.estado
+  ]);
+}
+ 
 exports.getPaises = function(req, res) {
   model.getPaises(function(resp) {
     res.json(resp)

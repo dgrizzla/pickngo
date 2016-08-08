@@ -10,5 +10,5 @@ router.get('/usuario', controller.getTipoUsuario);
 
 router.post('/', controller.postTipo);
 
-router.put('/:id');
+router.put('/:id', controller.putTipo);
 module.exports = router;

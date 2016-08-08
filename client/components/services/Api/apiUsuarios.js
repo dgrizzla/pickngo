@@ -20,5 +20,28 @@ PICKNGO.factory('Api_usuarios', function ($http, Api_utils, $q) {
     });
   };
 
+  /**
+   * trae usuario especifico
+   * 
+   * @param {number} id
+   */
+  a.getUsuario = function (id, cb) {
+    return $http.get('/api/usuarios/' + id).then(
+      Api_utils.proxy(cb),
+      function () {
+      cb(Api_utils.error);
+    });
+  };
+  // ################# PUT'S #####################
+  /**
+   * edita un usuario 
+   */
+  a.putUsuario = function (id, data, cb) {
+    return $http.put('/api/usuarios/' + id, data).then(
+      Api_utils.proxy(cb),
+      function () {
+      cb(Api_utils.error);
+    });
+  };
   return a;
 });
