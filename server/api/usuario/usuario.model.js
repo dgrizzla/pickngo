@@ -82,6 +82,19 @@ exports.validaCorreoExistente = function(correo, callback) {
     if (callback) callback(resp.generate(err, code, rows[0]));
   });
 };
+
+exports.busquedaUsuarioChat = function(usuario,callback){
+  var query = "call sp_sel_busqueda_usuario_chat(?)";
+    connection(query, usuario, function(err, rows) {
+    var code = 0;
+    if (err) {
+      code = 1;
+      rows = [];
+    };
+    if (callback) callback(resp.generate(err, code, rows[0]));
+  });
+};
+
 exports.validaUsuarioExistente = function(usuario, callback) {
   var query = "call sp_sel_png_usuario_existente(?)";
   connection(query, usuario, function(err, rows) {

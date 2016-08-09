@@ -15,5 +15,16 @@ PICKNGO.controller('ChatCtrl', function($scope, $http, Auth, $location, Notifica
     }).catch(err=>{
       Notification.error('Hubo un error cargando tus mensajes.');
       console.error(err);
-    })  
+    })
+
+  $scope.buscarUsuario  = function(busqueda){
+    $http.get('api/usuarios/busquedaUsuarioChat/'+busqueda)
+      .then(result=>{
+        $scope.resultadoUsuarios = result.data.data;
+        console.info('result',result.data.data.length)
+      }).catch(err=>{
+        console.error(err);
+      });    
+  }  
+
 });

@@ -1,66 +1,17 @@
 .form-group
   label(for="search") Envia un mensaje a:
   .input-group 
-    input.form-control(type='text', ng-model='busqueda', placeholder="Buscar usuario")
+    input.form-control(type='text', name="search" ng-model='busqueda', placeholder="Buscar usuario")
     span.input-group-btn
-      button.btn(type='button',ng-click="buscar()")
+      button.btn(type='button',ng-click="buscarUsuario(busqueda)", ng-disabled='!busqueda')
         span.fa.fa-search
 .form-group
+  label.text-info(ng-if="resultadoUsuarios.length === 0") No hubieron resultados con tu búsqueda.
   div.list-group.pre-scrollable
-    a.list-group-item(href="#")
+    a.list-group-item(href="#",ng-repeat="usuario in resultadoUsuarios")
       div(style='width:50px;display:inline-block;top;margin-left:5px')
         img.img-circle(src='public/img/usuarios/default.jpg' style="width:50px;height:auto")
       div(style='width:calc(100% - 60px);display:inline-block;margin-left:5px')
         br
-        label Dylan Girón
-        span.text-muted  dgiron
-    a.list-group-item(href="#")
-      div(style='width:50px;display:inline-block;top;margin-left:5px')
-        img.img-circle(src='public/img/usuarios/default.jpg' style="width:50px;height:auto")
-      div(style='width:calc(100% - 60px);display:inline-block;margin-left:5px')
-        br
-        label Pedro Sola
-        span.text-muted  psola
-    a.list-group-item(href="#")
-      div(style='width:50px;display:inline-block;top;margin-left:5px')
-        img.img-circle(src='public/img/usuarios/default.jpg' style="width:50px;height:auto")
-      div(style='width:calc(100% - 60px);display:inline-block;margin-left:5px')
-        br
-        label Dylan Girón
-        span.text-muted  dgiron
-    a.list-group-item(href="#")
-      div(style='width:50px;display:inline-block;top;margin-left:5px')
-        img.img-circle(src='public/img/usuarios/default.jpg' style="width:50px;height:auto")
-      div(style='width:calc(100% - 60px);display:inline-block;margin-left:5px')
-        br
-        label Pedro Sola
-        span.text-muted  psola
-    a.list-group-item(href="#")
-      div(style='width:50px;display:inline-block;top;margin-left:5px')
-        img.img-circle(src='public/img/usuarios/default.jpg' style="width:50px;height:auto")
-      div(style='width:calc(100% - 60px);display:inline-block;margin-left:5px')
-        br
-        label Dylan Girón
-        span.text-muted  dgiron
-    a.list-group-item(href="#")
-      div(style='width:50px;display:inline-block;top;margin-left:5px')
-        img.img-circle(src='public/img/usuarios/default.jpg' style="width:50px;height:auto")
-      div(style='width:calc(100% - 60px);display:inline-block;margin-left:5px')
-        br
-        label Pedro Sola
-        span.text-muted  psola
-    a.list-group-item(href="#")
-      div(style='width:50px;display:inline-block;top;margin-left:5px')
-        img.img-circle(src='public/img/usuarios/default.jpg' style="width:50px;height:auto")
-      div(style='width:calc(100% - 60px);display:inline-block;margin-left:5px')
-        br
-        label Dylan Girón
-        span.text-muted  dgiron
-    a.list-group-item(href="#")
-      div(style='width:50px;display:inline-block;top;margin-left:5px')
-        img.img-circle(src='public/img/usuarios/default.jpg' style="width:50px;height:auto")
-      div(style='width:calc(100% - 60px);display:inline-block;margin-left:5px')
-        br
-        label Pedro Sola
-        span.text-muted  psola
-          
+        label {{usuario.nombres}} {{usuario.apellidos}}
+        span.text-muted  {{usuario.usuario}}
