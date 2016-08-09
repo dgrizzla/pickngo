@@ -2,17 +2,19 @@
   .container-fluid
     .row
       button.close.pull-right(type='button', style='margin-top:5px', ng-click='$close()') &times;
-      button.Cbtn.blue.btn-sm.pull-right(ng-click="setView('nuevoMensaje')")
+      button.Cbtn.blue.btn-sm.pull-right(ng-click="setView('nuevoMensaje')",ng-if="modalView=='menuChat'")
         i.fa.fa-comments-o
           |  Nuevo mensaje
-      h4 Mis Conversaciones {{modalView}}
+      h4 Mis Conversaciones
+      div(style='width:50px;display:inline-block;top;margin-left:5px', ng-if="modalView!='menuChat'")
+        button.btn.form-control(type='button',ng-click="setView('menuChat')")
+          span.fa.fa-arrow-left
+      div(style='display:inline-block;margin-left:5px', ng-if="modalView!='menuChat'")
+        br
+        label.text-muted Regresar      
 .modal-body
-  .container-fluid
-    span.input-group
-      button.btn(type='button',ng-click="buscar()")
-        span.fa.fa-arrow-left
-      p.text-muted Regresar  
-    p.lead(ng-if="conversaciones.length == 0") No tienes conversaciones. ¡Inicia una ya!
+  .container-fluid  
+    p.lead(ng-if="false") No tienes conversaciones. ¡Inicia una ya!
     div(ng-switch='', on="modalView")
       div(ng-switch-when='menuChat')
         include ./mensajes.jade
