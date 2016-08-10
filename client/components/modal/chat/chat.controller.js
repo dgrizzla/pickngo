@@ -8,6 +8,10 @@ PICKNGO.controller('ChatCtrl', function($scope, $http, Auth, $location, Notifica
     $scope.modalView = vista;
   };
 
+  $scope.enviarMensaje = function(mensaje){
+    console.log('AAAAAHHHHHH',mensaje)
+  }
+
   $http.get('api/mensajes/')
     .then(result=>{
       console.info('mensajes',result.data.data);

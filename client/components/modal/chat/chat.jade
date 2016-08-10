@@ -16,7 +16,9 @@
   .container-fluid  
     p.lead(ng-if="false") No tienes conversaciones. ¡Inicia una ya!
     div(ng-switch='', on="modalView")
-      div(ng-switch-when='menuChat')
+      .animate-switch(ng-switch-when='menuChat')
         include ./mensajes.jade
-      div(ng-switch-when='nuevoMensaje')
+      .animate-switch(ng-switch-when='nuevoMensaje')
         include ./buscarUsuario.jade
+      .animate-switch(ng-switch-when='conversacion')
+        include ./conversacion.jade  
