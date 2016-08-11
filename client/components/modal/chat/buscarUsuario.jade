@@ -1,14 +1,13 @@
 .form-group
   label(for="search") Envia un mensaje a:
-  .input-group 
-    input.form-control(type='text', name="search" ng-model='busqueda', placeholder="Buscar usuario")
-    span.input-group-btn
-      button.btn(type='button',ng-click="buscarUsuario(busqueda)", ng-disabled='!busqueda')
-        span.fa.fa-search
+  form.form-inline(name='busquedaForm', novalidate='', ng-submit='buscarUsuario(busqueda)', role='form')
+    input.form-control(type='text', ng-model='busqueda' placeholder='Buscar usuario')
+    button.btn(type='submit', ng-disabled='!busqueda')
+      span.fa.fa-search
 .form-group
-  label.text-info(ng-if="resultadoUsuarios.length === 0") No hubieron resultados con tu búsqueda.
+  label.text-info(ng-show="resultadoUsuarios.length === 0") No hubieron resultados con tu búsqueda.
   div.list-group.pre-scrollable
-    a.list-group-item(href="#",ng-repeat="usuario in resultadoUsuarios",ng-click="setView('conversacion')")
+    a.list-group-item(href="#",ng-repeat="usuario in resultadoUsuarios",ng-click="setView('conversacion')",ng-if="usuario.id != currentUser.id_usuario")
       div(style='width:50px;display:inline-block;top;margin-left:5px')
         img.img-circle(src='public/img/usuarios/default.jpg' style="width:50px;height:auto")
       div(style='width:calc(100% - 60px);display:inline-block;margin-left:5px')

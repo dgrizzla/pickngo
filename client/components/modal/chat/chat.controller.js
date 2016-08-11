@@ -25,7 +25,7 @@ PICKNGO.controller('ChatCtrl', function($scope, $http, Auth, $location, Notifica
     $http.get('api/usuarios/busquedaUsuarioChat/'+busqueda)
       .then(result=>{
         $scope.resultadoUsuarios = result.data.data;
-        console.info('result',result.data.data.length)
+        console.info('result',result.data.data)
       }).catch(err=>{
         console.error(err);
       });    

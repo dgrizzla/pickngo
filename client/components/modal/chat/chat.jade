@@ -6,17 +6,17 @@
         i.fa.fa-comments-o
           |  Nuevo mensaje
       h4 Mis Conversaciones
-      div(style='width:50px;display:inline-block;top;margin-left:5px', ng-if="modalView!='menuChat'")
+      div(style='width:50px;display:inline-block;top;margin-left:5px', ng-show="modalView!='menuChat'")
         button.btn.form-control(type='button',ng-click="setView('menuChat')")
           span.fa.fa-arrow-left
-      div(style='display:inline-block;margin-left:5px', ng-if="modalView!='menuChat'")
+      div(style='display:inline-block;margin-left:5px', ng-show="modalView!='menuChat'")
         br
-        label.text-muted Regresar      
+        label.text-muted Regresar
 .modal-body
   .container-fluid  
-    p.lead(ng-if="false") No tienes conversaciones. ¡Inicia una ya!
+    p.lead(ng-if="conversaciones.length==0 && modalView == 'menuChat'") No tienes conversaciones. ¡Inicia una ya!
     div(ng-switch='', on="modalView")
-      .animate-switch(ng-switch-when='menuChat')
+      .animate-switch(ng-switch-when='menuChat',ng-if="conversaciones.length!=0")
         include ./mensajes.jade
       .animate-switch(ng-switch-when='nuevoMensaje')
         include ./buscarUsuario.jade
