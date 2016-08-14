@@ -128,12 +128,13 @@ gulp.task('server', function () {
 
 
 gulp.task('watch:inject', function () {
-  gulp.watch(['./client/{app,components}/**/*.{css,styl}'], function (event) {
+  gulp.watch(['client/{app,components}/**/*.{css,styl}'], function (event) {
+    console.log(event);
     if (event.type === 'added' || event.type === 'deleted') {
       gulp.run('inject:style');
     }
   });
-  gulp.watch(['./client/{app,components}/**/!(*.spec|*.mock).js'], function (event) {
+  gulp.watch(['client/{app,components}/**/!(*.spec|*.mock).js'], function (event) {
     if (event.type === 'added' || event.type === 'deleted') {
       gulp.run('inject:js');
     }
