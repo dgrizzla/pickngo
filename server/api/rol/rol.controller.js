@@ -4,6 +4,13 @@ const model = require('./rol.model');
 const modelTipo = require('../tipo/tipo.model');
 const response = require('../../components/utils/response.js');
 
+exports.getOpcionesMenuRol = function (req, res) {
+  response.commonData(res, model.getOpcionesTipo, [
+    req.params.id,
+    1
+  ]);
+}
+
 exports.getOpciones = function (req, res) {
   response.commonData(res,model.getOpciones, [
     req.params.id,

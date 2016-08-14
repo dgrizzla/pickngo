@@ -1,37 +1,33 @@
-.navbar.navbar-default(ng-controller='NavbarCtrl')
-  header
-    .top
-      .container-fluid
-        .navbar-header
-          button.navbar-toggle(type='button', ng-click='nav.isCollapsed = !nav.isCollapsed')
-            span.sr-only Toggle navigation
-            span.icon-bar
-            span.icon-bar
-            span.icon-bar
-          a.navbar-brand(href='#')
-            img.img-responsive(src=require('../../assets/images/logo-top.jpg'))
-        .navbar-collapse.collapse(uib-collapse='nav.isCollapsed')
-          ul.nav.navbar-nav(ng-if='!showItems')
-            li
-              a(href='#') Inicio
-            li
-              a(href='#') Acerca de
-            li
-              a(href='#') Como Funciona
-            li
-              a(href='#') Contacto
-          ul.nav.navbar-nav(ng-if='showItems')
-            li
-              a(ui-sref='dashboard') Dashboard
-            li
-              a(ui-sref='administracion') Administracion
-          ul.nav.navbar-right
-            li.lDrop.chat(ng-if="showItems")
-              a(href="#", ng-click='openChat()')
-                i.fa.fa-envelope
-            li
-              a(href='#', ng-if='!showItems', ng-click='openRegistro()') Registrate
-            li
-              a(href='#', ng-if='!showItems', ng-click='openLogin()') Login
-            li
-              include ./menuDropdown.jade
+nav.navbar.navbar-default.navbar-fixed-top(ng-controller='NavbarCtrl')
+  .container-fluid
+    .navbar-header
+      button.navbar-toggle(type='button', ng-click='nav.isCollapsed = !nav.isCollapsed')
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand(href='#')
+        img.img-responsive(src=require('../../assets/images/logo-top.jpg'))
+    .navbar-collapse.collapse(uib-collapse='nav.isCollapsed')
+      ul.nav.navbar-nav(ng-if='!showItems')
+        li
+          a(href='#') Inicio
+        li
+          a(href='#') Acerca de
+        li
+          a(href='#') Como Funciona
+        li
+          a(href='#') Contacto
+      ul.nav.navbar-nav(ng-if='showItems')
+        li(ui-sref-active="active")
+          a(ui-sref='dashboard') Dashboard
+      ul.nav.navbar-nav.navbar-right
+        li(ng-if="showItems")
+          a(href="#", ng-click='openChat()')
+            i.fa.fa-envelope
+        li(ng-if='!showItems')
+          a(href='#', ng-click='openRegistro()') Registrate
+        li(ng-if='!showItems')
+          a(href='#', ng-click='openLogin()') Login
+        li.dropdown(uib-dropdown, on-toggle='toggled(open)')
+          include ./menuDropdown.jade

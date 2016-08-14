@@ -1,23 +1,23 @@
-span(style='position:relative; display:block; padding:10px 15px', uib-dropdown='', on-toggle='toggled(open)')
-  a(href='#', uib-dropdown-toggle='') {{currentUser.usuario}}
-  ul.dropdown-menu(uib-dropdown-menu='', aria-labelledby='simple-dropdown')
-    li
-      a(href='')
-        | Perfil
-        span.fa.fa-user(style='margin-left: 10px;')
-    //
-      <li>
-      <a href ui-sref="productoUsuario">Mis Productos<span style="margin-left: 10px;" class="fa fa-shopping-bag"></span></a>
-      </li>
-    li
-      a(href='')
-        | Administración
-        span.fa.fa-cog(style='margin-left: 10px;')
-    li
-      a(href='')
-        | Historial
-        span.fa.fa-history(style='margin-left: 10px;')
-    li
-      a(href='', ng-click='logout()')
-        | Logout
-        span.fa.fa-power-off(style='margin-left: 10px;')
+//-span(style='position:relative; display:block; padding:10px 15px', uib-dropdown='', on-toggle='toggled(open)')
+a(href='#', uib-dropdown-toggle='') {{currentUser.usuario}}
+ul.dropdown-menu(uib-dropdown-menu='', aria-labelledby='simple-dropdown')
+  li.text-right
+    a(href='')
+      | Perfil
+      span.fa.fa-user(style='margin-left: 10px;')
+  //-
+    <li>
+    <a href ui-sref="productoUsuario">Mis Productos<span style="margin-left: 10px;" class="fa fa-shopping-bag"></span></a>
+    </li>
+  li.text-right(ng-if='showAdministracion', ui-sref-active="active")
+    a(ui-sref='administracion')
+      | Administracion
+      span.fa.fa-cog(style='margin-left: 10px;')
+  li.text-right
+    a(href='')
+      | Historial
+      span.fa.fa-history(style='margin-left: 10px;')
+  li.text-right
+    a(href='', ng-click='logout()')
+      | Logout
+      span.fa.fa-power-off(style='margin-left: 10px;')

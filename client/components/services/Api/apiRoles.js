@@ -17,6 +17,18 @@ PICKNGO.factory('Api_roles', function ($http, Api_utils, $q) {
   };
 
   /**
+   * trae la lista de roles tipo menu 
+   * 
+   */
+  a.getOpcionesMenuRol = function (id, cb) {
+    return $http.get('/api/roles/' + id  + '/opciones/menu').then(
+      Api_utils.proxy(cb),
+      function () {
+      cb(Api_utils.error);
+    });
+  };
+
+  /**
    * trae la lista de roles 
    * @param {string} order el nombre de la columna que se quiere ordenar
    * @param {number} offset numero desde donde ser quiere comenzar

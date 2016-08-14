@@ -1,3 +1,4 @@
+const noop = function () {};
 PICKNGO.factory('Auth', function($rootScope, $q, Util, $cookieStore, $state, Session, $uibModal, $http, Notification) {
   var safeCb = Util.safeCb;
   var currentUser = {};
@@ -35,9 +36,10 @@ PICKNGO.factory('Auth', function($rootScope, $q, Util, $cookieStore, $state, Ses
         })
 
     },
-    getCurrentUser(callback) {
-      Session.get(function(resp) {
-        $rootScope.currentUser = resp.data;
+    getCurrentUser(callback = noop) {
+      Session.get(function(result) {
+        $rootScope.currentUser = result.data;
+        callback(result.data);
       });
     },
     logout(callback) {

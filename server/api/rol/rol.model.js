@@ -27,3 +27,8 @@ exports.deleteRolOpcion = function (id, cb) {
     cb(response.commonResult( err, rows));
   });
 };
+
+exports.getOpcionesTipo = function (data, cb) {
+  const query = 'sp_sel_png_rol_opcion_tipo ( ?, ? )';
+  conn.commonGet(query, cb, data);
+};
