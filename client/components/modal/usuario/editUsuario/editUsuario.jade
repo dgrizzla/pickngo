@@ -1,12 +1,12 @@
 include ../../../../templates/mixins.jade
 div.png-modal-content(ng-class='{load : load}')
   .panel.panel-default
-    .panel-heading 
+    .panel-heading
       div
         h4 Editar usuario
         button.navbar-link(type="button" class="close" aria-label="Close", ng-click='close()')
-          span( aria-hidden="true")&times;
-    .panel-body 
+          span( aria-hidden="true") &times;
+    .panel-body
       +form('usuarioForm','saveUsuario()', 'Guardar')
         .row
           .col-xs-6
