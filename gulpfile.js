@@ -129,7 +129,6 @@ gulp.task('server', function () {
 
 gulp.task('watch:inject', function () {
   gulp.watch(['client/{app,components}/**/*.{css,styl}'], function (event) {
-    console.log(event);
     if (event.type === 'added' || event.type === 'deleted') {
       gulp.run('inject:style');
     }
@@ -148,7 +147,7 @@ gulp.task('clean:dist', function (cb) {
 });
 
 gulp.task('clean', function (cb) {
-  webpackConfig = require('./webpack.config.local.js');
+  webpackConfig = require('./webpack.config.js');
   return gulp.src(webpackConfig.output.path, {read: false})
     .pipe(clean());
 });
