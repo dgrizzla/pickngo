@@ -57,7 +57,6 @@ exports.registroUsuario = function(req, res) {
     clave,
     req.body.usuario.telefono
   ];
-  console.log('data', data)
   model.registroUsuario(data, function(resp) {
     res.json(resp);
   });
@@ -93,3 +92,10 @@ exports.getUsuariosDesc = function (req, res) {
     false
   ]);
 };
+
+exports.busquedaUsuarioChat = function(req, res){
+  var usuario = [req.params.usuario];
+  model.busquedaUsuarioChat(usuario,function(resp){
+    res.json(resp);
+  });
+}

@@ -1,0 +1,30 @@
+.whiteBox
+  .inner
+    h4.text-center Roberto Perez
+    .chatWrap
+      .chatBox.left
+        .imageUser
+          img(src='public/img/usuarios/default.jpg', alt='', style="width:50px;height:auto")
+        .innerChat
+          .box
+            .arrow
+            span.cDate 18/02/2016
+            p
+              | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima architecto odit suscipit deserunt. Neque deleniti repudiandae, modi, aspernatur dolore quisquam!
+      .chatBox.right
+        .innerChat
+          .box
+            .arrow
+            span.cDate 18/02/2016
+            p
+              | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima architecto odit suscipit deserunt. Neque deleniti repudiandae, modi, aspernatur dolore quisquam!
+        .imageUser
+          img(src='public/img/usuarios/default.jpg', alt='', style="width:50px;height:auto")
+      .inner
+        h3.fieldTitle Responder
+        form.wrapfield(name="chatForm", novalidate='', ng-submit='enviarMensaje(mensajeRespuesta)' role='form')
+          .input-text
+            textarea.textField(placeholder='Responder...', ng-model='mensajeRespuesta')
+          .clear
+          input.Cbtn.blue.pull-right.tmrg(type='submit', value='Enviar', ng-disabled='!mensajeRespuesta')
+          .clear
