@@ -8,7 +8,7 @@ nav.navbar.navbar-default.navbar-fixed-top(ng-controller='NavbarCtrl')
         span.icon-bar
       a.navbar-brand(href='#')
         img.img-responsive(src=require('../../assets/images/logo-top.jpg'))
-    .navbar-collapse.collapse(uib-collapse='nav.isCollapsed')
+    .navbar-collapse.collapse(uib-collapse='!nav.isCollapsed')
       ul.nav.navbar-nav(ng-if='!showItems')
         li
           a(href='#') Inicio

@@ -2,7 +2,9 @@
 
 PICKNGO.controller('NavbarCtrl', function($scope, Auth, $rootScope, Modal, $uibModal, $location, Api) {
   Auth.getCurrentUser(function (currentUser) {
-    Api.roles.getOpcionesMenuRol(currentUser.id_tipo, onGetMenus);
+    if (currentUser.id_tipo) {
+      Api.roles.getOpcionesMenuRol(currentUser.id_tipo, onGetMenus);
+    }
   });
 
   function onGetMenus(result) {

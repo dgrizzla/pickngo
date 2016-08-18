@@ -8,9 +8,25 @@ const ngConstant = require('gulp-ng-constant');
 const gls = require('gulp-live-server');
 const copy = require('gulp-copy');
 const inject = require('gulp-inject');
-const webpack = require('webpack-stream');
+const webpack = require('webpack');
 let config;
 let webpackConfig;
+
+var defaultStatsOptions = {
+  colors: true,
+  hash: false,
+  timings: false,
+  chunks: false,
+  chunkModules: false,
+  modules: false,
+  children: true,
+  version: true,
+  cached: false,
+  cachedAssets: false,
+  reasons: false,
+  source: false,
+  errorDetails: false
+};
 
 gulp.task('set-dev', function () {
   process.env.NODE_ENV = 'development';
@@ -63,52 +79,16 @@ gulp.task('inject:style', function () {
 let callingDone = false;
 let firstCompile = true; 
 gulp.task('webpack', ['ngConstant','inject:js', 'inject:style', 'clean'], function (cb) {
-  gulp.src('client/entry.js')
-    .pipe(webpack(webpackConfig, undefined, function (err, stats) {
-      if (err) {
-        // The err is here just to match the API but isnt used
-        return;
-      }
-      stats = stats || {};
-      if (callingDone) {
-        return;
-      }
-      // Debounce output a little for watch mode
-      callingDone = true;
-      setTimeout(function () {
-        callingDone = false;
-      }, 500);
-
-      // if (options.verbose) {
-      //   gutil.log(stats.toString({
-      //     colors: gutil.colors.supportsColor
-      //   }));
-      // } else {
-      var statsOptions = {
-        colors: gutil.colors.supportsColor,
-        hash: false,
-        timings: false,
-        chunks: false,
-        chunkModules: false,
-        modules: false,
-        children: true,
-        version: true,
-        cached: false,
-        cachedAssets: false,
-        reasons: false,
-        source: false,
-        errorDetails: false
-      };
-
-      gutil.log(stats.toString(statsOptions));
-      // }
-      if (firstCompile) {
-        console.log('init compile');
-        cb();
-        firstCompile = false;
-      }
-    }))
-    .pipe(gulp.dest(webpackConfig.output.path));
+  webpack(webpackConfig, function (err, stats) {
+    if (err) {
+      throw err; // hard error
+    }
+    console.log(stats.toString(defaultStatsOptions));
+    if (!cb.called) {
+      cb.called = true;
+      cb();
+    }
+  });
 });
 
 gulp.task('server', function () {
