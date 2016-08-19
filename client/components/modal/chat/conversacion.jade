@@ -1,30 +1,23 @@
 .whiteBox
   .inner
-    h4.text-center Roberto Perez
-    .chatWrap
-      .chatBox.left
-        .imageUser
-          img(src='public/img/usuarios/default.jpg', alt='', style="width:50px;height:auto")
-        .innerChat
-          .box
-            .arrow
-            span.cDate 18/02/2016
-            p
-              | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima architecto odit suscipit deserunt. Neque deleniti repudiandae, modi, aspernatur dolore quisquam!
-      .chatBox.right
-        .innerChat
-          .box
-            .arrow
-            span.cDate 18/02/2016
-            p
-              | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima architecto odit suscipit deserunt. Neque deleniti repudiandae, modi, aspernatur dolore quisquam!
-        .imageUser
-          img(src='public/img/usuarios/default.jpg', alt='', style="width:50px;height:auto")
-      .inner
-        h3.fieldTitle Responder
-        form.wrapfield(name="chatForm", novalidate='', ng-submit='enviarMensaje(mensajeRespuesta)' role='form')
-          .input-text
-            textarea.textField(placeholder='Responder...', ng-model='mensajeRespuesta')
-          .clear
-          input.Cbtn.blue.pull-right.tmrg(type='submit', value='Enviar', ng-disabled='!mensajeRespuesta')
-          .clear
+    h4.text-center {{receptor.nombres}} {{receptor.apellidos}}
+    br
+    p.text-muted(ng-show="mensajes.length == 0") Aún no tienes mensajes con este usuario
+    .pre-scrollable
+      .col-xs-12(ng-repeat='mensaje in mensajes ')
+        .chatWrap.row
+          .col-xs-3(ng-show='mensaje.id_usuario == currentUser.id_usuario')
+          .chatBox.col-xs-7
+            .innerChat
+              .arrow
+              .box
+                label.cDate {{mensaje.fecha}}
+                p {{mensaje.mensaje}}  
+    .inner
+      h3.fieldTitle Responder
+    form.wrapfield(name="chatForm", novalidate='', ng-submit='enviarMensaje(mensajeRespuesta)' role='form')
+      .input-text
+        textarea.textField(placeholder='Escribe un mensaje...', ng-model='mensajeRespuesta')
+      .clear
+      input.btn.btn-info.pull-right(type='submit', value='Enviar', ng-disabled='!mensajeRespuesta')
+      .clear

@@ -18,11 +18,11 @@ PICKNGO.controller('DashboardCtrl', function($scope, $http, Auth, $location, Not
       Notification.error('Hubo un error cargando tus productos');
       console.error(err);
     })
-  $http.get('api/mensajes/')
-    .then(result=>{
-      console.info('mensajes',result);
-    }).catch(err=>{
-      Notification.error('Hubo un error cargando tus mensajes.');
-      console.error(err);
-    })  
+  // $http.get('api/mensajes/')
+  //   .then(result=>{
+  //     console.info('mensajes',result);
+  //   }).catch(err=>{
+  //     Notification.error('Hubo un error cargando tus mensajes.');
+  //     console.error(err);
+  //   })  
 });
