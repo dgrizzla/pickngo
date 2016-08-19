@@ -20,4 +20,7 @@ router.get('/:idConversacion', auth.loggedIn,controller.conversacion)
 //ruta para enviar un mensaje
 router.post('/', auth.loggedIn, controller.enviarMensaje);
 
+//ruta para iniciar nueva conversacion
+router.post('/nuevaConversacion', auth.loggedIn, controller.nuevaConversacion)
+
 module.exports = router;

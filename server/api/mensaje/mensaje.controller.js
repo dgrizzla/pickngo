@@ -1,14 +1,14 @@
 'use strict';
 var model = require('./mensaje.model');
 
-exports.crearConversacion = function (req, res) {
-  //console.log('data controlador',req.body);
-  var data = [
-    req.body.receptor,
-    req.user.id_usuario,
-    req.body.mensaje
-  ]
-  model.crearConversacion(data,function(resp){
+exports.nuevaConversacion = function (req, res) {
+  var dataConversacion = [req.user.id_usuario,req.body.receptor];
+  var dataMensaje = [];
+  model.nuevaConversacion(dataConversacion,function(resp){
+    if(resp.code === 0){
+      dataMensaje = [req.body.mensaje,req.user.id_usuario,resp.data.idConversacion];
+      model.enviarMensaje(dataMensaje,function(respuesta){});
+    }
     res.json(resp);
   });
 };
