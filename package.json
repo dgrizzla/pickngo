@@ -68,6 +68,7 @@
     "npm": "^2.14.20"
   },
   "scripts": {
+    "start":"node server",
     "serve": "gulp",
     "build" : "gulp build"
   },
