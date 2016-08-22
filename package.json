@@ -68,7 +68,7 @@
     "npm": "^2.14.20"
   },
   "scripts": {
-    "start": "gulp",
+    "serve": "gulp",
     "build" : "gulp build"
   },
   "private": true
