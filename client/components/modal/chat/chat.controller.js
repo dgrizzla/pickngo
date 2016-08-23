@@ -67,7 +67,7 @@ PICKNGO.controller('ChatCtrl', function($scope, $http, Auth, $location, Notifica
         if (result.data.data.length === 0) {
           nuevoChat(usuarioMensaje);
         } else {
-          usuarioMensaje.id_conversacion = result.data.data[0].id;
+          usuarioMensaje.id = result.data.data[0].id;
           $scope.abrirConversacion(usuarioMensaje);
         }
       }).catch(err => {
@@ -109,14 +109,21 @@ PICKNGO.controller('ChatCtrl', function($scope, $http, Auth, $location, Notifica
   }
 
   $scope.abrirConversacion = function(conversacion) {
-    //console.log('id convo', conversacion);
-    $scope.idConversacion = conversacion.id_conversacion;
-    $scope.receptor = {
-      "nombres": conversacion.nombres,
-      "apellidos": conversacion.apellidos,
-      "id": conversacion.id_usuario
-    };
-    getMensajes(conversacion.id_conversacion)
+    $scope.idConversacion = conversacion.id;
+    if(conversacion.id1 == $scope.currentUser.id_usuario){
+      $scope.receptor = {
+        "nombres": conversacion.nombres2,
+        "apellidos": conversacion.apellidos2,
+        "id": conversacion.id2
+      };
+    }else{
+      $scope.receptor = {
+        "nombres": conversacion.nombres1,
+        "apellidos": conversacion.apellidos1,
+        "id": conversacion.id1
+      };
+    }
+    getMensajes(conversacion.id)
   }
 
   $scope.buscarUsuario = function(busqueda) {
