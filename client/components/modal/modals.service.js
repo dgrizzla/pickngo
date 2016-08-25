@@ -6,7 +6,7 @@ PICKNGO.factory('pngModals', function($rootScope, $uibModal, $timeout) {
   const modalTimerResolve = function () {
     return modalTimer;
   }
-  function openModal(size,controller, template, resolve) {
+  function openModal(size,controller, template, resolve = {}) {
     resolve.modalTimer = modalTimerResolve;
     return $uibModal.open({
       size, controller, template, resolve,
