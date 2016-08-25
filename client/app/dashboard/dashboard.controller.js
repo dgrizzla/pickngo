@@ -36,6 +36,9 @@ PICKNGO.controller('DashboardCtrl', function($scope, $http, Auth, $location, Not
     });
 
   $scope.openChat = function(conversacion) {
+    if(conversacion == undefined){
+      conversacion = 0;
+    }
     var modalChat = $uibModal.open({
       template: require('../../components/modal/chat/chat.jade')(),
       controller: 'ChatCtrl',
