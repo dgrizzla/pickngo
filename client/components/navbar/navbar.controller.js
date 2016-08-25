@@ -40,6 +40,11 @@ PICKNGO.controller('NavbarCtrl', function($scope, Auth, $rootScope, Modal, $uibM
     var modalChat = $uibModal.open({
       template: require('../modal/chat/chat.jade')(),
       controller: 'ChatCtrl',
+      resolve: {
+        conversacionData: function () {
+          return 0;
+        }
+      },
       size: 'md'
     });
   }

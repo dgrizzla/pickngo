@@ -1,9 +1,10 @@
 'use strict';
 
-PICKNGO.controller('ChatCtrl', function($scope, $http, Auth, $location, Notification) {
+PICKNGO.controller('ChatCtrl', function($scope, $http, Auth, $location, Notification,conversacionData) {
 
   $scope.modalView = "menuChat";
   $scope.items = [];
+  console.info('convo',conversacionData)
 
   $scope.setView = function(vista) {
     $scope.modalView = vista;
@@ -26,7 +27,6 @@ PICKNGO.controller('ChatCtrl', function($scope, $http, Auth, $location, Notifica
   function getMensajes(idConversacion) {
     $http.get('api/mensajes/' + idConversacion)
       .then(mensajes => {
-        console.info('mensajes', mensajes)
         $scope.mensajes = mensajes.data.data;
         $scope.modalView = 'conversacion'
       }).catch(err => {
@@ -125,6 +125,10 @@ PICKNGO.controller('ChatCtrl', function($scope, $http, Auth, $location, Notifica
     }
     getMensajes(conversacion.id)
   }
+
+  if(conversacionData != 0){
+    $scope.abrirConversacion(conversacionData);
+  };
 
   $scope.buscarUsuario = function(busqueda) {
     $http.get('api/usuarios/busquedaUsuarioChat/' + busqueda)

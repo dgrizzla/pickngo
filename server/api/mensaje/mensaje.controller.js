@@ -42,3 +42,10 @@ exports.enviarMensaje = function(req,res){
     res.json(resp);
   });
 }
+
+exports.countConversaciones = function(req,res){
+  var data = [req.user.id_usuario];
+  model.countConversaciones(data,function(resp){
+    res.json(resp);
+  });
+};

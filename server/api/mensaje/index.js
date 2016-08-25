@@ -14,6 +14,9 @@ router.get('/conversaciones', auth.loggedIn, controller.conversaciones);
 //ruta para verificar si ya existe una conversación con el usuario
 router.get('/usuarioConversacion/:idUsuario', auth.loggedIn, controller.usuarioConversacion);
 
+//ruta para traer el numero de conversaciones de un usuario
+router.get('/countConversaciones', auth.loggedIn, controller.countConversaciones);
+
 //ruta para traer los mensajes de una conversacion, recibe el id de la conversacion
 router.get('/:idConversacion', auth.loggedIn,controller.conversacion)
 

@@ -30,8 +30,8 @@
             i.fa.fa-comments
           .rBox.pull-right
             h3 Conversaciones
-            span 100
-            a.Cbtn.yellow.pull-right.nmb(href='') Ver
+            span {{numConversaciones}}
+            a.Cbtn.yellow.pull-right.nmb(href='', ng-click='openChat()') Ver
           .clear
     .col-lg-3.col-md-3.col-sm-3
       .whiteBox.dshadow
@@ -99,49 +99,18 @@
               td Contenido
               td Contenido
     .col-lg-4.col-md-8.col-sm-5
-      h3.daTitle Chat
+      h3.daTitle Chats
       .whiteBox
         .inner
-          ul.msnBox
+          ul.msnBox(ng-repeat="chat in chats")
             li
               span.userIcon.pull-left
                 i.fa.fa-user
               .content.pull-left
-                h3 Cristian Sanchez
-                p Lorem ipsum dolor sit amet, consectetur.
-              a.Cbtn.blue.pull-right(href='#')
-                i.fa.fa-arrow-right
-            li
-              span.userIcon.pull-left
-                i.fa.fa-user
-              .content.pull-left
-                h3 Cristian Sanchez
-                p Lorem ipsum dolor sit amet, consectetur.
-              a.Cbtn.blue.pull-right(href='#')
-                i.fa.fa-arrow-right
-            li
-              span.userIcon.pull-left
-                i.fa.fa-user
-              .content.pull-left
-                h3 Cristian Sanchez
-                p Lorem ipsum dolor sit amet, consectetur.
-              a.Cbtn.blue.pull-right(href='#')
-                i.fa.fa-arrow-right
-            li
-              span.userIcon.pull-left
-                i.fa.fa-user
-              .content.pull-left
-                h3 Cristian Sanchez
-                p Lorem ipsum dolor sit amet, consectetur.
-              a.Cbtn.blue.pull-right(href='#')
-                i.fa.fa-arrow-right
-            li
-              span.userIcon.pull-left
-                i.fa.fa-user
-              .content.pull-left
-                h3 Cristian Sanchez
-                p Lorem ipsum dolor sit amet, consectetur.
-              a.Cbtn.blue.pull-right(href='#')
+                h3(ng-if='currentUser.id_usuario == chat.id2') {{chat.nombres1}} {{chat.apellidos1}}
+                h3(ng-if='currentUser.id_usuario == chat.id1') {{chat.nombres2}} {{chat.apellidos2}}
+                h5 {{chat.fecha}}
+              a.Cbtn.blue.pull-right(href='#', ng-click='openChat(chat)')
                 i.fa.fa-arrow-right
 .lightbox(style='')
   .close(onclick='hideBox();')
