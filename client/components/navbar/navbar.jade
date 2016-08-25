@@ -29,5 +29,5 @@ nav.navbar.navbar-default.navbar-fixed-top(ng-controller='NavbarCtrl')
           a(href='#', ng-click='openRegistro()') Registrate
         li(ng-if='!showItems')
           a(href='#', ng-click='openLogin()') Login
-        li.dropdown(uib-dropdown, on-toggle='toggled(open)')
+        li.dropdown(uib-dropdown,ng-if='showItems' on-toggle='toggled(open)')
           include ./menuDropdown.jade
