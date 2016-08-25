@@ -106,3 +106,15 @@ exports.validaUsuarioExistente = function(usuario, callback) {
     if (callback) callback(resp.generate(err, code, rows[0]))
   });
 };
+
+exports.countUsuarios = function(callback){
+  var query = "call sp_sel_count_usuarios_existentes";
+  connection(query, '', function(err, rows) {
+    var code = 0;
+    if (err) {
+      code = 1;
+      rows = [];
+    }
+    if (callback) callback(resp.generate(err, code, rows[0]))
+  });  
+};

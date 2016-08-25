@@ -4,7 +4,6 @@ PICKNGO.controller('ChatCtrl', function($scope, $http, Auth, $location, Notifica
 
   $scope.modalView = "menuChat";
   $scope.items = [];
-  console.info('convo',conversacionData)
 
   $scope.setView = function(vista) {
     $scope.modalView = vista;
@@ -38,7 +37,6 @@ PICKNGO.controller('ChatCtrl', function($scope, $http, Auth, $location, Notifica
   function refrescarMensajes() {
     $http.get('api/mensajes/' + $scope.idConversacion)
       .then(mensajes => {
-        console.info('mensajes!', mensajes)
         $scope.mensaje = null;
         $scope.mensajes = mensajes.data.data;
       }).catch(err => {

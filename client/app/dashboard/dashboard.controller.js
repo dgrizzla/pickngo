@@ -21,7 +21,6 @@ PICKNGO.controller('DashboardCtrl', function($scope, $http, Auth, $location, Not
 
   $http.get('api/mensajes/conversaciones')
     .then(result => {
-      console.info('mensajes', result.data.data);
       $scope.chats = result.data.data;
     }).catch(err => {
       Notification.error('Hubo un error cargando los chats.');
@@ -48,4 +47,12 @@ PICKNGO.controller('DashboardCtrl', function($scope, $http, Auth, $location, Not
       size: 'md'
     });
   }
+
+  $http.get('api/usuarios/countUsuarios')
+    .then(result=>{
+      $scope.numUsuarios = result.data.data[0].numUsuarios;
+    }).catch(err=>{
+      console.error(err)
+    });
+
 });

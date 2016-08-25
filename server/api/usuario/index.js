@@ -8,6 +8,7 @@ var router = express.Router();
 
 
 router.get('/paises',controller.getPaises);
+router.get('/countUsuarios',auth.loggedIn, controller.countUsuarios);
 router.get('/:id',controller.getUsuario);
 router.get('/validaCorreoExistente/:correo', controller.validaCorreoExistente);
 router.get('/validaUsuarioExistente/:usuario', controller.validaUsuarioExistente);

@@ -99,3 +99,9 @@ exports.busquedaUsuarioChat = function(req, res){
     res.json(resp);
   });
 }
+
+exports.countUsuarios = function (req,res) {
+  model.countUsuarios(function (resp) {
+    res.json(resp);
+  });
+}

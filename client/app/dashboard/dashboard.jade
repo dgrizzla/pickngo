@@ -40,7 +40,7 @@
             i.fa.fa-users
           .rBox.pull-right
             h3 Usuarios
-            span 365
+            span {{numUsuarios}}
             a.Cbtn.yellow.pull-right.nmb(href='') Ver
           .clear
     .clear
@@ -112,50 +112,3 @@
                 h5 {{chat.fecha}}
               a.Cbtn.blue.pull-right(href='#', ng-click='openChat(chat)')
                 i.fa.fa-arrow-right
-.lightbox(style='')
-  .close(onclick='hideBox();')
-    i.fa.fa-close
-  .whiteBox
-    .inner(style='overflow:hidden')
-      h3.page_title Producto: Camara Cannon EOS D6
-      .chatWrap
-        .chatBox.left
-          .imageUser
-            img(src=require('assets/images/user-icon.jpg'), alt='')
-          .innerChat
-            .box
-              .arrow
-              h4 Roberto perez
-              span.cDate 18/02/2016
-              p
-        .chatBox.right
-          .innerChat
-            .box
-              .arrow
-              h4 Roberto perez
-              span.cDate 18/02/2016
-              p
-          .imageUser
-            img(src=require('assets/images/user-icon.jpg'), alt='')
-        .chatBox.left
-          .imageUser
-            img(src=require('assets/images/user-icon.jpg'), alt='')
-          .innerChat
-            .box
-              .arrow
-              h4 Roberto perez
-              span.cDate 18/02/2016
-              p
-        .inner
-          h3.fieldTitle Responder
-          form.wrapfield
-            .imageUser
-              img(src=require('assets/images/user-icon.jpg'), alt='')
-            .input-text
-              input.textField(type='text', placeholder='Responder...')
-              .uploadWrap
-                i.fa.fa-file-archive-o
-                input.fileField(type='file')
-            .clear
-            input.Cbtn.blue.pull-right.tmrg(type='submit', value='Enviar')
-            .clear
