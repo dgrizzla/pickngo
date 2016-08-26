@@ -41,7 +41,7 @@ PICKNGO.controller('PanelAdminCtrl', function($scope, $http, Auth, $location, No
     if ($scope.tablaSelect == "1") {
       //opción para agregar departamentos
       var modalDepartamento = $uibModal.open({
-        templateUrl: require('modal/departamento/agregarDepartamento.jade')(),
+        template: require('modal/departamento/agregarDepartamento.jade')(),
         controller: 'AgregarDeptoCtrl',
         size: 'sm'
       });
@@ -51,7 +51,7 @@ PICKNGO.controller('PanelAdminCtrl', function($scope, $http, Auth, $location, No
     } else if ($scope.tablaSelect == "2") {
       //opción para agregar categorías
       var modalCategoria = $uibModal.open({
-        templateUrl: require('modal/categoria/agregarCategoria.jade')(),
+        template: require('modal/categoria/agregarCategoria.jade')(),
         controller: 'AgregarCategoriaCtrl',
         resolve: {
           departamentos: function() {
@@ -67,7 +67,7 @@ PICKNGO.controller('PanelAdminCtrl', function($scope, $http, Auth, $location, No
     } else if ($scope.tablaSelect == "3") {
       //opción para agregar subcategorías
       var modalSubCategoria = $uibModal.open({
-        templateUrl: require('modal/subcategoria/agregarSubCat.jade')(),
+        template: require('modal/subcategoria/agregarSubCat.jade')(),
         controller: 'AgregarSubCatCtrl',
         resolve: {
           categorias: function() {
@@ -84,7 +84,7 @@ PICKNGO.controller('PanelAdminCtrl', function($scope, $http, Auth, $location, No
 
   $scope.editarDepartamento = function(departamento) {
     var modalEditDepto = $uibModal.open({
-      templateUrl: require('modal/departamento/agregarDepartamento.jade')(),
+      template: require('modal/departamento/agregarDepartamento.jade')(),
       controller: 'EditarDeptoCtrl',
       resolve: {
         departamento: function() {
@@ -100,7 +100,7 @@ PICKNGO.controller('PanelAdminCtrl', function($scope, $http, Auth, $location, No
 
   $scope.eliminarDepartamento = function(departamento) {
     var eliminarDepto = $uibModal.open({
-      templateUrl: require('modal/confirm/confirm.jade')(),
+      template: require('modal/confirm/confirm.jade')(),
       controller: 'ConfirmCtrl',
       size: 'sm'
     });
@@ -121,7 +121,7 @@ PICKNGO.controller('PanelAdminCtrl', function($scope, $http, Auth, $location, No
 
   $scope.editarCategoria = function(categoria) {
     var modalEditCat = $uibModal.open({
-      templateUrl: require('modal/categoria/agregarCategoria.jade')(),
+      template: require('modal/categoria/agregarCategoria.jade')(),
       controller: 'EditarCategoriaCtrl',
       resolve: {
         departamentos: function() {
@@ -140,7 +140,7 @@ PICKNGO.controller('PanelAdminCtrl', function($scope, $http, Auth, $location, No
 
   $scope.eliminarCategoria = function(categoria) {
     var eliminarCat = $uibModal.open({
-      templateUrl: require('modal/confirm/confirm.jade')(),
+      template: require('modal/confirm/confirm.jade')(),
       controller: 'ConfirmCtrl',
       size: 'sm'
     });
@@ -161,7 +161,7 @@ PICKNGO.controller('PanelAdminCtrl', function($scope, $http, Auth, $location, No
 
   $scope.editarSubCategoria = function(subcategoria) {
     var modalEditSubCat = $uibModal.open({
-      templateUrl: require('modal/subcategoria/agregarSubCat.jade')(),
+      template: require('modal/subcategoria/agregarSubCat.jade')(),
       controller: 'EditarSubCatCtrl',
       resolve: {
         categorias: function() {
@@ -180,7 +180,7 @@ PICKNGO.controller('PanelAdminCtrl', function($scope, $http, Auth, $location, No
 
   $scope.eliminarSubCategoria = function(subcategoria) {
     var eliminarSubCat = $uibModal.open({
-      templateUrl: require('modal/confirm/confirm.jade')(),
+      template: require('modal/confirm/confirm.jade')(),
       controller: 'ConfirmCtrl',
       size: 'sm'
     });
