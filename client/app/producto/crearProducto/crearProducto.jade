@@ -33,15 +33,16 @@
                       select(ng-model='producto.categoria', ng-options='c.nombre group by c.departamento for c in categorias')
                     .fieldWrap
                       label(for='') Sub Categoría
+                      select.form-control(ng-model='producto.subcategoria', ng-options='s.id as s.nombre_subcategoria for s in subcategorias | filter: {id_scat:producto.categoria.id}')
                     hr
                     .fieldWrap
                       label(for='')
-                        | Precio desde
+                        | Precio desde {{producto.preciodel}} {{producto.precioal}} {{producto.preciodel < producto.precioal}}
                         span(style='color:red') *
                       input(type='text', is-number='', ng-model='producto.preciodel')
                     .fieldWrap
                       label(for='')
-                        | Hasta
+                        | Hasta 
                         span(style='color:red') *
                       input(type='text', is-number='', ng-model='producto.precioal')
                     .fieldWrap

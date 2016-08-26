@@ -84,7 +84,7 @@ PICKNGO.controller('CrearProductoCtrl', function($scope, $http, $state, FileUplo
         Notification.warning('Fecha límite inválida.');
         return;
       }
-      if ($scope.producto.preciodel > $scope.producto.precioal) {
+      if (Number($scope.producto.preciodel) > Number($scope.producto.precioal)) {
         Notification.warning('El precio final debe ser mayor al inicial.')
         return;
       }
