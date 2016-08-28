@@ -55,6 +55,26 @@ PICKNGO.factory('pngModals', function($rootScope, $uibModal, $timeout) {
       }
     );
   };
+  a.openEditOpcion = function (opcion) {
+    return openModal(
+      'sm',
+      require('./opcion/editOpcion/editOpcion.controller.js'),
+      require('./opcion/addOpcion/addOpcion.jade')({tipo : 'Editar'}),
+      {
+        opcion : () => opcion
+      }
+    );
+  };
+  a.openAddOpcion = function (opcion) {
+    return openModal(
+      'sm',
+      require('./opcion/addOpcion/addOpcion.controller.js'),
+      require('./opcion/addOpcion/addOpcion.jade')({tipo : 'Crear'}),
+      {
+        opcion : () => opcion
+      }
+    );
+  };
 
   $uibModal.modals = a;
   return a;
