@@ -2,9 +2,8 @@
 
 PICKNGO.controller('NavbarCtrl', function($scope, Auth, $rootScope, Modal, $uibModal, $location, Api) {
   Auth.getCurrentUser(function (currentUser) {
-    if (currentUser.id_tipo) {
-      Api.roles.getOpcionesMenuRol(currentUser.id_tipo, onGetMenus);
-    }
+    console.log(currentUser);
+    
   });
 
   function onGetMenus(result) {
@@ -19,6 +18,11 @@ PICKNGO.controller('NavbarCtrl', function($scope, Auth, $rootScope, Modal, $uibM
 
   $rootScope.$watch('currentUser', function(newVal, oldVal) {
     $scope.showItems = (newVal && newVal.id_usuario >= 0) ? true : false;
+    if (newVal && newVal.id_usuario >= 0) {
+      if (newVal.id_tipo) {
+        Api.roles.getOpcionesMenuRol(newVal.id_tipo, onGetMenus);
+      }
+    }
   });
 
   $scope.openLogin = function() {
