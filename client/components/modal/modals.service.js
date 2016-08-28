@@ -30,7 +30,7 @@ PICKNGO.factory('pngModals', function($rootScope, $uibModal, $timeout) {
     return openModal(
       'sm',
       require('./rol/addRol/addRol.controller.js'),
-      require('./rol/addRol/addRol.jade')()
+      require('./rol/addRol/addRol.jade')({tipo:'Crear'})
     );
   };
 
@@ -38,7 +38,7 @@ PICKNGO.factory('pngModals', function($rootScope, $uibModal, $timeout) {
     return openModal(
       'sm',
       require('./rol/editRol/editRol.controller.js'),
-      require('./rol/addRol/addRol.jade')(),
+      require('./rol/addRol/addRol.jade')({tipo:'Editar'}),
       {
         rol : () => rol
       }

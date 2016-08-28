@@ -1,11 +1,16 @@
 div.png-modal-content(ng-class='{load : load}')
-  table.table.table-striped.table-condensed(ng-table='table', show-filter='false')
-    tr(ng-repeat='row in $data')
-      td(data-title="'Nombre'", filter="{nombre: 'text'}", sortable="'nombre'") {{row.nombre}}
-      td(data-title="'Descripcion'", filter="{descripcion: 'text'}", sortable="'descripcion'") {{row.descripcion}}
-      td(data-title="'Tipo'", filter="{nombre_tipo: 'text'}", sortable="'nombre_tipo'") {{row.nombre_tipo}}
-      td 
-        span(ng-click='toggleRolOpcion(row)', ng-class="row.id_rol_opcion? 'text-danger' : 'text-success'")
-          span.glyphicon(ng-class="row.id_rol_opcion? 'glyphicon-remove' : 'glyphicon-plus'")
-  br
-  br
+  .panel.panel-default
+    .panel-heading
+      div
+        h4 Opciones
+        button.navbar-link(type="button" class="close" aria-label="Close", ng-click='close()')
+          span( aria-hidden="true") &times;
+    .panel-body
+      table.table.table-striped.table-condensed(ng-table='table', show-filter='false')
+        tr(ng-repeat='row in $data')
+          td(data-title="'Nombre'", filter="{nombre: 'text'}", sortable="'nombre'") {{row.nombre}}
+          td(data-title="'Descripcion'", filter="{descripcion: 'text'}", sortable="'descripcion'") {{row.descripcion}}
+          td(data-title="'Tipo'", filter="{nombre_tipo: 'text'}", sortable="'nombre_tipo'") {{row.nombre_tipo}}
+          td 
+            span(ng-click='toggleRolOpcion(row)', ng-class="row.id_rol_opcion? 'text-danger' : 'text-success'")
+              span.glyphicon(ng-class="row.id_rol_opcion? 'glyphicon-remove' : 'glyphicon-plus'")
