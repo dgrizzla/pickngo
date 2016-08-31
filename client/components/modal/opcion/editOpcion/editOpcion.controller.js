@@ -1,0 +1,30 @@
+/*@ngInject*/
+module.exports = function ($scope, Api, $uibModalInstance, opcion, modalTimer) {
+  Api.opciones.getTipos(onGetTipos);
+  $scope.opcion = angular.copy(opcion);
+
+  $scope.saveOpcion = function () {
+    Api.opciones.put(
+      opcion.id,
+      $scope.opcion,
+      onPut
+    );
+  };
+  $scope.close  = function () {
+    $uibModalInstance.dismiss();
+  }
+  function onGetTipos(result) {
+    if(result.code !== 0){
+      return Api.toast.error('Hubo un error, intentelo de nuevo');
+    }
+    $scope.tipos = result.data;
+    modalTimer($scope);
+  }
+  function onPut(result) {
+    if (result.code !== 0) {
+      return Api.toast.error('Hubo un error, intentelo de nuevo');
+    }
+    Api.toast.success('Se guardo correctamente');
+    return  $uibModalInstance.close(true);
+  }
+};

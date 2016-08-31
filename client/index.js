@@ -57,6 +57,8 @@ require('./components/services/Api/apiUsuarios.js');
 require('./components/services/Api/apiUtils.js');
 require('./components/services/session/session.service.js');
 require('./components/services/user/User.service.js');
+require('./components/modal/opcion/addOpcion/addOpcion.controller.js');
+require('./components/modal/opcion/editOpcion/editOpcion.controller.js');
 require('./components/modal/rol/addRol/addRol.controller.js');
 require('./components/modal/rol/editOpciones/editOpciones.controller.js');
 require('./components/modal/rol/editRol/editRol.controller.js');

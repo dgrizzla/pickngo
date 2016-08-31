@@ -1,5 +1,14 @@
 const conn = require('../../components/connection.js');
 
+
+exports.getTipoTabla = function (tabla, cb) {
+  conn.commonGet(
+    'sp_sel_png_tipo_tabla( ? )',
+    cb,
+    tabla
+  );
+};
+
 exports.getTipoUsuario = function (cb) {
   const query = 'sp_sel_png_tipo_tabla(\'png_usuario\')';
   conn.commonGet(query, cb);

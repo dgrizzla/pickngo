@@ -95,12 +95,14 @@ gulp.task('server', function () {
   const server = gls.new('./server/index.js');
 
   server.start();
-
+  console.log('add public watch');
   gulp.watch([path.join(webpackConfig.output.path, '/*.{html,css,js}')], function (file) {
+    console.log('public file changed');
     server.notify.apply(server, [file]);
   });
-
+  console.log('add server watch');
   gulp.watch(['./server/**/*.js'] , function() {
+    console.log('server file changed');
     server.start.bind(server)();
   });
 });

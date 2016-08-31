@@ -16,13 +16,13 @@ module.exports = function ($scope, Api, NgTableParams, $uibModal) {
   $scope.openEditOpciones = function (rol) {
     let instance = $uibModal.modals.openEditOpcionesRol(rol);
     instance.result.then(function () {
-      console.log('result');
+      $scope.table.reload();
     });
   };
   $scope.openAddRol = function () {
     let instance = $uibModal.modals.openAddRol();
     instance.result.then(function () {
-      console.log('result');
+      $scope.table.reload();
     });
   };
   $scope.openEditRol = function (rol) {

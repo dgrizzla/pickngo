@@ -31,7 +31,7 @@ PICKNGO.controller('DashboardCtrl', function($scope, $http, Auth, $location, Not
     .then(result => {
       $scope.numConversaciones = result.data.data[0].numConversaciones;
     }).catch(err => {
-      Notificacion.error('Hubo un error en el servidor');
+      Notification.error('Hubo un error en el servidor');
       console.error(err);
     });
 

@@ -1,0 +1,17 @@
+include ../../../../templates/mixins.jade
+div.png-modal-content(ng-class='{load : load}')
+  .panel.panel-default
+    .panel-heading
+      div
+        h4 #{tipo} Opcion
+        button.navbar-link(type="button" class="close" aria-label="Close", ng-click='close()')
+          span( aria-hidden="true") &times;
+    .panel-body
+      +form('opcionForm','saveOpcion()', 'Guardar')
+        .row
+          .col-xs-12
+            +formGroup('nombre', 'opcion', 'opcionForm', 'text')
+            if tipo == 'Editar'
+              .alert.alert-danger(role="alert" ng-class='opcionForm.nombre.$dirty? "" : "hidden"') Al cambiar el nombre puede dejar de funcionar esta opcion
+            +formGroup('descripcion', 'opcion', 'opcionForm', 'text')
+            +formGroupSelect('id_tipo', 'opcion', 'opcionForm', 'tipo.id_tipo as tipo.nombre for tipo in tipos', 'Tipo')

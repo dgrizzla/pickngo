@@ -1,5 +1,5 @@
 /*@ngInject*/
-module.exports = function ($scope, Api, NgTableParams) {
+module.exports = function ($scope, Api, NgTableParams, $uibModal) {
   $scope.offset = 0;
   $scope.limit = 20;
   $scope.order = 'nombres';
@@ -17,6 +17,18 @@ module.exports = function ($scope, Api, NgTableParams) {
       );
     }
   });
+  $scope.openAddOpcion = function () {
+    let instance = $uibModal.modals.openAddOpcion();
+    instance.result.then(function () {
+      $scope.table.reload();
+    });
+  };
+  $scope.openEditOpcion = function (opcion) {
+    let instance = $uibModal.modals.openEditOpcion(opcion);
+    instance.result.then(function () {
+      $scope.table.reload();
+    });
+  };
   function onGetOpciones(result) {
     if (result.code === 1) {
       return Api.toast.error('Hubo un error');

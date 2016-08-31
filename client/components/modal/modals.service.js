@@ -6,7 +6,7 @@ PICKNGO.factory('pngModals', function($rootScope, $uibModal, $timeout) {
   const modalTimerResolve = function () {
     return modalTimer;
   }
-  function openModal(size,controller, template, resolve) {
+  function openModal(size,controller, template, resolve = {}) {
     resolve.modalTimer = modalTimerResolve;
     return $uibModal.open({
       size, controller, template, resolve,
@@ -30,7 +30,7 @@ PICKNGO.factory('pngModals', function($rootScope, $uibModal, $timeout) {
     return openModal(
       'sm',
       require('./rol/addRol/addRol.controller.js'),
-      require('./rol/addRol/addRol.jade')()
+      require('./rol/addRol/addRol.jade')({tipo:'Crear'})
     );
   };
 
@@ -38,7 +38,7 @@ PICKNGO.factory('pngModals', function($rootScope, $uibModal, $timeout) {
     return openModal(
       'sm',
       require('./rol/editRol/editRol.controller.js'),
-      require('./rol/addRol/addRol.jade')(),
+      require('./rol/addRol/addRol.jade')({tipo:'Editar'}),
       {
         rol : () => rol
       }
@@ -52,6 +52,26 @@ PICKNGO.factory('pngModals', function($rootScope, $uibModal, $timeout) {
       require('./usuario/editUsuario/editUsuario.jade')(),
       {
         usuario : () => usuario
+      }
+    );
+  };
+  a.openEditOpcion = function (opcion) {
+    return openModal(
+      'sm',
+      require('./opcion/editOpcion/editOpcion.controller.js'),
+      require('./opcion/addOpcion/addOpcion.jade')({tipo : 'Editar'}),
+      {
+        opcion : () => opcion
+      }
+    );
+  };
+  a.openAddOpcion = function (opcion) {
+    return openModal(
+      'sm',
+      require('./opcion/addOpcion/addOpcion.controller.js'),
+      require('./opcion/addOpcion/addOpcion.jade')({tipo : 'Crear'}),
+      {
+        opcion : () => opcion
       }
     );
   };
