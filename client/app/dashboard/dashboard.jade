@@ -45,59 +45,21 @@
           .clear
     .clear
     .col-lg-8.col-md-8.col-sm-7
-      h3.daTitle Tabla
-      .whiteBox.dshadow
+      h3.daTitle Mis busquedas
+      .whiteBox.dshadow        
         .table-responsive
           table.table.table-striped
             thead
               tr
-                th id
-                th Nombre
-                th Item
-                th Item
-                th Item
-            tr
-              td 001
-              td
-                strong Nombre
-              td Contenido
-              td Contenido
-              td Contenido
-            tr
-              td 001
-              td
-                strong Nombre
-              td Contenido
-              td Contenido
-              td Contenido
-            tr
-              td 001
-              td
-                strong Nombre
-              td Contenido
-              td Contenido
-              td Contenido
-            tr
-              td 001
-              td
-                strong Nombre
-              td Contenido
-              td Contenido
-              td Contenido
-            tr
-              td 001
-              td
-                strong Nombre
-              td Contenido
-              td Contenido
-              td Contenido
-            tr
-              td 001
-              td
-                strong Nombre
-              td Contenido
-              td Contenido
-              td Contenido
+                th Producto
+                th Departamento
+                th Categoría
+                th Fecha de Ingreso
+            tr(ng-repeat='producto in productos')
+              td {{producto.producto}}
+              td {{producto.nombre_departamento}}
+              td {{producto.nombre_categoria}}
+              td {{producto.fecha_ingreso}}
     .col-lg-4.col-md-8.col-sm-5
       h3.daTitle Chats
       .whiteBox

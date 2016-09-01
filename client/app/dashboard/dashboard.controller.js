@@ -1,6 +1,6 @@
 'use strict';
 
-PICKNGO.controller('DashboardCtrl', function($scope, $http, Auth, $location, Notification, $uibModal) {
+PICKNGO.controller('DashboardCtrl', function($scope, $http, Auth, NgTableParams, $location, Notification, $uibModal) {
   Auth.getCurrentUser();
 
   $http.get('api/departamentos/countDeptos')
@@ -10,6 +10,17 @@ PICKNGO.controller('DashboardCtrl', function($scope, $http, Auth, $location, Not
       Notification.error('Hubo un cargando los departamentos.');
       console.error(err);
     });
+
+  function getProductos() {
+
+  }
+  $http.get('api/productos/')
+    .then(result => {
+      $scope.productos = result.data.data;
+    }).catch(error => {
+      console.error(error);
+      Notification.error('Hubo un error cargando tus productos');
+    })
 
   $http.get('api/productos/countProductos')
     .then(function(result) {
@@ -36,14 +47,14 @@ PICKNGO.controller('DashboardCtrl', function($scope, $http, Auth, $location, Not
     });
 
   $scope.openChat = function(conversacion) {
-    if(conversacion == undefined){
+    if (conversacion == undefined) {
       conversacion = 0;
     }
     var modalChat = $uibModal.open({
       template: require('../../components/modal/chat/chat.jade')(),
       controller: 'ChatCtrl',
       resolve: {
-        conversacionData: function () {
+        conversacionData: function() {
           return conversacion;
         }
       },
@@ -52,9 +63,9 @@ PICKNGO.controller('DashboardCtrl', function($scope, $http, Auth, $location, Not
   }
 
   $http.get('api/usuarios/countUsuarios')
-    .then(result=>{
+    .then(result => {
       $scope.numUsuarios = result.data.data[0].numUsuarios;
-    }).catch(err=>{
+    }).catch(err => {
       console.error(err)
     });
 
