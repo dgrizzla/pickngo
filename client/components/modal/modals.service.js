@@ -7,13 +7,19 @@ PICKNGO.factory('pngModals', function($rootScope, $uibModal, $timeout) {
     return modalTimer;
   }
   function openModal(size,controller, template, resolve = {}) {
+    let scope = $rootScope.$new();
+    scope.close = close;
     resolve.modalTimer = modalTimerResolve;
-    return $uibModal.open({
-      size, controller, template, resolve,
+    let modalInstance = $uibModal.open({
+      size, controller, template, resolve, scope,
       windowClass : 'png-modal',
       windowTopClass : 'top-modal',
       backdropClass : 'png-modal-backdrop'
     });
+    function close() {
+      modalInstance.close();
+    }
+    return modalInstance;
   }
   a.openEditOpcionesRol = function (rol) {
     return openModal(
