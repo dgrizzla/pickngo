@@ -4,7 +4,8 @@ PICKNGO.controller('ProductoUsuarioCtrl', function($scope, Auth, $state, Notific
 
   Auth.getCurrentUser();
   getProductos();
-
+  $scope.itemsPerPage = 5;
+  $scope.currentPage = 4
   function getProductos() {
     $http.get('api/productos/')
       .then(function(result) {
