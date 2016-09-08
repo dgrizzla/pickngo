@@ -33,7 +33,8 @@ exports.putUsuario = function (req, res) {
     req.body.id_pais,
     req.body.id_tipo,
     req.body.telefono,
-    req.body.estado
+    req.body.estado,
+    req.body.id_proveedor
   ]);
 }
  

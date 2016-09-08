@@ -16,7 +16,7 @@ exports.getUsuario = function (id, cb) {
   conn.getOne(query, cb, id);
 };
 exports.putUsuario = function (data, cb) {
-  const query = 'sp_upd_png_usuario ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+  const query = 'sp_upd_png_usuario ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
   conn.commonGet(query, cb, data);
 }
 exports.getPaises = function(callback) {

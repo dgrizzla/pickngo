@@ -4,9 +4,13 @@ const moment = require('moment');
 /*@ngInject*/
 module.exports = function ($scope, Api, NgTableParams, $uibModalInstance, $timeout, usuario, modalTimer) {
   Api.usuarios.getUsuario(usuario, onGetUsuario);
+  Api.proveedores.getInfoProveedores(onGetInfoProveedores);
   Api.roles.getRoles(onGetRoles);
   Api.getPaises(onGetPaises);
 
+  function onGetInfoProveedores(result) {
+    $scope.proveedores = result.data;
+  }
   function onGetRoles(result) {
     $scope.roles = result.data;
   }

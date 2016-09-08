@@ -21,6 +21,12 @@ exports.postProveedor = function(req, res) {
   });
 };
 
+exports.getInfoProveedores = function (req,res) {
+  model.getInfoProveedores(function(resp) {
+    res.json(resp);
+  })
+}
+
 exports.getProveedores = function(req,res){
   model.getProveedores(function(resp){
     res.json(resp);

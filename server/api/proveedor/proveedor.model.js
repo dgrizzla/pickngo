@@ -17,6 +17,19 @@ exports.postProveedor = function(data, callback) {
   });
 };
 
+//función para traer solo el id y el nombre de los proveedores
+exports.getInfoProveedores = function(callback){
+  var query = "SELECT id, nombre FROM png_proveedor";
+  connection(query, '', function(err, rows) {
+    var code = 0;
+    if (err) {
+      code = 1;
+      rows = [];
+    }
+    if (callback) callback(resp.generate(code, err, rows));
+  });    
+};
+
 exports.getProveedores = function(callback){ 
   var query = "call sp_sel_png_proveedor";
   connection(query, '', function(err, rows) {

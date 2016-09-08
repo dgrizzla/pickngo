@@ -15,6 +15,7 @@ div.png-modal-content(ng-class='{load : load}')
             +formGroup('email', 'usuario', 'usuarioForm', 'email')
             +formGroupSelect('id_pais', 'usuario', 'usuarioForm', 'pais.id as pais.nombre for pais in paises', 'Pais')
             +formGroup('telefono', 'usuario', 'usuarioForm', 'number')
+            +formGroupSelect('id_proveedor', 'usuario', 'usuarioForm', 'proveedor.id as proveedor.nombre for proveedor in proveedores', 'Proveedor')
           .col-xs-6
             +formGroup('nombres', 'usuario', 'usuarioForm', 'text')
             +formGroup('apellidos', 'usuario', 'usuarioForm', 'text')

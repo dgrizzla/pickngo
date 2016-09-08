@@ -22,6 +22,15 @@ PICKNGO.factory('Api_proveedores', function ($http, Api_utils) {
       cb(Api_utils.error);
     });    
   }
+
+  a.getInfoProveedores = function(cb){
+    return $http.get('/api/proveedores/info/').then(
+      Api_utils.proxy(cb),
+      function () {
+      cb(Api_utils.error);
+    });    
+  }
+
    /**
    * trae la lista de tipos de proveedores
    */
