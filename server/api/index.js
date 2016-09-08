@@ -14,4 +14,5 @@ router.use('/mensajes',require('./mensaje'))
 router.use('/roles', require('./rol'));
 router.use('/opciones', require('./opcion'));
 router.use('/paises', controller.getPaises);
+router.use('/proveedores',require('./proveedor'));
 module.exports = router;

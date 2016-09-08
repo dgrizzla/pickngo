@@ -1,0 +1,15 @@
+div
+  h3 Proveedores
+  br
+  button.btn(ng-click='openAddProveedor()') Agregar Proveedor
+  table.table.table-bordered.table-striped.table-condensed(ng-table='table', show-filter='false')
+    tr(ng-repeat='row in $data')
+      td(data-title="'ID'", filter="{id: 'number'}", sortable="'id_tipo'") {{row.id}}
+      td(data-title="'Nombre'", filter="{nombre: 'text'}", sortable="'nombre'") {{row.nombre}}
+      td(data-title="'Direccion'", filter="{direccion: 'text'}", sortable="'direccion'") {{row.direccion}}
+      td(data-title="'Tipo'", filter="{tipo: 'text'}", sortable="'tipo'") {{row.tipo}}
+      td(data-title="'Estado'", filter="{estado: 'text'}", sortable="'estado'") {{row.estado}}
+      td(data-title="'Acciones'", width='100')
+        button.btn.btn-xs(ng-click='openEditCategorias(row.id)') C 
+        button.btn.btn-xs.btn-success(ng-click='openEditProveedor(row)')
+          span.glyphicon.glyphicon-pencil

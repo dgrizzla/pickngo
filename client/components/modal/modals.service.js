@@ -81,7 +81,36 @@ PICKNGO.factory('pngModals', function($rootScope, $uibModal, $timeout) {
       }
     );
   };
-
+  a.openAddProveedor = function(proveedor){
+    return openModal(
+      'md',
+      require('./proveedor/addProveedor/addProveedor.controller.js'),
+      require('./proveedor/addProveedor/addProveedor.jade')({tipo:'Crear'}),
+      {
+        proveedor : () => proveedor
+      }
+    );
+  };
+  a.openEditProveedor = function(proveedor){
+    return openModal(
+      'md',
+      require('./proveedor/editProveedor/editProveedor.controller.js'),
+      require('./proveedor/addProveedor/addProveedor.jade')({tipo:'Editar'}),
+      {
+        proveedor : () => proveedor
+      }
+    );
+  };
+  a.openEditCategoriasProveedor = function (proveedor) {
+    return openModal(
+      'md',
+      require('./proveedor/editCategorias/editCategorias.controller.js'),
+      require('./proveedor/editCategorias/editCategorias.jade')(),
+      {
+        proveedor : () => proveedor
+      }
+    );
+  };
   $uibModal.modals = a;
   return a;
 });

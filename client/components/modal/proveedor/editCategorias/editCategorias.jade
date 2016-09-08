@@ -1,0 +1,14 @@
+div.png-modal-content(ng-class='{load : load}')
+  .panel.panel-default
+    .panel-heading
+      div
+        h4 Categorías de Proveedor
+        button.navbar-link(type="button" class="close" aria-label="Close", ng-click='close()')
+          span( aria-hidden="true") &times;
+    .panel-body
+      table.table.table-striped.table-condensed(ng-table='table', show-filter='false')
+        tr(ng-repeat='row in $data')
+          td(data-title="'Categoria'", filter="{nombre_categoria: 'text'}", sortable="'nombre_categoria'") {{row.nombre_categoria}}
+          td 
+            span(ng-click='toggleCategoriaProveedor(row)', ng-class="row.id_proveedor_categoria? 'text-danger' : 'text-success'")
+              span.glyphicon(ng-class="row.id_proveedor_categoria? 'glyphicon-remove' : 'glyphicon-plus'")

@@ -1,0 +1,18 @@
+include ../../../../templates/mixins.jade
+div.png-modal-content(ng-class='{load : load}')
+  .panel.panel-default
+    .panel-heading
+      div
+        h4 #{tipo} Proveedor
+        button.navbar-link(type="button" class="close" aria-label="Close", ng-click='close()')
+          span( aria-hidden="true") &times;
+    .panel-body
+      +form('form','save()', 'Guardar')
+        .row
+          .col-xs-6
+            +formGroup('nombre', 'proveedor', 'form', 'text')
+            +formGroup('nit', 'proveedor', 'form', 'text')
+            +formGroupSelect('id_tipo', 'proveedor', 'form', 'tipo.id_tipo as tipo.nombre for tipo in tipos', 'Tipo')
+          .col-xs-6
+            +formGroup('direccion', 'proveedor', 'form', 'text')
+            +formGroupSelect('id_estado', 'proveedor', 'form', 'estado.id as estado.descripcion for estado in estados', 'Estado')
