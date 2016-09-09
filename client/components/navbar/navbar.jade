@@ -21,6 +21,8 @@ nav.navbar.navbar-default.navbar-fixed-top(ng-controller='NavbarCtrl')
       ul.nav.navbar-nav(ng-if='showItems')
         li(ui-sref-active="active")
           a(ui-sref='dashboard') Dashboard
+        li(ui-sref-active="active")
+          a(ui-sref='consultaClientes') Consultar Clientes
       ul.nav.navbar-nav.navbar-right
         li(ng-if="showItems")
           a(href="#", ng-click='openChat()')

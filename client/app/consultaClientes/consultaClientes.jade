@@ -1,0 +1,28 @@
+br
+div.row
+  .container-fluid
+    .col-md-8
+      div
+        table.table.table-bordered.table-striped.table-condensed(ng-table='table', show-filter='false')
+          tr(ng-repeat='row in $data')
+            td(data-title="'ID'", filter="{id: 'number'}", sortable="'id'") {{row.id}}
+            td(data-title="'Nombres'", filter="{nombres: 'text'}", sortable="'nombres'") {{row.nombres}}
+            td(data-title="'Apellidos'", filter="{apellidos: 'text'}", sortable="'apellidos'") {{row.apellidos}}
+            td(data-title="'Usuario'", filter="{usuario: 'text'}", sortable="'usuario'") {{row.usuario}}
+            td(data-title="'Acciones'", width='100')
+              button.btn.btn-xs.btn-success(ng-click='openEditUsuario(row)')
+                span.glyphicon.glyphicon-pencil    
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS sp_sel_png_proveedor$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_sel_png_proveedor`()
+    READS SQL DATA
+SELECT DISTINCT  p.id, p.nombre, p.direccion, p.foto, p.nit, 
+p.id_estado, p.id_tipo, e.descripcion as estado, t.nombre as tipo
+FROM png_proveedor p
+JOIN png_tipo t ON t.id_tipo = p.id_tipo
+JOIN png_estado e ON e.id = p.id_estado$$
+DELIMITER ;
+
+sp_sel_png_busquedas_usuario_proveedor
+sp_sel_png_proveedor_categoria                
