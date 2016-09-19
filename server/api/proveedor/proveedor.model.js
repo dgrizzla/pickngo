@@ -74,3 +74,11 @@ exports.deleteProveedorCategoria = function (id, cb) {
     cb(response.commonResult( err, rows));
   });
 };
+
+exports.getProductosByCategoria = function (idProveedor,cb) {
+  conn.commonGet(
+    'sp_sel_filtro_productos_proveedor(?)', // id proveedor
+    cb,
+    idProveedor
+  );
+};

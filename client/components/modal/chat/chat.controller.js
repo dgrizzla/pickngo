@@ -52,8 +52,6 @@ PICKNGO.controller('ChatCtrl', function($scope, $http, Auth, $location, Notifica
     $scope.idConversacion = -1;
   }
 
-  getConversaciones();
-
   $scope.nuevaConversacion = function(usuario) {
     var usuarioMensaje = {
       nombres: usuario.nombres,
@@ -123,8 +121,12 @@ PICKNGO.controller('ChatCtrl', function($scope, $http, Auth, $location, Notifica
     }
     getMensajes(conversacion.id)
   }
-
-  if(conversacionData != 0){
+  
+  if(conversacionData == 0){
+    getConversaciones();
+  }else if(conversacionData.isProducto === -1){
+    $scope.nuevaConversacion(conversacionData);
+  }else{
     $scope.abrirConversacion(conversacionData);
   };
 

@@ -8,6 +8,7 @@ var router = express.Router();
 
 router.get('/', auth.loggedIn, controller.getProveedores);
 router.get('/estados', auth.loggedIn,controller.getEstados);
+router.get('/productosCategoria',auth.loggedIn, controller.getProductosByCategoria)
 router.get('/tipos', auth.loggedIn, controller.getTipos);
 router.get('/categorias/:id', auth.loggedIn, controller.getCategorias);
 

@@ -49,7 +49,8 @@ module.exports = function(passport, config) {
         foto: data.foto,
         preferencias: data.preferencias,
         telefono: data.telefono,
-        estado: data.estado
+        estado: data.estado,
+        id_proveedor: data.id_proveedor
       };
       return done(null, usuario);
     });

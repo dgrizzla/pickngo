@@ -74,3 +74,7 @@ exports.putProveedor = function (req, res) {
 exports.deleteProveedorCategoria = function (req, res) {
   response.commonData(res, model.deleteProveedorCategoria, req.params.id);
 };
+
+exports.getProductosByCategoria = function(req,res){
+  response.commonData(res, model.getProductosByCategoria, req.user.id_proveedor);
+};
