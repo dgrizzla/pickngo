@@ -1,8 +1,11 @@
 var response = require('../../components/utils/response.js');
 var conn = require('../../components/connection.js');
 
-exports.getAll = function () {
-
+exports.getAll = function (cb) {
+  conn.commonGet(
+    'sp_sel_png_renglon',
+    cb
+  );
 };
 exports.getOne = function () {
 

@@ -2,8 +2,12 @@
 const model = require('./renglon.model');
 const response = require('../../components/utils/response.js');
 const { estados } = require('../../config/environment');
+
 exports.getAll = function (req, res) {
-  res.json(response.generate(0, '', []));
+  response.common(
+    res,
+    model.getAll
+  )
 };
 exports.getOne = function (req, res) {
 

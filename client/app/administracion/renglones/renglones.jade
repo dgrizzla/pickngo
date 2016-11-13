@@ -6,7 +6,8 @@ div
     tr(ng-repeat='row in $data')
       td(data-title="'ID'", filter="{id: 'number'}", sortable="'id'") {{row.id}}
       td(data-title="'Nombre'", filter="{nombre: 'text'}", sortable="'nombre'") {{row.nombre}}
-      td(data-title="'Estado'", filter="{estado: 'text'}", sortable="'estado'") {{row.estado}}
+      td(data-title="'# Articulos'", filter="{estado: 'number'}", sortable="'cant_articulos'") {{row.cant_articulos}}
+      td(data-title="'# Imagenes'", filter="{estado: 'number'}", sortable="'cant_imagenes'") {{row.cant_imagenes}}
       td(data-title="'Acciones'", width='50')
         button.btn.btn-xs.btn-success(ng-click='openEdit(row)')
           span.glyphicon.glyphicon-pencil

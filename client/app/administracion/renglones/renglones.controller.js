@@ -4,7 +4,6 @@ module.exports = function($scope, Api, NgTableParams, pngModals) {
   $scope.limit = 20;
   $scope.order = 'nombre';
   $scope.asc = true;
-
   $scope.table = new NgTableParams({}, {
     getData: function(params) {
       var sorting = params.sorting();
