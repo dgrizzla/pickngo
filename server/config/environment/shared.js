@@ -1,6 +1,9 @@
 'use strict';
 
-exports = module.exports = {
-  // List of user roles
-  userRoles: ['guest', 'user', 'admin']
+exports.userRoles = ['guest', 'user', 'admin'];
+
+exports.estados = {};
+exports.estados.renglon = {
+  activo: 1,
+  inactivo: 2
 };

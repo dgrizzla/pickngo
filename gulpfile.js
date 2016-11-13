@@ -91,7 +91,7 @@ gulp.task('webpack', ['ngConstant','inject:js', 'inject:style', 'clean'], functi
   });
 });
 
-gulp.task('server', function () {
+gulp.task('server', ['webpack'], function () {
   const server = gls.new('./server/index.js');
 
   server.start();
@@ -134,7 +134,7 @@ gulp.task('clean', function (cb) {
     .pipe(clean());
 });
 
-gulp.task('default', ['set-dev', 'webpack', 'server', 'watch:inject'], function () {
+gulp.task('default', ['set-dev', 'server', 'watch:inject'], function () {
   var browser = os.platform() === 'linux' ? 'google-chrome' : (
     os.platform() === 'darwin' ? 'google chrome' : 'chrome');
   var options = {

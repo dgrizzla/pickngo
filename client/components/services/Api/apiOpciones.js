@@ -1,5 +1,5 @@
 
-PICKNGO.factory('Api_opciones', function ($http, Api_utils, $q) {
+PICKNGO.factory('Api_opciones', function ($http, Api_utils) {
   const a = {};
 
   // ################# GET'S #####################

@@ -107,10 +107,12 @@ PICKNGO.factory('pngModals', function($rootScope, $uibModal, $timeout) {
       require('./proveedor/editCategorias/editCategorias.controller.js'),
       require('./proveedor/editCategorias/editCategorias.jade')(),
       {
-        proveedor : () => proveedor
+        proveedor: () => proveedor
       }
     );
   };
+
+  a.renglon = require('./modals.renglon.js')(openModal);
   $uibModal.modals = a;
   return a;
 });

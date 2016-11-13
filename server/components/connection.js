@@ -86,7 +86,6 @@ exports.getOne = function (query, cb, data) {
 exports.commonPost = function (query, cb, data) {
   execute('select ' + query + ' as id', data, onQuery);
   function onQuery(err, rows) {
-    console.log('ins', rows);
     var code = 0;
     if (err) {
       code = 1;

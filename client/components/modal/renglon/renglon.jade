@@ -1,0 +1,16 @@
+extends ../../../templates/modal.jade
+
+block head
+  h4 #{tipo} Renglon
+  button.navbar-link(type="button" class="close" aria-label="Close", ng-click='close()')
+    span( aria-hidden="true") &times;
+    
+block body
+  .row
+    .col-xs-12
+      +form('form','save()', 'Guardar', 'pull-right')
+        .row
+          .col-xs-12
+            +formGroup('nombre', 'renglon', 'form', 'text')
+        button.btn.btn-default(type="button", ng-click='addImagenes($event)') Agregar Imagenes
+        button.btn.btn-default(type="button", ng-click='addArticulos($event)') Agregar Articulos

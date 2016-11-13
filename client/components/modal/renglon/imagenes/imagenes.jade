@@ -1,0 +1,21 @@
+extends ../../../../templates/modal.jade
+
+block head
+  h4 Imagenes
+  button.navbar-link(type="button" class="close" aria-label="Close", ng-click='close()')
+    span( aria-hidden="true") &times;
+block body
+  .row
+    .col-xs-6
+      input(type="file" nv-file-select="" uploader="uploader" multiple)
+    .col-xs-6
+      button.btn.btn-default.pull-right(ng-click='close()') Cerrar
+    br
+    br
+    .col-xs-12(ng-show='uploader.queue.length != 0')
+      .panel.panel-default
+        .panel-body.imagenes-renglon
+          div.pull-left.preview-img(ng-repeat='item in uploader.queue')
+            .remove-imagen(ng-click="item.remove()")
+              span( aria-hidden="true") &times;
+            div(ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, max: 100 }", style='width: 100px;height: 100px;')

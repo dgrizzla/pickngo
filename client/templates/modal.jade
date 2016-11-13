@@ -1,0 +1,12 @@
+include ./mixins.jade
+
+.png-modal-content(ng-class='{load : load}')
+  .panel.panel-default
+    .panel-heading
+      block head
+        h4 Deafult head
+        button.navbar-link(type="button" class="close" aria-label="Close", ng-click='close()')
+          span( aria-hidden="true") &times;
+    .panel-body
+      block body
+        | Default body

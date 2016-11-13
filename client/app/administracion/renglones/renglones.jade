@@ -1,0 +1,12 @@
+div
+  h3 Renglones
+  br
+  button.btn(ng-click='openAdd()') Agregar Renglon
+  table.table.table-bordered.table-striped.table-condensed(ng-table='table', show-filter='false')
+    tr(ng-repeat='row in $data')
+      td(data-title="'ID'", filter="{id: 'number'}", sortable="'id'") {{row.id}}
+      td(data-title="'Nombre'", filter="{nombre: 'text'}", sortable="'nombre'") {{row.nombre}}
+      td(data-title="'Estado'", filter="{estado: 'text'}", sortable="'estado'") {{row.estado}}
+      td(data-title="'Acciones'", width='50')
+        button.btn.btn-xs.btn-success(ng-click='openEdit(row)')
+          span.glyphicon.glyphicon-pencil

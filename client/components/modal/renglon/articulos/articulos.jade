@@ -1,0 +1,44 @@
+extends ../../../../templates/modal.jade
+
+block head
+  h4 Articulos
+  button.navbar-link(type="button" class="close" aria-label="Close", ng-click='close()')
+    span( aria-hidden="true") &times;
+block body
+  .row
+    .col-xs-12
+      +form('form','save()', 'Agregar', 'pull-left')
+        .row
+          .col-xs-8
+            +formGroup('nombre', 'articulo', 'formArticulo', 'text')
+          .col-xs-4
+            +formGroup('barcode', 'articulo', 'formArticulo', 'text')
+          .col-xs-8
+            +formGroupSelect(
+              'id_categoria',
+              'articulo',
+              'formArticulo',
+              'c.id as c.nombre group by c.departamento for c in categorias',
+              'Categoria'
+            )
+          .col-xs-4
+            +formGroup('precio', 'articulo', 'formArticulo', 'number')
+          .col-xs-12
+            +formGroup('descripcion', 'articulo', 'formArticulo', 'text')
+      button.btn.btn-default.pull-left(ng-show='isInteger(editIndex)', ng-click='cancelar()') Cancelar
+      button.btn.btn-default.pull-right(ng-click='close()') Cerrar
+    .col-xs-12
+      h4 Articulos agregados
+      .row
+        .col-xs-12(style='max-height: 500px; overflow:auto')
+          a.list-group-item(
+            href="#",
+            ng-repeat='articulo in articulos',
+            ng-class='{active: editIndex == $index}'
+            ng-click='edit($index, articulo)'
+          )
+            button.pull-right.close(style='margin: 0;', type="button" aria-label="Close", ng-click='removeArticulo($index)')
+              span( aria-hidden="true") &times;
+            h4.list-group-item-heading {{articulo.nombre}}
+            p
+              small {{articulo.descripcion}}

@@ -1,4 +1,3 @@
-
 const express = require('express');
 const controller = require('./controller');
 const router = express.Router();
@@ -10,9 +9,11 @@ router.use('/tipos', require('./tipo'));
 router.use('/departamentos', require('./departamento'));
 router.use('/usuarios', require('./usuario'));
 router.use('/things', require('./thing'));
-router.use('/mensajes',require('./mensaje'))
+router.use('/mensajes', require('./mensaje'))
 router.use('/roles', require('./rol'));
 router.use('/opciones', require('./opcion'));
 router.use('/paises', controller.getPaises);
-router.use('/proveedores',require('./proveedor'));
+router.use('/proveedores', require('./proveedor'));
+router.use('/renglon', require('./renglon'));
+
 module.exports = router;

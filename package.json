@@ -34,9 +34,11 @@
     "normalize": "^0.3.1",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
-    "serve-favicon": "^2.3.0"
+    "serve-favicon": "^2.3.0",
+    "socket.io": "^1.5.1"
   },
   "devDependencies": {
+    "babel-core": "^6.18.2",
     "babel-loader": "^6.2.4",
     "babel-polyfill": "^6.9.1",
     "babel-preset-es2015": "^6.9.0",
@@ -68,9 +70,9 @@
     "npm": "^2.14.20"
   },
   "scripts": {
-    "start":"node server",
+    "start": "node server",
     "serve": "gulp",
-    "build" : "gulp build"
+    "build": "gulp build"
   },
   "private": true
 }

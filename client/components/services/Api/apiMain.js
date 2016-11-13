@@ -6,6 +6,10 @@ PICKNGO.factory('Api_main', function ($http, Api_usuarios, Api_roles, Api_opcion
   a.roles = Api_roles;
   a.opciones = Api_opciones;
   a.proveedores = Api_proveedores;
+
+  a.renglones = require('./api.renglon.js')($http, Api_utils);
+  a.categorias = require('./api.categoria.js')($http, Api_utils);
+
     // ################# GET'S #####################
 
    /**
