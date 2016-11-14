@@ -14,6 +14,6 @@ router.use('/roles', require('./rol'));
 router.use('/opciones', require('./opcion'));
 router.use('/paises', controller.getPaises);
 router.use('/proveedores', require('./proveedor'));
-router.use('/renglon', require('./renglon'));
+router.use('/renglones', require('./renglon'));
 
 module.exports = router;

@@ -3,11 +3,23 @@ const model = require('./renglon.model');
 const response = require('../../components/utils/response.js');
 const { estados } = require('../../config/environment');
 
+exports.getSort = function (req, res) {
+  response.commonData(
+    res,
+    model.getSort,
+    [ req.params.order,
+      Number(req.params.offset),
+      Number(req.params.limit),
+      Boolean(req.params.asc == 'true')
+    ]
+  );
+};
+
 exports.getAll = function (req, res) {
   response.common(
     res,
     model.getAll
-  )
+  );
 };
 exports.getOne = function (req, res) {
 

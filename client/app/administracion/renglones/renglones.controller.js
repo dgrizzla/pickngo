@@ -8,7 +8,12 @@ module.exports = function($scope, Api, NgTableParams, pngModals) {
     getData: function(params) {
       var sorting = params.sorting();
       var order = Object.keys(sorting)[0] || 'nombre';
-      return Api.renglones.getAll(onGet);
+      return Api.renglones.getSort(
+        order,
+        $scope.offset,
+        $scope.limit,
+        sorting[order] == 'asc',
+      ).then(result => result.data);
     }
   });
   $scope.openAdd = () => pngModals

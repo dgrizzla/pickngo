@@ -1,6 +1,22 @@
 var response = require('../../components/utils/response.js');
 var conn = require('../../components/connection.js');
 
+
+exports.getSort = function (data, cb) {
+  var asc = data.pop() ? 'ASC' : 'DESC'
+  var [order, offset, limit] = data;
+  var query = `SELECT renglon.id, renglon.nombre, COUNT(articulo.id_renglon) cant_articulos, COUNT(imagen.id_renglon) cant_imagenes
+  FROM png_renglon renglon
+  LEFT JOIN png_imagen_renglon imagen ON renglon.id = imagen.id_renglon
+  LEFT JOIN png_articulo_renglon articulo ON renglon.id = articulo.id_renglon
+  GROUP BY renglon.id
+  ORDER BY ${order} ${asc}
+  LIMIT ${offset},${limit}`;
+  conn.execute(query, undefined, function (err, rows) {
+    cb(response.commonResult( err, rows));
+  });
+};
+
 exports.getAll = function (cb) {
   conn.commonGet(
     'sp_sel_png_renglon',
