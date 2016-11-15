@@ -1,5 +1,3 @@
-
-
 module.exports = function ($http, Api_utils) {
   const obj = {};
   // ################# GET'S #####################
@@ -11,8 +9,8 @@ module.exports = function ($http, Api_utils) {
     return $http.get('/api/renglones/').then(
       Api_utils.proxy(cb),
       function () {
-      cb(Api_utils.error);
-    });
+        cb(Api_utils.error);
+      });
   };
   /**
    * trae los renglones dependiendo el query
@@ -30,8 +28,8 @@ module.exports = function ($http, Api_utils) {
     return $http.get('/api/renglones/' + id).then(
       Api_utils.proxy(cb),
       function () {
-      cb(Api_utils.error);
-    });
+        cb(Api_utils.error);
+      });
   };
   // ################# POST'S ####################
   /**
@@ -53,9 +51,9 @@ module.exports = function ($http, Api_utils) {
     return $http.put('/api/renglones/' + id, data).then(
       Api_utils.proxy(cb),
       function () {
-      cb(Api_utils.error);
-    });
+        cb(Api_utils.error);
+      });
   };
 
-  return obj
+  return obj;
 };

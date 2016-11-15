@@ -8,7 +8,7 @@ PICKNGO.factory('Api', function ($http, Api_main, Notification, FileUploader) {
     });
     uploader.filters.push({
       name: 'extensionsFilter',
-      fn: function(item, options) {
+      fn: function(item/*, options*/) {
         var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
         return extensions.indexOf(type) !== -1;
       }

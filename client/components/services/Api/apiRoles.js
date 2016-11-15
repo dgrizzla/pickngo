@@ -1,6 +1,5 @@
-
 PICKNGO.factory('Api_roles', function ($http, Api_utils) {
-  const a = {};
+  const obj = {};
 
   // ################# GET'S #####################
 
@@ -8,24 +7,24 @@ PICKNGO.factory('Api_roles', function ($http, Api_utils) {
    * trae la lista de roles 
    * 
    */
-  a.getRoles = function (cb) {
+  obj.getRoles = function (cb) {
     return $http.get('/api/tipos/usuario').then(
       Api_utils.proxy(cb),
       function () {
-      cb(Api_utils.error);
-    });
+        cb(Api_utils.error);
+      });
   };
 
   /**
    * trae la lista de roles tipo menu 
    * 
    */
-  a.getOpcionesMenuRol = function (id, cb) {
-    return $http.get('/api/roles/' + id  + '/opciones/menu').then(
+  obj.getOpcionesMenuRol = function (id, cb) {
+    return $http.get('/api/roles/' + id + '/opciones/menu').then(
       Api_utils.proxy(cb),
       function () {
-      cb(Api_utils.error);
-    });
+        cb(Api_utils.error);
+      });
   };
 
   /**
@@ -35,12 +34,12 @@ PICKNGO.factory('Api_roles', function ($http, Api_utils) {
    * @param {number} limit el limite de usuarios que se quieren
    * @param {boolean} asc se se quiere ascendente
    */
-  a.getOpcionesRol = function (id, order, offset, limit, asc, cb) {
+  obj.getOpcionesRol = function (id, order, offset, limit, asc, cb) {
     return $http.get('/api/roles/' + id + '/' + order + '/' + offset + '/' + limit + '/' + asc).then(
       Api_utils.proxy(cb),
       function () {
-      cb(Api_utils.error);
-    });
+        cb(Api_utils.error);
+      });
   };
 
 
@@ -50,24 +49,30 @@ PICKNGO.factory('Api_roles', function ($http, Api_utils) {
    * @param {number} id_rol
    * @param {number} id_opcion
    */
-  a.postRolOpcion = function (id_rol, id_opcion, cb) {
-    return $http.post('/api/roles/opcion', { id_rol, id_opcion }).then(
+  obj.postRolOpcion = function (id_rol, id_opcion, cb) {
+    return $http.post('/api/roles/opcion', {
+      id_rol,
+      id_opcion
+    }).then(
       Api_utils.proxy(cb),
       function () {
-      cb(Api_utils.error);
-    });
+        cb(Api_utils.error);
+      });
   };
   /**
    * agrega un nuevo rol
    * @param {number} nombre
    * @param {number} descripcion
    */
-  a.postRol = function (nombre, descripcion, cb) {
-    return $http.post('/api/roles/', { nombre, descripcion }).then(
+  obj.postRol = function (nombre, descripcion, cb) {
+    return $http.post('/api/roles/', {
+      nombre,
+      descripcion
+    }).then(
       Api_utils.proxy(cb),
       function () {
-      cb(Api_utils.error);
-    });
+        cb(Api_utils.error);
+      });
   };
 
   // ################# DELETE'S #####################
@@ -75,12 +80,12 @@ PICKNGO.factory('Api_roles', function ($http, Api_utils) {
    * elimina una opcion del rol
    * @param {number} id_rol_opcion
    */
-  a.deleteRolOpcion = function (id_rol_opcion, cb) {
-    return $http.delete('/api/roles/opcion/' + id_rol_opcion ).then(
+  obj.deleteRolOpcion = function (id_rol_opcion, cb) {
+    return $http.delete('/api/roles/opcion/' + id_rol_opcion).then(
       Api_utils.proxy(cb),
       function () {
-      cb(Api_utils.error);
-    });
+        cb(Api_utils.error);
+      });
   };
 
   // ################# PUT'S #####################
@@ -90,12 +95,15 @@ PICKNGO.factory('Api_roles', function ($http, Api_utils) {
    * @param {string} nombre
    * @param {string} descripcion
    */
-  a.putRol = function (id, nombre, descripcion, cb) {
-    return $http.put('/api/roles/' + id, {nombre, descripcion}).then(
+  obj.putRol = function (id, nombre, descripcion, cb) {
+    return $http.put('/api/roles/' + id, {
+      nombre,
+      descripcion
+    }).then(
       Api_utils.proxy(cb),
       function () {
-      cb(Api_utils.error);
-    });
+        cb(Api_utils.error);
+      });
   };
-  return a;
+  return obj;
 });

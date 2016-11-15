@@ -6,9 +6,9 @@ module.exports = function($scope, Api, NgTableParams, $uibModal) {
   $scope.asc = true;
 
   $scope.table = new NgTableParams({}, {
-    getData: function(params) {
-      var sorting = params.sorting();
-      var order = Object.keys(sorting)[0] || 'nombre';
+    getData: function(/*params*/) {
+      // var sorting = params.sorting();
+      // var order = Object.keys(sorting)[0] || 'nombre';
       return Api.proveedores.getProveedores(
         onGetProveedores
       );

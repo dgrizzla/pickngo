@@ -1,6 +1,5 @@
-
 PICKNGO.factory('Api_usuarios', function ($http, Api_utils) {
-  const a = {};
+  const obj = {};
 
   // ################# GET'S #####################
 
@@ -12,12 +11,12 @@ PICKNGO.factory('Api_usuarios', function ($http, Api_utils) {
    * @param {number} limit el limite de usuarios que se quieren
    * @param {boolean} asc se se quiere ascendente
    */
-  a.getUsuarios = function (order, offset, limit, asc, cb) {
+  obj.getUsuarios = function (order, offset, limit, asc, cb) {
     return $http.get('/api/usuarios/' + order + '/' + offset + '/' + limit + '/' + asc).then(
       Api_utils.proxy(cb),
       function () {
-      cb(Api_utils.error);
-    });
+        cb(Api_utils.error);
+      });
   };
 
   /**
@@ -25,23 +24,23 @@ PICKNGO.factory('Api_usuarios', function ($http, Api_utils) {
    * 
    * @param {number} id
    */
-  a.getUsuario = function (id, cb) {
+  obj.getUsuario = function (id, cb) {
     return $http.get('/api/usuarios/' + id).then(
       Api_utils.proxy(cb),
       function () {
-      cb(Api_utils.error);
-    });
+        cb(Api_utils.error);
+      });
   };
   // ################# PUT'S #####################
   /**
    * edita un usuario 
    */
-  a.putUsuario = function (id, data, cb) {
+  obj.putUsuario = function (id, data, cb) {
     return $http.put('/api/usuarios/' + id, data).then(
       Api_utils.proxy(cb),
       function () {
-      cb(Api_utils.error);
-    });
+        cb(Api_utils.error);
+      });
   };
-  return a;
+  return obj;
 });
