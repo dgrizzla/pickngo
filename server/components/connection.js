@@ -28,8 +28,9 @@ const execute = (query, data, cb) => new Promise((resolve, reject) => {
   function onQuery(err, rows) {
     if (err) {
       console.log(query, data, err);
-      reject(err);
       if (cb) cb(err);
+      else reject(err);
+      return;
     }
 
     if (!cb){
@@ -57,6 +58,9 @@ exports.commonGet = function (query, cb, data) {
     cb = data;
     data = undefined;
   }
+  if (!cb) {
+    return response.then(execute('call ' + query, data));
+  }
   execute('call ' + query, data, onQuery);
   function onQuery(err, rows) {
     var code = 0;
@@ -72,6 +76,10 @@ exports.getOne = function (query, cb, data) {
   if (!cb) {
     cb = data;
     data = undefined;
+  }
+  if (!cb) {
+    return response.then(execute('call ' + query, data))
+            .then(data => data[0]);
   }
   execute('call ' + query, data, onQuery);
   function onQuery(err, rows) {

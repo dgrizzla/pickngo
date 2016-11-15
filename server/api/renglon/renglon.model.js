@@ -3,7 +3,7 @@ var conn = require('../../components/connection.js');
 
 
 exports.getSort = function (data, cb) {
-  var asc = data.pop() ? 'ASC' : 'DESC'
+  var asc = data.pop() ? 'ASC' : 'DESC';
   var [order, offset, limit] = data;
   var query = `SELECT renglon.id, renglon.nombre, COUNT(articulo.id_renglon) cant_articulos, COUNT(imagen.id_renglon) cant_imagenes
   FROM png_renglon renglon
@@ -23,9 +23,8 @@ exports.getAll = function (cb) {
     cb
   );
 };
-exports.getOne = function () {
 
-};
+exports.getOne = (id, cb) => conn.getOne('sp_sel_png_renglon_one ( ? )', cb, id);
 
 exports.post = function (data, cb) {
   conn.commonPost(
@@ -58,6 +57,4 @@ exports.deleteArticulo = function () {
 exports.delete = function () {
 
 };
-exports.put = function () {
-
-};
+exports.put = (data, cb) => conn.commonGet('sp_upd_png_renglon ( ?, ?)', cb, data);

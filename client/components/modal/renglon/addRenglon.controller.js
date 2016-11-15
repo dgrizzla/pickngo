@@ -7,18 +7,18 @@ module.exports = function ($scope, Api, $uibModalInstance, modalTimer, pngModals
     pngModals.renglon
       .imagenes(undefined, imagenesUploader)
       .result.then(uploader => imagenesUploader = uploader);
-  }
+  };
   $scope.addArticulos = evt => {
     evt.preventDefault();
     pngModals.renglon
       .articulos(undefined, articulos)
       .result.then(arts => articulos = arts);
-  }
+  };
   $scope.save = function () {
     Api.renglones.post({
       nombre: $scope.renglon.nombre,
       articulos: articulos
-    }).then(onPost).catch(error => Api.toast.error('Ocurrio un error'));
+    }).then(onPost).catch(() => Api.toast.error('Ocurrio un error'));
   };
   function onPost(result) {
     if (result.code !== 0) {
@@ -39,7 +39,7 @@ module.exports = function ($scope, Api, $uibModalInstance, modalTimer, pngModals
     Api.toast('Se guardo el renglon');
     $scope.close();
   }
-  function onUploaderImagenes(result) {
+  function onUploaderImagenes(/*result*/) {
     Api.toast('Se guardo el renglon');
     $scope.close();
   }

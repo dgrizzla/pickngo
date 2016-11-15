@@ -24,13 +24,10 @@ module.exports = function ($http, Api_utils) {
    * trae un renglon especifico
    * @param {number} id
    */
-  obj.getOne = function (id, cb) {
-    return $http.get('/api/renglones/' + id).then(
-      Api_utils.proxy(cb),
-      function () {
-        cb(Api_utils.error);
-      });
-  };
+  obj.getOne = (id, cb) => Api_utils.promisify(
+    $http.get('/api/renglones/' + id),
+    cb
+  );
   // ################# POST'S ####################
   /**
    * agrega un renglon
@@ -47,13 +44,10 @@ module.exports = function ($http, Api_utils) {
    * @param {number} id
    * @param {object} data nueva version
    */
-  obj.put = function (id, data, cb) {
-    return $http.put('/api/renglones/' + id, data).then(
-      Api_utils.proxy(cb),
-      function () {
-        cb(Api_utils.error);
-      });
-  };
+  obj.put = (id, data, cb) => Api_utils.promisify(
+    $http.put('/api/renglones/' + id, data),
+    cb
+  );
 
   return obj;
 };

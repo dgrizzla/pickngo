@@ -1,6 +1,10 @@
 
 PICKNGO.factory('Api', function ($http, Api_main, Notification, FileUploader) {
   Api_main.toast = Notification;
+  Api_main.catch = msg => err => {
+    console.error(err);
+    Notification.error(msg);
+  };
   Api_main.newUploader = (extensions) => {
     extensions = '|' + extensions.join('|') + '|';
     var uploader = new FileUploader({

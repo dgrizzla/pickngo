@@ -17,7 +17,8 @@ module.exports = function($scope, Api, NgTableParams, pngModals) {
         );
       }
     });
-  }).catch(() => Api.toast.error('Ha ocurrido un error al consultar los renglones'));
+  }).catch(Api.catch('Ha ocurrido un error al consultar los renglones'));
+
   $scope.openAdd = () => pngModals
     .renglon.add()
     .result.then(() => $scope.table.reload());

@@ -22,7 +22,11 @@ exports.getAll = function (req, res) {
   );
 };
 exports.getOne = function (req, res) {
-
+  response.commonData(
+    res,
+    model.getOne,
+    req.params.id
+  );
 };
 exports.post = function (req, res) {
   let {nombre, articulos} = req.body;
@@ -74,5 +78,9 @@ exports.delete = function (req, res) {
 
 };
 exports.put = function (req, res) {
-
+  response.commonData(
+    res,
+    model.put,
+    [req.params.id, req.body.nombre]
+  );
 };
