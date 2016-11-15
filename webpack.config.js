@@ -4,20 +4,19 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const config = require('./server/config/environment');
 
-
 module.exports = {
   entry: path.join(config.root, 'client/index.js'),
   output: {
-    path: path.join(config.root, config.isProd? 'dist/public' : 'public'),
+    path: path.join(config.root, config.isProd ? 'dist/public' : 'public'),
     filename: 'bundle.js'
   },
-  devtool : config.isDev? 'source-map' : undefined,
-  noInfo : true,
+  devtool: config.isDev ? 'source-map' : undefined,
+  noInfo: true,
   module: {
     loaders: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      loaders: ['ng-annotate?map=false','babel']
+      loaders: ['ng-annotate?map=false', 'babel']
     }, {
       test: /\.jade$/,
       loader: 'jade'
@@ -27,7 +26,7 @@ module.exports = {
     }, {
       test: /\.css$/,
       loader: ExtractTextPlugin.extract('style', 'css'),
-    }, { 
+    }, {
       test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
       loader: 'file?name=./assets/fonts/[name].[ext]'
     }, {
@@ -39,8 +38,13 @@ module.exports = {
         'file?name=./assets/images/[name].[ext]'
       ]
     }],
+    preLoaders: [{
+      test: /\.js?$/,
+      exclude: [/node_modules/],
+      loaders: ['eslint']
+    }]
   },
-  plugins : [
+  plugins: [
     new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /es/),
     new HtmlWebpackPlugin({
       title: 'Pick \'n\' Go',
@@ -50,7 +54,7 @@ module.exports = {
     new ExtractTextPlugin('style.css', {
       allChunks: true
     })
-  ].concat(config.isProd? [
+  ].concat(config.isProd ? [
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
@@ -60,10 +64,10 @@ module.exports = {
   ] : []),
   resolve: {
     alias: {
-      assets : path.resolve('client', 'assets'),
-      modal : path.resolve('client', 'components', 'modal')
+      assets: path.resolve('client', 'assets'),
+      modal: path.resolve('client', 'components', 'modal')
     },
-    extensions: ['', '.js', '.json','.css', '.styl', '.jade']
+    extensions: ['', '.js', '.json', '.css', '.styl', '.jade']
   },
   watch: config.isDev
 };

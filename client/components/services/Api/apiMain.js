@@ -1,26 +1,29 @@
 
 PICKNGO.factory('Api_main', function ($http, Api_usuarios, Api_roles, Api_opciones, Api_utils, Api_proveedores) {
-  const a = {};
+  const obj = {};
 
-  a.usuarios = Api_usuarios;
-  a.roles = Api_roles;
-  a.opciones = Api_opciones;
-  a.proveedores = Api_proveedores;
+  obj.usuarios = Api_usuarios;
+  obj.roles = Api_roles;
+  obj.opciones = Api_opciones;
+  obj.proveedores = Api_proveedores;
 
-  a.renglones = require('./api.renglon.js')($http, Api_utils);
-  a.categorias = require('./api.categoria.js')($http, Api_utils);
+  obj.renglones = require('./api.renglon.js')($http, Api_utils);
+  obj.categorias = require('./api.categoria.js')($http, Api_utils);
 
     // ################# GET'S #####################
-
+  obj.count = (table, cb) => Api_utils.promisify(
+    $http.get('/api/table/' + table + '/count'),
+    cb
+  );
    /**
    * trae la lista de paises
    */
-  a.getPaises = function (cb) {
+  obj.getPaises = function (cb) {
     return $http.get('/api/paises').then(
       Api_utils.proxy(cb),
       function () {
-      cb(Api_utils.error);
-    });
+        cb(Api_utils.error);
+      });
   };
-  return a;
+  return obj;
 });
