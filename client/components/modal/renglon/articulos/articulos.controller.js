@@ -29,16 +29,16 @@ module.exports = function ($scope, Api, $uibModalInstance, modalTimer, renglon, 
     $uibModalInstance.close($scope.articulos);
   };
   
-  Api.categorias.getAll().then(result => {
-    $scope.categorias = result.data;
-    $scope.articulo.id_categoria = result.data[0].id;
+  Api.categorias.getAll().then(categorias => {
+    $scope.categorias = categorias;
+    $scope.articulo.id_categoria = categorias[0].id;
     modalTimer($scope);
-  }).catch(error => Api.toast.error('Ocurrio un error con las categorias'));
+  }).catch(Api.catch('Ocurrio un error con las categorias'));
   $scope.removeArticulo = function (index) {
     $scope.articulos.splice(index, 1);
   };
 
-  $scope.edit = function (index, id) {
+  $scope.edit = function (index/*, id*/) {
     $scope.articulo = Object.assign({}, $scope.articulos[index]);
     if (!renglon) {
       $scope.editIndex = index;

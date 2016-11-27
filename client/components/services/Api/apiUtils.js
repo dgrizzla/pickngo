@@ -9,7 +9,8 @@ PICKNGO.factory('Api_utils', function () {
       return cb(response.data);
     };
   };
-  const isResponse = response => 'code' in response || 'data' in response || 'description' in response ;
+  
+  const isResponse = response => 'code' in response || 'data' in response || 'description' in response;
 
   obj.promisify = function (promise, cb) {
     if (!cb) {

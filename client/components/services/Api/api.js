@@ -5,11 +5,9 @@ PICKNGO.factory('Api', function ($http, Api_main, Notification, FileUploader) {
     console.error(err);
     Notification.error(msg);
   };
-  Api_main.newUploader = (extensions) => {
+  Api_main.newUploader = (url, extensions) => {
     extensions = '|' + extensions.join('|') + '|';
-    var uploader = new FileUploader({
-      url: '/api/renglon/imagen'
-    });
+    var uploader = new FileUploader({url});
     uploader.filters.push({
       name: 'extensionsFilter',
       fn: function(item/*, options*/) {

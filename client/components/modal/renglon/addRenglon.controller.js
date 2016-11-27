@@ -18,18 +18,13 @@ module.exports = function ($scope, Api, $uibModalInstance, modalTimer, pngModals
     Api.renglones.post({
       nombre: $scope.renglon.nombre,
       articulos: articulos
-    }).then(onPost).catch(() => Api.toast.error('Ocurrio un error'));
+    }).then(onPost).catch(Api.catch('Ocurrio un error'));
   };
-  function onPost(result) {
-    if (result.code !== 0) {
-      return Api.toast.error('Ocurrio un error');
-    }
+  function onPost(id_renglon) {
     if (imagenesUploader && imagenesUploader.queue.length !== 0) {
       imagenesUploader.removeAfterUpload = true;
       imagenesUploader.onBeforeUploadItem = item => {
-        item.formData.push({
-          id_renglon: result.data
-        });
+        item.formData.push({id_renglon});
       };
       imagenesUploader.onErrorItem = () => Api.toast.error('Ocurrio un error al subir la imagen');
       imagenesUploader.onCompleteAll = onUploaderImagenes;
