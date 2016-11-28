@@ -1,4 +1,4 @@
-'use strict';
+
 PICKNGO.directive('ngThumb', function($window) {
   var helper = {
     support: !!($window.FileReader && $window.CanvasRenderingContext2D),
@@ -15,15 +15,23 @@ PICKNGO.directive('ngThumb', function($window) {
     if (!helper.support) return;
 
     var params = scope.$eval(attributes.ngThumb);
-
-    if (!helper.isFile(params.file)) return;
-    if (!helper.isImage(params.file)) return;
-
     var canvas = element.find('canvas');
-    var reader = new FileReader();
 
-    reader.onload = onLoadFile;
-    reader.readAsDataURL(params.file);
+    if (params.url) {
+      var img = new Image();
+      img.onload = onLoadImage;
+      img.src = params.url;
+    } else {
+      if (!helper.isFile(params.file)) return;
+      if (!helper.isImage(params.file)) return;
+      
+      var reader = new FileReader();
+
+      reader.onload = onLoadFile;
+      reader.readAsDataURL(params.file);
+
+    }
+
 
     function onLoadFile(event) {
       var img = new Image();

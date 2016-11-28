@@ -26,18 +26,29 @@ block body
           .col-xs-12
             +formGroup('descripcion', 'articulo', 'formArticulo', 'text')
       button.btn.btn-default.pull-left(ng-show='isInteger(editIndex)', ng-click='cancelar()') Cancelar
-      button.btn.btn-default.pull-right(ng-click='close()') Cerrar
+      button.btn.btn-default.pull-right(ng-click='closeSave()') Cerrar
     .col-xs-12
       h4 Articulos agregados
       .row
         .col-xs-12(style='max-height: 500px; overflow:auto')
           a.list-group-item(
             href="#",
+            ng-repeat='articulo in newArticulos',
+            ng-class='{active: editIndex == $index}'
+            ng-click='edit($index, articulo)'
+          )
+            button.pull-right.close(style='margin: 0;', type="button" aria-label="Close", ng-click='removeNewArticulo($index)')
+              span( aria-hidden="true") &times;
+            h4.list-group-item-heading {{articulo.nombre}}
+            p
+              small {{articulo.descripcion}}
+          a.list-group-item(
+            href="#",
             ng-repeat='articulo in articulos',
             ng-class='{active: editIndex == $index}'
             ng-click='edit($index, articulo)'
           )
-            button.pull-right.close(style='margin: 0;', type="button" aria-label="Close", ng-click='removeArticulo($index)')
+            button.pull-right.close(style='margin: 0;', type="button" aria-label="Close", ng-click='removeArticulo(articulo.id)')
               span( aria-hidden="true") &times;
             h4.list-group-item-heading {{articulo.nombre}}
             p

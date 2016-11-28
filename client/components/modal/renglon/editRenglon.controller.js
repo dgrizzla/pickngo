@@ -1,27 +1,25 @@
 
 /*@ngInject*/
 module.exports = function ($scope, Api, $uibModalInstance, modalTimer, pngModals, renglon) {
-  let articulos, imagenesUploader;
   $scope.addImagenes = evt => {
     evt.preventDefault();
     pngModals.renglon
-      .imagenes(renglon, imagenesUploader)
-      .result.then(uploader => imagenesUploader = uploader);
+      .imagenes(renglon);
   };
 
   $scope.addArticulos = evt => {
     evt.preventDefault();
     pngModals.renglon
-      .articulos(renglon, articulos)
-      .result.then(arts => articulos = arts);
+      .articulos(renglon);
   };
-  $scope.save = () => Api.renglones.put(renglon, {
-    nombre: $scope.renglon.nombre
-  }).then(() => {
-    Api.toast('Se guardo correctamente');
-    $scope.close();
-  }).catch(Api.catch('Ocurrio un error'));
-
+  $scope.save = () => {
+    Api.renglones.put(renglon, {
+      nombre: $scope.renglon.nombre
+    }).then(() => {
+      Api.toast('Se guardo correctamente');
+      $scope.close();
+    }).catch(Api.catch('Ocurrio un error'));
+  };
 
   Api.renglones
     .getOne(renglon)

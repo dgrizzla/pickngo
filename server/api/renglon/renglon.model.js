@@ -2,13 +2,29 @@ var response = require('../../components/utils/response.js');
 var conn = require('../../components/connection.js');
 
 
+exports.getArticulos = (id, cb) => conn.commonGet(
+  'sp_sel_png_renglon_articulos ( ? )',// id_renglon
+  cb,
+  id
+);
+
+exports.getImagenes = (id, cb) => conn.commonGet(
+  'sp_sel_png_renglon_imagenes ( ? )',// id_renglon
+  cb,
+  id
+);
+
 exports.getSort = function (data, cb) {
   var asc = data.pop() ? 'ASC' : 'DESC';
   var [order, offset, limit] = data;
-  var query = `SELECT renglon.id, renglon.nombre, COUNT(articulo.id_renglon) cant_articulos, COUNT(imagen.id_renglon) cant_imagenes
+  var query = `SELECT renglon.id, renglon.nombre, articulo.cant cant_articulos, imagen.cant cant_imagenes
   FROM png_renglon renglon
-  LEFT JOIN png_imagen_renglon imagen ON renglon.id = imagen.id_renglon
-  LEFT JOIN png_articulo_renglon articulo ON renglon.id = articulo.id_renglon
+  LEFT JOIN (
+		SELECT id_renglon, COUNT(*) cant FROM png_imagen_renglon GROUP BY id_renglon
+	) imagen ON renglon.id = imagen.id_renglon
+	LEFT JOIN (
+		SELECT id_renglon, COUNT(*) cant FROM png_articulo_renglon GROUP BY id_renglon
+	) articulo ON renglon.id = articulo.id_renglon
   GROUP BY renglon.id
   ORDER BY ${order} ${asc}
   LIMIT ${offset},${limit}`;
@@ -43,18 +59,29 @@ exports.postImage = function (data, cb) {
 };
 exports.postArticulo = function (data, cb) {
   conn.commonPost(
-    'fn_ins_png_articulo_renglon ( ?, ?, ?, ?, ?, ?)', // (id_renglon, id_categoria, nombre, descripcion, barcode, precio)
+    'fn_ins_png_articulo_renglon ( ?, ?, ?, ?, ?, ? )', // (id_renglon, id_categoria, nombre, descripcion, barcode, precio)
     cb,
     data
   );
 };
-exports.deleteImage = function () {
-
-};
-exports.deleteArticulo = function () {
-
-};
+exports.deleteImage = (id, cb) => conn.commonGet(
+  'sp_del_png_imagen_renglon ( ? )',
+  cb,
+  id
+);
+exports.deleteArticulo = (id, cb) => conn.commonGet(
+  'sp_del_png_articulo_renglon ( ? )',
+  cb,
+  id
+);
 exports.delete = function () {
 
 };
+
 exports.put = (data, cb) => conn.commonGet('sp_upd_png_renglon ( ?, ?)', cb, data);
+
+exports.putArticulo = (data, cb) => conn.commonGet(
+  'sp_upd_png_articulo_renglon ( ?, ?, ?, ?, ?, ? )',
+  cb,
+  data
+);

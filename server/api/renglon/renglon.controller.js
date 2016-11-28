@@ -3,6 +3,22 @@ const model = require('./renglon.model');
 const response = require('../../components/utils/response.js');
 const { estados } = require('../../config/environment');
 
+exports.getArticulos = function (req, res) {
+  response.commonData(
+    res,
+    model.getArticulos,
+    req.params.id
+  );
+};
+
+exports.getImagenes = function (req, res) {
+  response.commonData(
+    res,
+    model.getImagenes,
+    req.params.id
+  );
+};
+
 exports.getSort = function (req, res) {
   response.commonData(
     res,
@@ -10,7 +26,7 @@ exports.getSort = function (req, res) {
     [ req.params.order,
       Number(req.params.offset),
       Number(req.params.limit),
-      Boolean(req.params.asc == 'true')
+      Boolean(req.params.asc === 'true')
     ]
   );
 };
@@ -50,7 +66,7 @@ exports.post = function (req, res) {
       let {nombre, descripcion, barcode, id_categoria, precio} = articulos[index];
       model.postArticulo([result.data, id_categoria, nombre, descripcion, barcode, precio], onPostArticulo);
     }
-    function onPostArticulo(resultA) {
+    function onPostArticulo(/*resultA*/) {
       numArticulos--;
       if (numArticulos <= 0) {
         res.json(result);
@@ -65,16 +81,36 @@ exports.postImage = function (req, res) {
     ['/public/img/' + req.file.filename, req.body.id_renglon]
   );
 };
-exports.postArticulo = function (req, res) {
 
+exports.postArticulo = function (req, res) {
+  response.commonData(
+    res,
+    model.postArticulo,
+    [
+      req.body.id_renglon,
+      req.body.id_categoria,
+      req.body.nombre,
+      req.body.descripcion,
+      req.body.barcode,
+      req.body.precio
+    ]
+  );
 };
 exports.deleteImage = function (req, res) {
-
+  response.commonData(
+    res,
+    model.deleteImage,
+    req.params.id
+  );
 };
 exports.deleteArticulo = function (req, res) {
-
+  response.commonData(
+    res,
+    model.deleteArticulo,
+    req.params.id
+  );
 };
-exports.delete = function (req, res) {
+exports.delete = function (/*req, res*/) {
 
 };
 exports.put = function (req, res) {
@@ -82,5 +118,20 @@ exports.put = function (req, res) {
     res,
     model.put,
     [req.params.id, req.body.nombre]
+  );
+};
+
+exports.putArticulo = function (req, res) {
+  response.commonData(
+    res,
+    model.putArticulo,
+    [
+      req.params.id,
+      req.body.id_categoria,
+      req.body.nombre,
+      req.body.descripcion,
+      req.body.barcode,
+      req.body.precio
+    ]
   );
 };

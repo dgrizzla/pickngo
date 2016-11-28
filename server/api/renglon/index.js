@@ -16,6 +16,8 @@ var router = express.Router();
 router.get('/sort/:order/:offset/:limit/:asc', controller.getSort);
 router.get('/', controller.getAll);
 router.get('/:id', controller.getOne);
+router.get('/:id/articulos', controller.getArticulos);
+router.get('/:id/imagenes', controller.getImagenes);
 
 
 router.post('/', controller.post);
@@ -28,4 +30,5 @@ router.delete('/articulo/:id', controller.deleteArticulo);
 router.delete('/:id', controller.delete);
 
 router.put('/:id', controller.put);
+router.put('/articulo/:id', controller.putArticulo);
 module.exports = router;
