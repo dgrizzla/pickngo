@@ -1,4 +1,3 @@
-'use strict';
 
 angular.module('pickngoApp').directive('navbar', () => ({
   template: require('./navbar.jade')(),

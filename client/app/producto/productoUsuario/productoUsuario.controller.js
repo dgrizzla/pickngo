@@ -1,11 +1,10 @@
-'use strict';
 
 PICKNGO.controller('ProductoUsuarioCtrl', function($scope, Auth, $state, Notification, $http) {
 
   Auth.getCurrentUser();
   getProductos();
   $scope.itemsPerPage = 5;
-  $scope.currentPage = 4
+  $scope.currentPage = 4;
   function getProductos() {
     $http.get('api/productos/')
       .then(function(result) {
@@ -20,15 +19,15 @@ PICKNGO.controller('ProductoUsuarioCtrl', function($scope, Auth, $state, Notific
     $http.delete('api/productos/' + id)
       .then(resp => {
         if (resp.data.code === 0) {
-          Notification.success('Se eliminó el producto exitosamente.')
+          Notification.success('Se eliminó el producto exitosamente.');
           getProductos();
         } else {
-          Notification.success('Hubo un problema eliminando el producto.')
+          Notification.success('Hubo un problema eliminando el producto.');
         }
       }).catch(err => {
         console.error(err);
-        Notification.error('Hubo un error eliminando el producto.')
+        Notification.error('Hubo un error eliminando el producto.');
       });
-  }
+  };
 
 });

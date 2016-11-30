@@ -1,4 +1,3 @@
-'use strict';
 
 PICKNGO.config(function($stateProvider) {
   $stateProvider.state('productoUsuario', {

@@ -1,4 +1,3 @@
-'use strict';
 
 PICKNGO.directive('isNumber', function() {
   return {

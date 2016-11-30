@@ -1,5 +1,3 @@
-'use strict';
-
 PICKNGO.factory('Modal', function($rootScope, $uibModal) {
   /**
    * Opens a modal
@@ -23,7 +21,7 @@ PICKNGO.factory('Modal', function($rootScope, $uibModal) {
   return {
 
     //Modal de login
-    login(log = angular.noop) {
+    login(/*log = angular.noop*/) {
       return function() {
         $uibModal.open({
           template: require('./loginModal/loginModal.jade')(),
@@ -32,14 +30,14 @@ PICKNGO.factory('Modal', function($rootScope, $uibModal) {
         });
       };
     },
-    registro(reg = angular.noop) {
+    registro(/*reg = angular.noop*/) {
       return function() {
         $uibModal.open({
           template: require('./registroModal/registroModal.jade')(),
           controller: 'RegistroModalCtrl',
           size: 'md'
-        })
-      }
+        });
+      };
     },
     /* Confirmation modals */
     confirm: {
@@ -68,14 +66,14 @@ PICKNGO.factory('Modal', function($rootScope, $uibModal) {
               buttons: [{
                 classes: 'btn-danger',
                 text: 'Delete',
-                click: function(e) {
-                  deleteModal.close(e);
+                click: function(evt) {
+                  deleteModal.close(evt);
                 }
               }, {
                 classes: 'btn-default',
                 text: 'Cancel',
-                click: function(e) {
-                  deleteModal.dismiss(e);
+                click: function(evt) {
+                  deleteModal.dismiss(evt);
                 }
               }]
             }

@@ -1,4 +1,3 @@
-'use strict';
 
 PICKNGO.factory('Session', function($http) {
   // AngularJS will instantiate a singleton by calling "new" on this function
@@ -18,8 +17,8 @@ PICKNGO.factory('Session', function($http) {
           callback(resp);
         })
         .catch(err => {
-          callback(err)
-        })
+          callback(err);
+        });
     }
-  }
+  };
 });

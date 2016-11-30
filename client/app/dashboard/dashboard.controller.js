@@ -1,56 +1,51 @@
-'use strict';
 
-PICKNGO.controller('DashboardCtrl', function($scope, $http, Auth, NgTableParams, $location, Notification, $uibModal) {
-  Auth.getCurrentUser();
+PICKNGO.controller('DashboardCtrl', function($scope, Api, NgTableParams, $uibModal) {
+  Api.getCurrentUser();
 
-  $http.get('api/departamentos/countDeptos')
+  Api.get('api/departamentos/countDeptos')
     .then(result => {
       $scope.countDeptos = result.data.data.numDeptos;
     }).catch(err => {
-      Notification.error('Hubo un cargando los departamentos.');
+      Api.toast.error('Hubo un cargando los departamentos.');
       console.error(err);
     });
-
-  function getProductos() {
-
-  }
-  $http.get('api/productos/')
+  Api.get('api/productos/')
     .then(result => {
       $scope.productos = result.data.data;
     }).catch(error => {
       console.error(error);
-      Notification.error('Hubo un error cargando tus productos');
-    })
+      Api.toast.error('Hubo un error cargando tus productos');
+    });
 
-  $http.get('api/productos/countProductos')
+  Api.get('api/productos/countProductos')
     .then(function(result) {
       $scope.countProductos = result.data.data.countProductos;
     }).catch(function(err) {
-      Notification.error('Hubo un error cargando tus productos');
+      Api.toast.error('Hubo un error cargando tus productos');
       console.error(err);
-    })
+    });
 
-  $http.get('api/mensajes/conversaciones')
+  Api.get('api/mensajes/conversaciones')
     .then(result => {
       $scope.chats = result.data.data;
     }).catch(err => {
-      Notification.error('Hubo un error cargando los chats.');
+      Api.toast.error('Hubo un error cargando los chats.');
       console.error(err);
-    })
+    });
 
-  $http.get('api/mensajes/countConversaciones')
+  Api.get('api/mensajes/countConversaciones')
     .then(result => {
       $scope.numConversaciones = result.data.data[0].numConversaciones;
     }).catch(err => {
-      Notification.error('Hubo un error en el servidor');
+      Api.toast.error('Hubo un error en el servidor');
       console.error(err);
     });
 
   $scope.openChat = function(conversacion) {
-    if (conversacion == undefined) {
+    if (!conversacion) {
       conversacion = 0;
     }
-    var modalChat = $uibModal.open({
+    $uibModal.open({
       template: require('../../components/modal/chat/chat.jade')(),
       controller: 'ChatCtrl',
       resolve: {
@@ -60,13 +55,13 @@ PICKNGO.controller('DashboardCtrl', function($scope, $http, Auth, NgTableParams,
       },
       size: 'md'
     });
-  }
+  };
 
-  $http.get('api/usuarios/countUsuarios')
+  Api.get('api/usuarios/countUsuarios')
     .then(result => {
       $scope.numUsuarios = result.data.data[0].numUsuarios;
     }).catch(err => {
-      console.error(err)
+      console.error(err);
     });
 
 });

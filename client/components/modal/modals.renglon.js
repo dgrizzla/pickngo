@@ -5,7 +5,7 @@ module.exports = function (openModal) {
   obj.edit = renglon => openModal(
     'md',
     require('./renglon/editRenglon.controller.js'),
-    require('./renglon/renglon.jade')({tipo:'Editar'}),
+    require('./renglon/renglon.jade')({tipo: 'Editar'}),
     {
       renglon: () => renglon
     }
@@ -14,7 +14,7 @@ module.exports = function (openModal) {
   obj.add = () => openModal(
     'md',
     require('./renglon/addRenglon.controller.js'),
-    require('./renglon/renglon.jade')({tipo:'Crear'})
+    require('./renglon/renglon.jade')({tipo: 'Crear'})
   );
 
   obj.articulos = (renglon, articulos) => openModal(

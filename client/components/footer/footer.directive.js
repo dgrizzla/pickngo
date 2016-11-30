@@ -1,5 +1,3 @@
-'use strict';
-
 PICKNGO.directive('footer', function() {
   return {
     template: require('./footer.jade')(),

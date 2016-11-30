@@ -1,6 +1,5 @@
-'use strict';
 
-PICKNGO.controller('MainCtrl', function($scope, Modal, $http) {
+PICKNGO.controller('MainCtrl', function($scope, Modal) {
   $scope.openLogin = function() {
     Modal.login()();
   };

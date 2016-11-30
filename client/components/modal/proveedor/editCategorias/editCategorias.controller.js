@@ -17,9 +17,9 @@ module.exports = function ($scope, Api, NgTableParams, $uibModalInstance, provee
     paginate: false,
     count: []
   }, {
-    getData: function(params) {
-      var sorting = params.sorting();
-      var order = Object.keys(sorting)[0] || 'nombre';
+    getData: function(/*params*/) {
+      // var sorting = params.sorting();
+      // var order = Object.keys(sorting)[0] || 'nombre';
       return Api.proveedores.getCategorias(proveedor,onGetCategorias);
     }
   });
@@ -27,7 +27,7 @@ module.exports = function ($scope, Api, NgTableParams, $uibModalInstance, provee
   $scope.toggleCategoriaProveedor = function (categoria) {
     //en el dete se manda la opcion y el id rol opcion
     
-    categoria.id_proveedor_categoria? 
+    categoria.id_proveedor_categoria ?
       Api.proveedores.deleteProveedorCategoria(categoria.id_proveedor_categoria, onDelete)
       : Api.proveedores.postProveedorCategoria(proveedor, categoria.id_categoria, onPost);
 

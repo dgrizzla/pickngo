@@ -1,7 +1,7 @@
-'use strict';
+const moment = require('moment');
 
-PICKNGO.controller('CrearProductoCtrl', function($scope, $http, $state, FileUploader, Auth, $location, Notification) {
-  Auth.getCurrentUser();
+PICKNGO.controller('CrearProductoCtrl', function($scope, Api, $state, FileUploader) {
+  Api.getCurrentUser();
   $scope.producto = {};
   $scope.fechaVencimiento = {};
   var anioActual = moment().get('year');
@@ -13,16 +13,16 @@ PICKNGO.controller('CrearProductoCtrl', function($scope, $http, $state, FileUplo
 
   uploader.filters.push({
     name: 'imageFilter',
-    fn: function(item /*{File|FileLikeObject}*/ , options) {
+    fn: function(item /*{File|FileLikeObject}*/ /*, options*/) {
       var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
       return '|jpg|png|jpeg|bmp|'.indexOf(type) !== -1;
     }
   });
 
-  uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/ , filter, options) {
+  uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/ , filter/*, options*/) {
     console.log(filter);
-    //filter.name === "queueLimit" ? Notification.info('El límite de imágenes es de 4.') : Notification('Formato de archivo inválido.');
-    filter.name === "imageFilter" ? Notification('Formato de imagen inválido.') : Notification('Error cargando la imagen.');
+    //filter.name === "queueLimit" ? Api.toast.info('El límite de imágenes es de 4.') : Api.toast('Formato de archivo inválido.');
+    filter.name === "imageFilter" ? Api.toast('Formato de imagen inválido.') : Api.toast('Error cargando la imagen.');
   };
 
   uploader.onBeforeUploadItem = function(item) {
@@ -33,7 +33,7 @@ PICKNGO.controller('CrearProductoCtrl', function($scope, $http, $state, FileUplo
     item.formData.push(data);
   };
 
-  uploader.onAfterAddingFile = function(fileItem) {
+  uploader.onAfterAddingFile = function(/*fileItem*/) {
     //console.info(uploader.queue.length)
     // if(uploader.queue.length > 1){
     //   uploader.removeFromQueue(0);
@@ -42,79 +42,79 @@ PICKNGO.controller('CrearProductoCtrl', function($scope, $http, $state, FileUplo
 
   uploader.onCompleteAll = function() {
     // if(uploader.queue.length === 1){
-    //   Notification.success('Se guardó la foto del producto exitosamente.')
+    //   Api.toast.success('Se guardó la foto del producto exitosamente.')
     // }else{
-    //   Notification.success('Se guardaron las fotos del producto exitosamente.')
+    //   Api.toast.success('Se guardaron las fotos del producto exitosamente.')
     // }
-    Notification.success('Se guardó el producto exitosamente.')
+    Api.toast.success('Se guardó el producto exitosamente.');
     $state.go('productoUsuario');
   };
 
   // uploader.onSuccessItem = function(fileItem, response, status, headers) {
-  //   Notification.success(' Se guardó la foto del producto exitosamente.')
+  //   Api.toast.success(' Se guardó la foto del producto exitosamente.')
   //   $state.go('productoUsuario');
   // };
 
-  uploader.onErrorItem = function(fileItem, response, status, headers) {
-    Notification.error('Hubo un error procesando la imagen.')
+  uploader.onErrorItem = function(/*fileItem, response, status, headers*/) {
+    Api.toast.error('Hubo un error procesando la imagen.');
   };
 
-  $http.get('api/categorias/porDepartamento')
+  Api.get('api/categorias/porDepartamento')
     .then(function(result) {
       $scope.categorias = result.data.data;
     }).catch(function(err) {
-      Notification.error('Hubo un error cargando las categorías.');
+      Api.toast.error('Hubo un error cargando las categorías.');
       console.error(err);
-    })
+    });
 
-  $http.get('api/subcategorias/')
+  Api.get('api/subcategorias/')
     .then(function(result) {
-      $scope.subcategorias = result.data.data
+      $scope.subcategorias = result.data.data;
     }).catch(function(err) {
-      Notification.error('Hubo un error cargando las subcategorias.');
-      console.error(err)
+      Api.toast.error('Hubo un error cargando las subcategorias.');
+      console.error(err);
     });
 
   $scope.guardarProducto = function() {
-    var mesAux = $scope.fechaVencimiento.mes + 1
+    var mesAux = $scope.fechaVencimiento.mes + 1;
     var fechaTemporal = moment($scope.fechaVencimiento.anio + ' ' + mesAux + ' ' + $scope.fechaVencimiento.dia, "YYYY MM DD");
     if ($scope.producto.nombre && $scope.producto.descripcion && $scope.producto.categoria && $scope.producto.preciodel && $scope.producto.precioal && $scope.fechaVencimiento) {
 
       if (!fechaTemporal.isValid()) {
-        Notification.warning('Fecha límite inválida.');
+        Api.toast.warning('Fecha límite inválida.');
         return;
       }
       if (Number($scope.producto.preciodel) > Number($scope.producto.precioal)) {
-        Notification.warning('El precio final debe ser mayor al inicial.')
+        Api.toast.warning('El precio final debe ser mayor al inicial.');
         return;
       }
 
-      if (uploader.queue.length == 0) {
-        Notification.warning('Debes subir una foto del producto.')
+      if (uploader.queue.length === 0) {
+        Api.toast.warning('Debes subir una foto del producto.');
         return;
       }
 
       $scope.producto.fechaLimite = fechaTemporal.format("YYYY-MM-DD");
 
-      $http.post('api/productos/', {
-          producto: $scope.producto
-        })
-        .then(function(resp) {
-          //console.info(resp);
-          $scope.idProducto = resp.data.data.lastInsertId;
+      Api.post('api/productos/', {
+        producto: $scope.producto
+      })
+      .then(function(resp) {
+        //console.info(resp);
+        $scope.idProducto = resp.data.data.lastInsertId;
 
-          if (resp.data.code === 0) {
-            uploader.uploadAll();
-          } else {
-            Notification.error('Hubo un error guardando el producto.')
-          }
-        }).catch(function(err) {
-          console.error(err)
-          Notification.error('Hubo un error guardando el producto.')
-        })
+        if (resp.data.code === 0) {
+          uploader.uploadAll();
+        } else {
+          Api.toast.error('Hubo un error guardando el producto.');
+        }
+      }).catch(function(err) {
+        console.error(err);
+        Api.toast.error('Hubo un error guardando el producto.');
+      });
     } else {
-      Notification.warning('Completa la información necesaria del producto.')
+      Api.toast.warning('Completa la información necesaria del producto.');
     }
-  }
+  };
 
 });

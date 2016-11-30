@@ -2,6 +2,11 @@
 PICKNGO.factory('Api_main', function ($http, Api_usuarios, Api_roles, Api_opciones, Api_utils, Api_proveedores) {
   const obj = {};
 
+  obj.get = $http.get;
+  obj.post = $http.post;
+  obj.put = $http.put;
+  obj.delete = $http.delete;
+
   obj.usuarios = Api_usuarios;
   obj.roles = Api_roles;
   obj.opciones = Api_opciones;

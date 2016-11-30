@@ -1,4 +1,3 @@
-
 const moment = require('moment');
 
 /*@ngInject*/
@@ -11,9 +10,11 @@ module.exports = function ($scope, Api, NgTableParams, $uibModalInstance, $timeo
   function onGetInfoProveedores(result) {
     $scope.proveedores = result.data;
   }
+
   function onGetRoles(result) {
     $scope.roles = result.data;
   }
+
   function onGetPaises(result) {
     $scope.paises = result.data;
   }
@@ -30,9 +31,9 @@ module.exports = function ($scope, Api, NgTableParams, $uibModalInstance, $timeo
     result.data.fecha_nac_day = date.date();
     result.data.fecha_nac_month = date.month();
     result.data.fecha_nac_year = date.year();
-    result.data.telefono = Number(result.data.telefono); 
+    result.data.telefono = Number(result.data.telefono);
     $scope.usuario = result.data;
-    
+
     //$scope.usuario = result.data
   }
 
@@ -43,14 +44,15 @@ module.exports = function ($scope, Api, NgTableParams, $uibModalInstance, $timeo
       onPut
     );
   };
+
   function onPut(result) {
     if (result.code !== 0) {
       return Api.toast.error('Hubo un error, intentelo de nuevo');
     }
     Api.toast.success('Se editor correctamente');
-    return  $uibModalInstance.close(true);
+    return $uibModalInstance.close(true);
   }
-  $scope.close  = function () {
+  $scope.close = function () {
     $uibModalInstance.dismiss();
-  }
+  };
 };

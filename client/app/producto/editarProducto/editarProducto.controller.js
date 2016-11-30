@@ -1,18 +1,18 @@
-'use strict';
+const moment = require('moment');
 
 PICKNGO.controller('EditarProductoCtrl', function($scope, Auth, Notification, $state, $http, $stateParams, FileUploader) {
   Auth.getCurrentUser();
   var anioActual = moment().get('year');
   $scope.aniosMax = [anioActual, anioActual + 1];
   $scope.producto = $stateParams.producto;
-  var fechaTempLimite = moment().format($stateParams.producto.fecha_limite)
+  var fechaTempLimite = moment().format($stateParams.producto.fecha_limite);
   getImgsProducto();
 
   $scope.fechaVencimiento = {
     dia: moment(fechaTempLimite).get('date'),
     mes: moment(fechaTempLimite).get('month'),
     anio: moment(fechaTempLimite).get('year')
-  }
+  };
 
   $scope.producto.categoria = {
     id: $stateParams.producto.id_subcat,
@@ -29,7 +29,7 @@ PICKNGO.controller('EditarProductoCtrl', function($scope, Auth, Notification, $s
       .then(result => {
         $scope.imagenes = result.data.data;
       }).catch(err => {
-        Notification.error('Hubo un error cargando las imagenes del producto.')
+        Notification.error('Hubo un error cargando las imagenes del producto.');
         console.error(err);
       });
   }
@@ -40,14 +40,14 @@ PICKNGO.controller('EditarProductoCtrl', function($scope, Auth, Notification, $s
     }).catch(function(err) {
       Notification.error('Hubo un error cargando las categorías.');
       console.error(err);
-    })
+    });
 
   $http.get('api/subcategorias/')
     .then(function(result) {
-      $scope.subcategorias = result.data.data
+      $scope.subcategorias = result.data.data;
     }).catch(function(err) {
       Notification.error('Hubo un error cargando las subcategorias.');
-      console.error(err)
+      console.error(err);
     });
 
 
@@ -58,7 +58,7 @@ PICKNGO.controller('EditarProductoCtrl', function($scope, Auth, Notification, $s
 
   uploader.filters.push({
     name: 'imageFilter',
-    fn: function(item /*{File|FileLikeObject}*/ , options) {
+    fn: function(item /*{File|FileLikeObject}*/ /*, options*/) {
       var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
       return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
     }
@@ -76,21 +76,21 @@ PICKNGO.controller('EditarProductoCtrl', function($scope, Auth, Notification, $s
     item.formData.push(data);
   };
 
-  uploader.onAfterAddingFile = function(fileItem) {
+  uploader.onAfterAddingFile = function(/*fileItem*/) {
     // console.info(uploader.queue.length)
     // if (uploader.queue.length > 1) {
     //   uploader.removeFromQueue(0);
     // }
   };
 
-  uploader.onSuccessItem = function(fileItem, response, status, headers) {
+  uploader.onSuccessItem = function(/*fileItem, response, status, headers*/) {
     //Notification.success('Se guardó la foto del producto exitosamente.')
     $state.go('productoUsuario');
     return;
   };
 
-  uploader.onErrorItem = function(fileItem, response, status, headers) {
-    Notification.error('Hubo un error procesando la imagen.')
+  uploader.onErrorItem = function(/*fileItem, response, status, headers*/) {
+    Notification.error('Hubo un error procesando la imagen.');
   };
 
   //********---- Termina uploader de las imagenes del producto --------***********
@@ -103,7 +103,7 @@ PICKNGO.controller('EditarProductoCtrl', function($scope, Auth, Notification, $s
 
   uploaderDestacada.filters.push({
     name: 'imageFilter',
-    fn: function(item /*{File|FileLikeObject}*/ , options) {
+    fn: function(item /*{File|FileLikeObject}*//* , options*/) {
       var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
       return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
     }
@@ -122,21 +122,21 @@ PICKNGO.controller('EditarProductoCtrl', function($scope, Auth, Notification, $s
     item.formData.push(data);
   };
 
-  uploaderDestacada.onAfterAddingFile = function(fileItem) {
+  uploaderDestacada.onAfterAddingFile = function(/*fileItem*/) {
     if (uploaderDestacada.queue.length > 1) {
       uploaderDestacada.removeFromQueue(0);
     }
     uploaderDestacada.uploadAll();
   };
 
-  uploaderDestacada.onSuccessItem = function(fileItem, response, status, headers) {
-    Notification.success('Se guardó la foto del producto exitosamente.')
+  uploaderDestacada.onSuccessItem = function(/*fileItem, response, status, headers*/) {
+    Notification.success('Se guardó la foto del producto exitosamente.');
     getImgsProducto();
     //return;
   };
 
-  uploaderDestacada.onErrorItem = function(fileItem, response, status, headers) {
-    Notification.error('Hubo un error procesando la imagen.')
+  uploaderDestacada.onErrorItem = function(/*fileItem, response, status, headers*/) {
+    Notification.error('Hubo un error procesando la imagen.');
   };
 
   //********---- Termina uploader de la imagen destacada --------***********
@@ -153,29 +153,29 @@ PICKNGO.controller('EditarProductoCtrl', function($scope, Auth, Notification, $s
         return;
       }
       if (Number($scope.producto.preciodel) > Number($scope.producto.precioal)) {
-        Notification.warning('El precio final debe ser mayor al inicial.')
+        Notification.warning('El precio final debe ser mayor al inicial.');
         return;
       }
 
       $scope.producto.fechaLimite = fechaTemporal.format("YYYY-MM-DD");
       
       $http.put('api/productos/', {
-          producto: $scope.producto
-        })
-        .then(function(result) {
-          //console.log('result put',result)
-          if (result.data.code == 0) {
-            if (uploader.queue.length != 0) {
-              uploader.uploadAll();
-            }
-            $state.go('productoUsuario');
-            Notification.success('Se guardo la información del producto.');
+        producto: $scope.producto
+      })
+      .then(function(result) {
+        //console.log('result put',result)
+        if (result.data.code === 0) {
+          if (uploader.queue.length !== 0) {
+            uploader.uploadAll();
           }
-        }).catch(function(err) {
-          console.error(err);
-        });
+          $state.go('productoUsuario');
+          Notification.success('Se guardo la información del producto.');
+        }
+      }).catch(function(err) {
+        console.error(err);
+      });
     } else {
-      Notification.warning('Completa la información del producto.')
+      Notification.warning('Completa la información del producto.');
     }
-  }
+  };
 });

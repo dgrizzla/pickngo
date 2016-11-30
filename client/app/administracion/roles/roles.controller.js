@@ -3,7 +3,7 @@
 module.exports = function ($scope, Api, NgTableParams, $uibModal) {
   //Api.roles.getRoles
   $scope.table = new NgTableParams({}, {
-    getData: function(params) {
+    getData: function(/*params*/) {
       return Api.roles.getRoles(onGetRoles);
     }
   });

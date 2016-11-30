@@ -1,4 +1,3 @@
-'use strict';
 
 require('angular-http-auth');
 require('angular-file-upload');

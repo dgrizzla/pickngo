@@ -1,9 +1,8 @@
-'use strict';
 
-PICKNGO.controller('LoginModalCtrl', function($scope, Auth, $state, Notification) {
-  $scope.login = function(valid) {
+PICKNGO.controller('LoginModalCtrl', function ($scope, Api) {
+  $scope.login = function (valid) {
     if (valid) {
-      Auth.login({
+      Api.login({
         user: $scope.usuario.usuario,
         password: $scope.usuario.clave
       }).then(() => {
@@ -11,13 +10,13 @@ PICKNGO.controller('LoginModalCtrl', function($scope, Auth, $state, Notification
         //$state.go('dashboard');
       }).catch(err => {
         if (err.message) {
-          Notification.warning(err.message);
+          Api.toast.warning(err.message);
           return;
         }
-        Notification.error('Hubo un error procesando tu solicitud.')
+        Api.toast.error('Hubo un error procesando tu solicitud.');
         console.log('error', err);
-      })
+      });
 
     }
-  }
+  };
 });

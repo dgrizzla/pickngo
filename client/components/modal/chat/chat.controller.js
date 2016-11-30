@@ -1,4 +1,4 @@
-PICKNGO.controller('ChatCtrl', function ($scope, $http, Auth, $location, Notification, conversacionData) {
+PICKNGO.controller('ChatCtrl', function ($scope, Api, $location, conversacionData) {
 
   $scope.modalView = "menuChat";
   $scope.items = [];
@@ -11,34 +11,34 @@ PICKNGO.controller('ChatCtrl', function ($scope, $http, Auth, $location, Notific
   };
 
   function getConversaciones() {
-    $http.get('api/mensajes/conversaciones')
+    Api.get('api/mensajes/conversaciones')
       .then(result => {
         //console.info('mensajes', result.data.data);
         $scope.conversaciones = result.data.data;
       }).catch(err => {
-        Notification.error('Hubo un error cargando tus mensajes.');
+        Api.toast.error('Hubo un error cargando tus mensajes.');
         console.error(err);
       });
   }
 
   function getMensajes(idConversacion) {
-    $http.get('api/mensajes/' + idConversacion)
+    Api.get('api/mensajes/' + idConversacion)
       .then(mensajes => {
         $scope.mensajes = mensajes.data.data;
         $scope.modalView = 'conversacion';
       }).catch(err => {
-        Notification.error('Hubo un error cargando la conversación.');
+        Api.toast.error('Hubo un error cargando la conversación.');
         console.error(err);
       });
   }
 
   function refrescarMensajes() {
-    $http.get('api/mensajes/' + $scope.idConversacion)
+    Api.get('api/mensajes/' + $scope.idConversacion)
       .then(mensajes => {
         $scope.mensaje = null;
         $scope.mensajes = mensajes.data.data;
       }).catch(err => {
-        Notification.error('Hubo un error cargando la conversación.');
+        Api.toast.error('Hubo un error cargando la conversación.');
         console.error(err);
       });
   }
@@ -56,7 +56,7 @@ PICKNGO.controller('ChatCtrl', function ($scope, $http, Auth, $location, Notific
       apellidos: usuario.apellidos,
       id_usuario: usuario.id
     };
-    $http.get('api/mensajes/usuarioConversacion/' + usuario.id)
+    Api.get('api/mensajes/usuarioConversacion/' + usuario.id)
       .then(result => {
         if (result.data.data.length === 0) {
           nuevoChat(usuarioMensaje);
@@ -71,7 +71,7 @@ PICKNGO.controller('ChatCtrl', function ($scope, $http, Auth, $location, Notific
 
   $scope.enviarMensaje = function (mensaje) {
     if ($scope.idConversacion === -1) {
-      $http.post('api/mensajes/nuevaConversacion', {
+      Api.post('api/mensajes/nuevaConversacion', {
         mensaje: mensaje,
         receptor: $scope.receptor.id_usuario
       })
@@ -80,20 +80,20 @@ PICKNGO.controller('ChatCtrl', function ($scope, $http, Auth, $location, Notific
           $scope.idConversacion = result.data.data.idConversacion;
           refrescarMensajes();
         } else {
-          Notification.error('Hubo un error enviando el mensaje.');
+          Api.toast.error('Hubo un error enviando el mensaje.');
         }
       }).catch(err => {
-        Notification.error('Hubo un error enviando el mensaje.');
+        Api.toast.error('Hubo un error enviando el mensaje.');
         console.error(err);
       });
     } else {
-      $http.post('api/mensajes/', {
+      Api.post('api/mensajes/', {
         mensaje: mensaje,
         idConversacion: $scope.idConversacion
       }).then(() => {
         refrescarMensajes();
       }).catch(err => {
-        Notification.error('Hubo un error enviando el mensaje.');
+        Api.toast.error('Hubo un error enviando el mensaje.');
         console.error(err);
       });
     }
@@ -127,7 +127,7 @@ PICKNGO.controller('ChatCtrl', function ($scope, $http, Auth, $location, Notific
   }
 
   $scope.buscarUsuario = function (busqueda) {
-    $http.get('api/usuarios/busquedaUsuarioChat/' + busqueda)
+    Api.get('api/usuarios/busquedaUsuarioChat/' + busqueda)
       .then(result => {
         $scope.resultadoUsuarios = result.data.data;
         //console.info('result', result.data.data)

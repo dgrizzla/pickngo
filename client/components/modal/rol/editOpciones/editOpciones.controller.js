@@ -24,13 +24,13 @@ module.exports = function ($scope, Api, NgTableParams, $uibModalInstance, rol, $
         order,
         $scope.offset,
         $scope.limit,
-        sorting[order] == 'asc',
+        sorting[order] === 'asc',
         onGetOpciones
       );
     }
   });
   $scope.toggleRolOpcion = function (opcion) {
-    opcion.id_rol_opcion? 
+    opcion.id_rol_opcion ?
       Api.roles.deleteRolOpcion(opcion.id_rol_opcion, onDelete)
       : Api.roles.postRolOpcion(rol, opcion.id, onPost);
 

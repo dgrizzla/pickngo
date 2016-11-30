@@ -12,7 +12,7 @@ module.exports = {
     'id-length': ["error", { "exceptions": ['_', '$', 'y', 'x', 'i', 'j']}],
     'max-nested-callbacks': ["error", 3],
     'max-depth': ["error", 4],
-    'max-params': ['warn', 5],
+    'max-params': ['warn', 6],
     'no-unneeded-ternary': 'error',
     'brace-style': 'error',
     'no-extra-semi': 'error',

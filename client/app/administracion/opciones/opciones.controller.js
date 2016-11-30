@@ -12,7 +12,7 @@ module.exports = function ($scope, Api, NgTableParams, $uibModal) {
         order,
         $scope.offset,
         $scope.limit,
-        sorting[order] == 'asc',
+        sorting[order] === 'asc',
         onGetOpciones
       );
     }

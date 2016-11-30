@@ -1,22 +1,21 @@
-'use strict';
 
-PICKNGO.controller('AgregarDeptoCtrl', function($scope, Auth, $http, Notification) {
-  Auth.getCurrentUser();
-  $scope.guardarDepto = function(valid) {
+PICKNGO.controller('AgregarDeptoCtrl', function ($scope, Api) {
+  Api.getCurrentUser();
+  $scope.guardarDepto = function (valid) {
     if (valid) {
-      $http.post('api/departamentos/', {
-          nombreDepartamento: $scope.departamento.nombre
-        })
-        .then(resp => {
-          Notification.success('Se agregó exitosamente el departamento.')
-          $scope.$close();
-        }).catch(err => {
-          Notification.error('Hubo un error agregando el departamento.')
-          console.error(err)
-          $scope.$close();
-        })
+      Api.post('api/departamentos/', {
+        nombreDepartamento: $scope.departamento.nombre
+      })
+      .then(() => {
+        Api.toast.success('Se agregó exitosamente el departamento.');
+        $scope.$close();
+      }).catch(err => {
+        Api.toast.error('Hubo un error agregando el departamento.');
+        console.error(err);
+        $scope.$close();
+      });
     } else {
-      Notification.warning('Completa los datos.')
+      Api.toast.warning('Completa los datos.');
     }
-  }
+  };
 });

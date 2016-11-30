@@ -1,4 +1,3 @@
-'use strict';
 
 PICKNGO.controller('PanelAdminCtrl', function($scope, $http, Auth, $location, Notification, $uibModal) {
   Auth.getCurrentUser();
@@ -12,8 +11,8 @@ PICKNGO.controller('PanelAdminCtrl', function($scope, $http, Auth, $location, No
       .then(result => {
         $scope.departamentos = result.data.data;
       }).catch(err => {
-        Notification.error('Hubo un error cargando los departamentos.')
-        console.error('error deptos', err)
+        Notification.error('Hubo un error cargando los departamentos.');
+        console.error('error deptos', err);
       });
   }
 
@@ -22,7 +21,7 @@ PICKNGO.controller('PanelAdminCtrl', function($scope, $http, Auth, $location, No
       .then(result => {
         $scope.categorias = result.data.data;
       }).catch(err => {
-        Notification.error('Hubo un error cargando las categorías.')
+        Notification.error('Hubo un error cargando las categorías.');
         console.error('error categ', err);
       });
   }
@@ -32,7 +31,7 @@ PICKNGO.controller('PanelAdminCtrl', function($scope, $http, Auth, $location, No
       .then(result => {
         $scope.subcategorias = result.data.data;
       }).catch(err => {
-        Notification.error('Hubo un error cargando las subcategorías.')
+        Notification.error('Hubo un error cargando las subcategorías.');
         console.error(err);
       });
   }
@@ -80,7 +79,7 @@ PICKNGO.controller('PanelAdminCtrl', function($scope, $http, Auth, $location, No
         getSubCategorias();
       });
     }
-  }
+  };
 
   $scope.editarDepartamento = function(departamento) {
     var modalEditDepto = $uibModal.open({
@@ -107,12 +106,12 @@ PICKNGO.controller('PanelAdminCtrl', function($scope, $http, Auth, $location, No
     eliminarDepto.result.then(function(resp) {
       if (resp) {
         $http.delete('/api/departamentos/' + departamento.id)
-          .then(result => {
-            Notification.success('Se eliminó el departamento.')
+          .then(() => {
+            Notification.success('Se eliminó el departamento.');
             getDepartamentos();
           }).catch(err => {
-            Notification.error('Hubo un error eliminando el departamento.')
-            console.error(err)
+            Notification.error('Hubo un error eliminando el departamento.');
+            console.error(err);
           });
       }
 
@@ -147,12 +146,12 @@ PICKNGO.controller('PanelAdminCtrl', function($scope, $http, Auth, $location, No
     eliminarCat.result.then(function(resp) {
       if (resp) {
         $http.delete('/api/categorias/' + categoria.id_categoria)
-          .then(result => {
+          .then(() => {
             Notification.success('Se eliminó la categoría.');
             getCategorias();
           }).catch(err => {
             Notification.error('Hubo un error eliminando la categoría.');
-            console.error(err)
+            console.error(err);
           });
       }
 
@@ -187,12 +186,12 @@ PICKNGO.controller('PanelAdminCtrl', function($scope, $http, Auth, $location, No
     eliminarSubCat.result.then(function(resp) {
       if (resp) {
         $http.delete('api/subcategorias/' + subcategoria.id)
-          .then(result => {
+          .then(() => {
             Notification.success('Se eliminó la subcategoría.');
             getSubCategorias();
           }).catch(err => {
             Notification.error('Hubo un error eliminando la subcategoría.');
-            console.error(err)
+            console.error(err);
           });
       }
 

@@ -1,4 +1,3 @@
-'use strict';
 
 PICKNGO.controller('NavbarCtrl', function($scope, Auth, $rootScope, Modal, $uibModal, $location, Api) {
   Auth.getCurrentUser(function (currentUser) {
@@ -16,8 +15,8 @@ PICKNGO.controller('NavbarCtrl', function($scope, Auth, $rootScope, Modal, $uibM
     }
   }
 
-  $rootScope.$watch('currentUser', function(newVal, oldVal) {
-    $scope.showItems = (newVal && newVal.id_usuario >= 0) ? true : false;
+  $rootScope.$watch('currentUser', function(newVal/*, oldVal*/) {
+    $scope.showItems = newVal && newVal.id_usuario >= 0;
     if (newVal && newVal.id_usuario >= 0) {
       if (newVal.id_tipo) {
         Api.roles.getOpcionesMenuRol(newVal.id_tipo, onGetMenus);
@@ -32,16 +31,16 @@ PICKNGO.controller('NavbarCtrl', function($scope, Auth, $rootScope, Modal, $uibM
   $scope.logout = function() {
     Auth.logout(function(resp) {
       if (resp.err) {
-        Api.toast.error('Hubo un error cerrando la sesión.')
-        console.err('error', err)
+        Api.toast.error('Hubo un error cerrando la sesión.');
+        console.err('error', resp);
       } else {
-        Api.toast.success('Has cerrado sesión con éxito.')
-        $location.path('/')
+        Api.toast.success('Has cerrado sesión con éxito.');
+        $location.path('/');
       }
     });
-  }
+  };
   $scope.openChat = function() {
-    var modalChat = $uibModal.open({
+    $uibModal.open({
       template: require('../modal/chat/chat.jade')(),
       controller: 'ChatCtrl',
       resolve: {
@@ -51,7 +50,7 @@ PICKNGO.controller('NavbarCtrl', function($scope, Auth, $rootScope, Modal, $uibM
       },
       size: 'md'
     });
-  }
+  };
 
   $scope.openRegistro = function() {
     Modal.registro()();

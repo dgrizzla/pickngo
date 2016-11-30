@@ -1,8 +1,7 @@
-'use strict';
 
 PICKNGO.config(function ($stateProvider) {
   $stateProvider.state('editarProducto', {
-    params: {producto:null},
+    params: {producto: null},
     url: '/editarProducto',
     template: require('./editarProducto.jade')(),
     controller: 'EditarProductoCtrl',
