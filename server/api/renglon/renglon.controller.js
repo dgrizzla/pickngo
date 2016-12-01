@@ -3,6 +3,14 @@ const model = require('./renglon.model');
 const response = require('../../components/utils/response.js');
 const { estados } = require('../../config/environment');
 
+
+exports.getAllImagenes = function (req, res) {
+  response.common(
+    res,
+    model.getAllImagenes
+  );
+};
+
 exports.getArticulos = function (req, res) {
   response.commonData(
     res,

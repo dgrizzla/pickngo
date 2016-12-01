@@ -1,6 +1,11 @@
 var response = require('../../components/utils/response.js');
 var conn = require('../../components/connection.js');
+var { commonGet: get } = conn;
 
+exports.getAllImagenes = cb => get(
+  'sp_sel_png_renglon_imagenes_all',
+  cb
+);
 
 exports.getArticulos = (id, cb) => conn.commonGet(
   'sp_sel_png_renglon_articulos ( ? )',// id_renglon

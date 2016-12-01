@@ -59,7 +59,9 @@ exports.commonGet = function (query, cb, data) {
     data = undefined;
   }
   if (!cb) {
-    return response.then(execute('call ' + query, data));
+    return response.then(
+      execute('call ' + query, data).then(rows => rows[0])
+    );
   }
   execute('call ' + query, data, onQuery);
   function onQuery(err, rows) {

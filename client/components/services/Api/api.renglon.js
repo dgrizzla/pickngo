@@ -1,5 +1,6 @@
 module.exports = function ($http, Api_utils) {
   const obj = {};
+  const { promisify } = Api_utils;
   // ################# GET'S #####################
 
   /**
@@ -13,9 +14,16 @@ module.exports = function ($http, Api_utils) {
       });
   };
   /**
+   * trae todos los renglones
+   */
+  obj.getAllImagenes = cb => promisify(
+    $http.get('/api/renglones/imagenes'),
+    cb
+  );
+  /**
    * trae los renglones dependiendo el query
    */
-  obj.getSort = (order, offset, limit, asc, cb) => Api_utils.promisify(
+  obj.getSort = (order, offset, limit, asc, cb) => promisify(
     $http.get('/api/renglones/sort/' + order + '/' + offset + '/' + limit + '/' + asc),
     cb
   );
@@ -24,7 +32,7 @@ module.exports = function ($http, Api_utils) {
    * trae un renglon especifico
    * @param {number} id
    */
-  obj.getOne = (id, cb) => Api_utils.promisify(
+  obj.getOne = (id, cb) => promisify(
     $http.get('/api/renglones/' + id),
     cb
   );
@@ -33,7 +41,7 @@ module.exports = function ($http, Api_utils) {
    * trae las imagenes de un renglon especifico
    * @param {number} id
    */
-  obj.getImagenes = (id, cb) => Api_utils.promisify(
+  obj.getImagenes = (id, cb) => promisify(
     $http.get('/api/renglones/' + id + '/imagenes'),
     cb
   );
@@ -41,7 +49,7 @@ module.exports = function ($http, Api_utils) {
    * trae las articulos de un renglon especifico
    * @param {number} id
    */
-  obj.getArticulos = (id, cb) => Api_utils.promisify(
+  obj.getArticulos = (id, cb) => promisify(
     $http.get('/api/renglones/' + id + '/articulos'),
     cb
   );
@@ -50,7 +58,7 @@ module.exports = function ($http, Api_utils) {
    * agrega un renglon
    * @param {object} data del nuevo renglon
    */
-  obj.post = (data, cb) => Api_utils.promisify(
+  obj.post = (data, cb) => promisify(
     $http.post('/api/renglones', data),
     cb
   );
@@ -58,7 +66,7 @@ module.exports = function ($http, Api_utils) {
    * agrega articulos a un renglon
    * @param {object} data del nuevo renglon
    */
-  obj.postArticulo = (data, cb) => Api_utils.promisify(
+  obj.postArticulo = (data, cb) => promisify(
     $http.post('/api/renglones/articulo', data),
     cb
   );
@@ -69,7 +77,7 @@ module.exports = function ($http, Api_utils) {
    * @param {number} id
    * @param {object} data nueva version
    */
-  obj.put = (id, data, cb) => Api_utils.promisify(
+  obj.put = (id, data, cb) => promisify(
     $http.put('/api/renglones/' + id, data),
     cb
   );
@@ -78,7 +86,7 @@ module.exports = function ($http, Api_utils) {
    * @param {number} id
    * @param {object} data nueva version
    */
-  obj.putArticulo = (id, data, cb) => Api_utils.promisify(
+  obj.putArticulo = (id, data, cb) => promisify(
     $http.put('/api/renglones/articulo/' + id, data),
     cb
   );
@@ -89,7 +97,7 @@ module.exports = function ($http, Api_utils) {
    * elimina una imagen
    * @param {number} id
    */
-  obj.deleteImagen = (id, cb) => Api_utils.promisify(
+  obj.deleteImagen = (id, cb) => promisify(
     $http.delete('/api/renglones/imagen/' + id),
     cb
   );
@@ -97,7 +105,7 @@ module.exports = function ($http, Api_utils) {
    * elimina un articulo
    * @param {number} id
    */
-  obj.deleteArticulo = (id, cb) => Api_utils.promisify(
+  obj.deleteArticulo = (id, cb) => promisify(
     $http.delete('/api/renglones/articulo/' + id),
     cb
   );

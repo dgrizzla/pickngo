@@ -1,2 +1,18 @@
-div
-  | renglones
+.container
+  .row
+    uib-tabset(active="active")
+      uib-tab(index='2')
+        uib-tab-heading
+          h3 Imagenes
+        br
+        br
+        .col-xs-3(ng-repeat='imagen in imagenes')
+          a.thumbnail
+            div(ng-thumb="{ url: imagen.url, background: true }",style='width: 100%; min-height: 150px;')
+            .caption
+              h4 {{imagen.nombre}}
+      uib-tab(index='1')
+        uib-tab-heading
+          h3 Renglones
+        br
+        br

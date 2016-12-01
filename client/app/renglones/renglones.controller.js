@@ -1,5 +1,7 @@
 
 /*@ngInject*/
-module.exports = function ($scope, Api, NgTableParams, $uibModal) {
-  
+module.exports = function ($scope, Api) {
+  Api.renglones.getAllImagenes().then(imagenes => {
+    $scope.imagenes = imagenes;
+  });
 };

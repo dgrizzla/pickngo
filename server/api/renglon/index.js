@@ -13,11 +13,12 @@ var uploader = multer({storage});
 
 var router = express.Router();
 
-router.get('/sort/:order/:offset/:limit/:asc', controller.getSort);
 router.get('/', controller.getAll);
+router.get('/imagenes', controller.getAllImagenes);
 router.get('/:id', controller.getOne);
 router.get('/:id/articulos', controller.getArticulos);
 router.get('/:id/imagenes', controller.getImagenes);
+router.get('/sort/:order/:offset/:limit/:asc', controller.getSort);
 
 
 router.post('/', controller.post);

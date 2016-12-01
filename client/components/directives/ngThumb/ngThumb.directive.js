@@ -17,7 +17,14 @@ PICKNGO.directive('ngThumb', function($window) {
     var params = scope.$eval(attributes.ngThumb);
     var canvas = element.find('canvas');
 
-    if (params.url) {
+    if (params.background) {
+      element.css({
+        'background-image': 'url(' + params.url + ')',
+        'background-repeat': 'no-repeat',
+        'background-position': 'center center',
+        'background-size': 'cover'
+      });
+    } else if (params.url) {
       var img = new Image();
       img.onload = onLoadImage;
       img.src = params.url;
@@ -31,7 +38,6 @@ PICKNGO.directive('ngThumb', function($window) {
       reader.readAsDataURL(params.file);
 
     }
-
 
     function onLoadFile(event) {
       var img = new Image();
