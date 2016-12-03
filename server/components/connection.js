@@ -20,7 +20,7 @@ pool.on('error', function () {
 
 
 const execute = (query, data, cb) => new Promise((resolve, reject) => {
-  if (!cb) {
+  if (!cb && typeof data === 'function') {
     cb = data;
     data = undefined;
   }
@@ -54,11 +54,13 @@ exports.prepare = mysql.format;
 exports.execute = execute;
 
 exports.commonGet = function (query, cb, data) {
-  if (!cb) {
+  console.log(data, cb);
+  if (!cb && typeof data === 'function') {
     cb = data;
     data = undefined;
   }
   if (!cb) {
+    console.log(data);
     return response.then(
       execute('call ' + query, data).then(rows => rows[0])
     );
@@ -75,13 +77,13 @@ exports.commonGet = function (query, cb, data) {
 };
 
 exports.getOne = function (query, cb, data) {
-  if (!cb) {
+  if (!cb && typeof data === 'function') {
     cb = data;
     data = undefined;
   }
   if (!cb) {
     return response.then(execute('call ' + query, data))
-            .then(data => data[0]);
+            .then(data => data[0][0]);
   }
   execute('call ' + query, data, onQuery);
   function onQuery(err, rows) {

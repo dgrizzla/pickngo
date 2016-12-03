@@ -78,6 +78,7 @@ require('./components/modal/proveedor/editCategorias/editCategorias.controller.j
 require('./components/modal/proveedor/editProveedor/editProveedor.controller.js');
 require('./components/modal/renglon/articulos/articulos.controller.js');
 require('./components/modal/renglon/imagenes/imagenes.controller.js');
+require('./components/modal/renglon/visor/visor.controller.js');
 require('./components/modal/rol/addRol/addRol.controller.js');
 require('./components/modal/rol/editOpciones/editOpciones.controller.js');
 require('./components/modal/rol/editRol/editRol.controller.js');

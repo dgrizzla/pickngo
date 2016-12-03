@@ -21,6 +21,13 @@ module.exports = function ($http, Api_utils) {
     cb
   );
   /**
+   * trae todos los renglones y una imagen
+   */
+  obj.getImagen = cb => promisify(
+    $http.get('/api/renglones/imagen'),
+    cb
+  );
+  /**
    * trae los renglones dependiendo el query
    */
   obj.getSort = (order, offset, limit, asc, cb) => promisify(
@@ -51,6 +58,15 @@ module.exports = function ($http, Api_utils) {
    */
   obj.getArticulos = (id, cb) => promisify(
     $http.get('/api/renglones/' + id + '/articulos'),
+    cb
+  );
+
+    /**
+   * trae el detalle de un renglon
+   * @param {number} id
+   */
+  obj.getDetails = (id, cb) => promisify(
+    $http.get('/api/renglones/' + id + '/detalle'),
     cb
   );
   // ################# POST'S ####################

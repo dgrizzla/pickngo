@@ -36,5 +36,15 @@ module.exports = function (openModal) {
       imagenesUploader: () => imagenesUploader
     }
   );
+
+  obj.visor = (renglon, imagen) => openModal(
+    'lg',
+    require('./renglon/visor/visor.controller.js'),
+    require('./renglon/visor/visor.jade')(),
+    {
+      renglon: () => renglon,
+      imagen: () => imagen
+    }
+  );
   return obj;
 };

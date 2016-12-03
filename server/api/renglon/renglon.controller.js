@@ -3,6 +3,30 @@ const model = require('./renglon.model');
 const response = require('../../components/utils/response.js');
 const { estados } = require('../../config/environment');
 
+exports.getImagen = function (req, res) {
+  response.common(
+    res,
+    model.getImagen
+  );
+};
+
+exports.getDetails = function (req, res) {
+  let data;
+  model.getOne(req.params.id).then(renglon => {
+    data = renglon;
+    console.log(data.id, data);
+    return model.getArticulos(data.id);
+  }).then(articulos => {
+    data.articulos = articulos;
+    return model.getImagenes(data.id);
+  }).then(imagenes => {
+    data.imagenes = imagenes;
+    res.json(response.generate(0, undefined, data));
+  }).catch(err => {
+    console.error(err);
+    res.json(response.generate(1, err));
+  });
+};
 
 exports.getAllImagenes = function (req, res) {
   response.common(

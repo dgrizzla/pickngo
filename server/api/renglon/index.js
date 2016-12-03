@@ -15,9 +15,11 @@ var router = express.Router();
 
 router.get('/', controller.getAll);
 router.get('/imagenes', controller.getAllImagenes);
+router.get('/imagen', controller.getImagen);
 router.get('/:id', controller.getOne);
 router.get('/:id/articulos', controller.getArticulos);
 router.get('/:id/imagenes', controller.getImagenes);
+router.get('/:id/detalle', controller.getDetails);
 router.get('/sort/:order/:offset/:limit/:asc', controller.getSort);
 
 

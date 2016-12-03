@@ -1,18 +1,23 @@
 .container
   .row
     uib-tabset(active="active")
+      uib-tab(index='1')
+        uib-tab-heading
+          h3 Renglones
+        br
+        br
+        .col-xs-3(ng-repeat='renglon in renglones')
+          a.thumbnail(ng-click='openVisor(renglon.id, renglon.id_imagen)')
+            div(ng-thumb="{ url: renglon.url, background: true }",style='width: 100%; min-height: 150px;')
+            .caption
+              h4 {{renglon.nombre}}
       uib-tab(index='2')
         uib-tab-heading
           h3 Imagenes
         br
         br
         .col-xs-3(ng-repeat='imagen in imagenes')
-          a.thumbnail
+          a.thumbnail(ng-click='openVisor(imagen.id_renglon, imagen.id)')
             div(ng-thumb="{ url: imagen.url, background: true }",style='width: 100%; min-height: 150px;')
             .caption
               h4 {{imagen.nombre}}
-      uib-tab(index='1')
-        uib-tab-heading
-          h3 Renglones
-        br
-        br

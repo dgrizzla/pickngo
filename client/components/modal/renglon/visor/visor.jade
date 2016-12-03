@@ -1,0 +1,28 @@
+extends ../../../../templates/modal.jade
+
+block head
+  h4 #{tipo} Renglon
+  button.navbar-link(type="button" class="close" aria-label="Close", ng-click='close()')
+    span( aria-hidden="true") &times;
+block body
+  .row
+    .col-xs-1
+      img(
+        ng-repeat='imagen in renglon.imagenes',
+        ng-src='{{imagen.url}}',
+        style='width:100%',
+        ng-click='selectImage($index)'
+      )
+    .col-xs-8
+      img(ng-src='{{renglon.imagenes[imagenIndex].url}}', style='width:100%')
+    .col-xs-3
+      h4 Articulos
+      a.list-group-item(
+        href="#",
+        ng-repeat='articulo in renglon.articulos',
+        ng-class='{active: editIndex == $index}'
+        ng-click='edit($index, articulo)'
+      )
+        h4.list-group-item-heading {{articulo.nombre}}
+        p
+          small {{articulo.descripcion}}
